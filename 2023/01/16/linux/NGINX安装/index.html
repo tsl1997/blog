@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="从阿里云云函数Java示例到各大厂商云函数">
+  <meta name="description" content="腾讯云服务器测试安装nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="云函数">
-<meta property="og:url" content="http://example.com/2023/01/04/%E4%BA%91%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="nginx安装">
+<meta property="og:url" content="http://example.com/2023/01/16/linux/NGINX%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="江湖救急">
-<meta property="og:description" content="从阿里云云函数Java示例到各大厂商云函数">
+<meta property="og:description" content="腾讯云服务器测试安装nginx">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-04T08:00:00.000Z">
-<meta property="article:modified_time" content="2023-01-17T13:30:42.270Z">
+<meta property="article:published_time" content="2023-01-16T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-17T13:43:50.704Z">
 <meta property="article:author" content="XS">
-<meta property="article:tag" content="函数计算">
-<meta property="article:tag" content="serverless">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="服务器">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/01/04/%E4%BA%91%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="http://example.com/2023/01/16/linux/NGINX%E5%AE%89%E8%A3%85/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>云函数 | 江湖救急</title>
+  <title>nginx安装 | 江湖救急</title>
   
 
 
@@ -162,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/04/%E4%BA%91%E5%87%BD%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/16/linux/NGINX%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -175,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          云函数
+          nginx安装
         </h1>
 
         <div class="post-meta">
@@ -185,14 +186,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-04T00:00:00-08:00">2023-01-04</time>
+              <time title="创建时间：2023-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2023-01-16T00:00:00-08:00">2023-01-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-17 05:30:42" itemprop="dateModified" datetime="2023-01-17T05:30:42-08:00">2023-01-17</time>
+                <time title="修改时间：2023-01-17 05:43:50" itemprop="dateModified" datetime="2023-01-17T05:43:50-08:00">2023-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -200,12 +201,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/" itemprop="url" rel="index"><span itemprop="name">云原生</span></a>
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">从阿里云云函数Java示例到各大厂商云函数</div>
+            <div class="post-description">腾讯云服务器测试安装nginx</div>
 
         </div>
       </header>
@@ -216,41 +217,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>视频教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1BG4y1E7B4">https://www.bilibili.com/video/BV1BG4y1E7B4</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=819448187&bvid=BV1BG4y1E7B4&cid=943203751&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<p>建议直接使用阿里云的函数服务，腾讯的Java文档看的脑壳痛，阿里的还能看过去。</p>
-<h3 id="为什么我要迁移-SpringBoot-到函数计算"><a href="#为什么我要迁移-SpringBoot-到函数计算" class="headerlink" title="为什么我要迁移 SpringBoot 到函数计算"></a><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/987493?spm=5176.fcnext.0.0.2f5378c8ST5zDz">为什么我要迁移 SpringBoot 到函数计算</a></h3><p>简单来说：<br>1：注册云账号（实名)<br>2：开通函数服务<br>3：上传代码<br>因为熟悉Java，不可能使用其他语言，但是Java是真的坑。</p>
+        <blockquote>
+<p>nginx是一个优秀的静态资源服务器，也可以用作于反向代理、负载均衡。</p>
+</blockquote>
+<h3 id="1：安装nginx"><a href="#1：安装nginx" class="headerlink" title="1：安装nginx"></a>1：安装nginx</h3><h4 id="1-1：安装Windows版本"><a href="#1-1：安装Windows版本" class="headerlink" title="1.1：安装Windows版本"></a>1.1：安装Windows版本</h4><blockquote>
+<p>为什么不去Linux上，因为不想开虚拟机或服务器，懒或穷。</p>
+</blockquote>
+<p>官网下载地址：<a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
+<blockquote>
+<p>选择对应的系统版本下载即可。一般用稳定版本较好。</p>
+<p>MainLine version 主线版本</p>
+<p>Stable version 稳定版本</p>
+<p>Legacy versions 历史版本</p>
+</blockquote>
+<h4 id="1-2：目录简介"><a href="#1-2：目录简介" class="headerlink" title="1.2：目录简介"></a>1.2：目录简介</h4><p>下载好之后解压打开，有以下目录：</p>
 <ul>
-<li>基于Maven把SpringBoot项目打成jar包</li>
-<li>把jar压缩为zip包</li>
-<li>上传后注意端口和启动命令( 如 8080 java -jar hello.jar)</li>
+<li>conf 配置目录    重要配置文件nginx.conf</li>
+<li>html 文件目录  存放网页资源 默认index.html 、50x.html</li>
+<li>logs 日志目录  程序运行后有error.log、access.log</li>
+<li>temp 临时目录 存放临时文件</li>
 </ul>
-<p>4：设置触发器<br>5：测试完成</p>
-<p>如果没有转换成zip包那就是神坑，启动命令为 java org.springframework.boot.loader.JarLauncher 这TM谁记得住啊。</p>
-<h3 id="各大厂商的云函数："><a href="#各大厂商的云函数：" class="headerlink" title="各大厂商的云函数："></a>各大厂商的云函数：</h3><p>阿里云：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/fc">https://www.aliyun.com/product/fc</a></p>
-<blockquote>
-<p>免费额度：100万次调用、100万GB-s、50万vCPU-s<br>具体参考<a target="_blank" rel="noopener" href="https://fcnext.console.aliyun.com/overview">新老用户试用套餐</a></p>
+<h4 id="1-3：启动命令"><a href="#1-3：启动命令" class="headerlink" title="1.3：启动命令"></a>1.3：启动命令</h4><p>双击nginx.exe程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 启动</span><br><span class="line">start nginx</span><br><span class="line"># 关闭</span><br><span class="line">nginx -s quit</span><br><span class="line">nginx -s stop</span><br><span class="line"># stop是快速停止nginx，可能并不保存相关信息；quit是完整有序的停止nginx，并保存相关信息。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：Linux安装"><a href="#2：Linux安装" class="headerlink" title="2：Linux安装"></a>2：Linux安装</h3><h4 id="1：安装插件"><a href="#1：安装插件" class="headerlink" title="1：安装插件"></a>1：安装插件</h4><blockquote>
+<p>gcc环境，编译需要：<br>yum -y install gcc<br>安装PCRE库，nginx的HTTP模块依靠他：<br>yum install -y pcre pcre-devel<br>安装zlib:<br>yum install -y zlib zlib-devel</p>
 </blockquote>
-<p>腾讯云：<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/scf/">https://console.cloud.tencent.com/scf/</a></p>
+<h4 id="2：下载nginx安装包"><a href="#2：下载nginx安装包" class="headerlink" title="2：下载nginx安装包"></a>2：下载nginx安装包</h4><p>因为nginx非常小2M左右，所以无需提前下载到本地。<br>下面指令可以自行修改官网对应的版本：</p>
 <blockquote>
-<p>免费额度：50万次调用、10万GB-s、2GB流量<br>具体参考<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/scf/buy?rid=4&ns=default">0元函数套餐包</a></p>
+<p>wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.22.1.tar.gz">http://nginx.org/download/nginx-1.22.1.tar.gz</a></p>
 </blockquote>
-<p>华为云：<a target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/agconnect/cloud-function/">https://developer.huawei.com/consumer/cn/agconnect/cloud-function/</a></p>
-<blockquote>
-<p>免费额度：100万次调用、40万GB-s、5GB流量<br>具体参考<a target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/doc/development/AppGallery-connect-Guides/agc-cloudfunction-price-0000001211271102">定价服务</a></p>
+<h4 id="3：解压"><a href="#3：解压" class="headerlink" title="3：解压"></a>3：解压</h4><blockquote>
+<p>tar -zxvf nginx-1.22.1.tar.gz</p>
 </blockquote>
-<p>百度云：<a target="_blank" rel="noopener" href="https://cloud.baidu.com/product/cfc.html">https://cloud.baidu.com/product/cfc.html</a></p>
-<blockquote>
-<p>免费额度：100万次调用、40万GB-s、1GB流量<br>具体参考<a target="_blank" rel="noopener" href="https://cloud.baidu.com/product-price/cfc.html">费用项</a></p>
+<h4 id="4：编译安装"><a href="#4：编译安装" class="headerlink" title="4：编译安装"></a>4：编译安装</h4><blockquote>
+<p>cd nginx-1.22.1<br>.&#x2F;configure<br>make &amp;&amp; make install</p>
 </blockquote>
-<p>移动云：<a target="_blank" rel="noopener" href="https://ecloud.10086.cn/home/product-introduction/sfc">https://ecloud.10086.cn/home/product-introduction/sfc</a></p>
-<blockquote>
-<p>免费额度：100万次调用、40万GB-s<br>具体参考<a target="_blank" rel="noopener" href="https://ecloud.10086.cn/op-help-center/doc/article/35273">计费说明</a></p>
+<h4 id="5：启动nginx"><a href="#5：启动nginx" class="headerlink" title="5：启动nginx"></a>5：启动nginx</h4><blockquote>
+<p>cd &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;<br>sbin&#x2F;nginx</p>
 </blockquote>
-<p>天翼云：<a target="_blank" rel="noopener" href="https://www.ctyun.cn/products/hsjs">https://www.ctyun.cn/products/hsjs</a></p>
 <blockquote>
-<p>免费额度：公测阶段免费<br>具体参考<a target="_blank" rel="noopener" href="https://www.ctyun.cn/document/10006234/10006264">产品价格</a></p>
+<p>PS:本教程附带视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1UM41147p4">windows安装nginx</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hd4y1L7Vm">linux安装nginx</a><br>测试nginx地址：<a target="_blank" rel="noopener" href="http://43.143.112.30/img/3.jpg">http://43.143.112.30/img/3.jpg</a></p>
 </blockquote>
 
     </div>
@@ -261,8 +268,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97/" rel="tag"># 函数计算</a>
-              <a href="/tags/serverless/" rel="tag"># serverless</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
+              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"># 服务器</a>
           </div>
 
         
@@ -271,12 +279,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/28/es/" rel="prev" title="全文检索/搜索引擎  Elasticsearch">
-      <i class="fa fa-chevron-left"></i> 全文检索/搜索引擎  Elasticsearch
+    <a href="/2023/01/14/linux/%E5%AE%89%E8%A3%85%E5%BC%80%E6%BA%90%E7%9F%A5%E8%AF%86%E5%BA%93wiki.js/" rel="prev" title="安装开源知识库wiki.js">
+      <i class="fa fa-chevron-left"></i> 安装开源知识库wiki.js
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/01/14/%E5%AE%89%E8%A3%85%E5%BC%80%E6%BA%90%E7%9F%A5%E8%AF%86%E5%BA%93wiki.js/" rel="next" title="安装开源知识库wiki.js">
-      安装开源知识库wiki.js <i class="fa fa-chevron-right"></i>
+    <a href="/2023/01/17/blog/%E8%A7%A3%E5%86%B3hexo%E5%88%B7%E6%96%B0CNAME%E9%97%AE%E9%A2%98/" rel="next" title="解决hexo刷新CNAME问题">
+      解决hexo刷新CNAME问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -336,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E8%A6%81%E8%BF%81%E7%A7%BB-SpringBoot-%E5%88%B0%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">为什么我要迁移 SpringBoot 到函数计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E5%A4%A7%E5%8E%82%E5%95%86%E7%9A%84%E4%BA%91%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">各大厂商的云函数：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85nginx"><span class="nav-number">1.</span> <span class="nav-text">1：安装nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%EF%BC%9A%E5%AE%89%E8%A3%85Windows%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">1.1：安装Windows版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%EF%BC%9A%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2：目录简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3%EF%BC%9A%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">1.3：启动命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%9ALinux%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">2：Linux安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%9A%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">1：安装插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%9A%E4%B8%8B%E8%BD%BDnginx%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">2.2.</span> <span class="nav-text">2：下载nginx安装包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%9A%E8%A7%A3%E5%8E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">3：解压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%EF%BC%9A%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="nav-number">2.4.</span> <span class="nav-text">4：编译安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%EF%BC%9A%E5%90%AF%E5%8A%A8nginx"><span class="nav-number">2.5.</span> <span class="nav-text">5：启动nginx</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
