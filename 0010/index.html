@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前端学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学前端1：webpack和ES6">
+<meta property="og:url" content="http://example.com/0010/index.html">
+<meta property="og:site_name" content="江湖救急">
+<meta property="og:description" content="前端学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.120.show/blog/0010/1.png">
+<meta property="article:published_time" content="2022-12-07T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T12:44:43.426Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="ES6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/0010/1.png">
+
+<link rel="canonical" href="http://example.com/0010/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>重学前端1：webpack和ES6 | 江湖救急</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">江湖救急</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-navigation">
+
+    <a href="/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/0010/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖救急">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          重学前端1：webpack和ES6
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-07 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-07T00:00:00-08:00">2022-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-01 04:44:43" itemprop="dateModified" datetime="2023-02-01T04:44:43-08:00">2023-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">前端学习笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1：Node-js"><a href="#1：Node-js" class="headerlink" title="1：Node.js"></a>1：Node.js</h3><h4 id="1-1：安装node-js"><a href="#1-1：安装node-js" class="headerlink" title="1.1：安装node.js"></a>1.1：安装node.js</h4><p><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a><br>尽量选择LTS(长期维护版本)，免安装的二进制文件包。<br><img src="https://cdn.120.show/blog/0010/1.png" alt="image.png"></p>
+<p>现在的node.js已经自带npm包管理器了。</p>
+<h4 id="1-2：模块化编程"><a href="#1-2：模块化编程" class="headerlink" title="1.2：模块化编程"></a>1.2：模块化编程</h4><p><strong>导出exports：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.<span class="property">add</span> = <span class="keyword">function</span>(<span class="params">a,b</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>导入require：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> logic = <span class="built_in">require</span>(<span class="string">&#x27;./logic&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> c = logic.<span class="title function_">add</span>(<span class="number">100</span>,<span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：webpack"><a href="#2：webpack" class="headerlink" title="2：webpack"></a>2：webpack</h3><h4 id="2-1：安装webpack"><a href="#2-1：安装webpack" class="headerlink" title="2.1：安装webpack"></a>2.1：安装webpack</h4><p><a target="_blank" rel="noopener" href="https://webpack.docschina.org/">https://webpack.docschina.org/</a></p>
+<blockquote>
+<p>安装指令：<br>npm install webpack -g<br>npm install webpack-cli -g<br>查看指令：<br>webpack -v</p>
+</blockquote>
+<h4 id="2-2：webpack指令（JS打包）"><a href="#2-2：webpack指令（JS打包）" class="headerlink" title="2.2：webpack指令（JS打包）"></a>2.2：webpack指令（JS打包）</h4><p>将多个js导包成一个，编写一个配置js文件，文件名为：webpack.config.js</p>
+<blockquote>
+<p>请注意层级关系，该文件和src目录同级</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;bundle.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们在配置文件同级目录下使用指令：webpack<br>然后他会生成目标文件：&#x2F;dist&#x2F;bundle.js</p>
+<h4 id="2-3：打包CSS文件"><a href="#2-3：打包CSS文件" class="headerlink" title="2.3：打包CSS文件"></a>2.3：打包CSS文件</h4><blockquote>
+<p>安装：<br> npm install style-loader css-loader –save-dev  </p>
+</blockquote>
+<p>随意编写一个css，例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在main.js中导入此css文件：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&#x27;./css/my<span class="selector-class">.css</span>&#x27;)</span><br></pre></td></tr></table></figure>
+<p>在配置文件webpack.config.js中加入下面代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module<span class="selector-class">.exports</span> = &#123;</span><br><span class="line">    entry: <span class="string">&#x27;./src/main.js&#x27;</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">      path: path.<span class="built_in">resolve</span>(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">      filename: <span class="string">&#x27;bundle.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test: /\.css$/,</span><br><span class="line">                use:[<span class="string">&#x27;style-loader&#x27;</span>,<span class="string">&#x27;css-loader&#x27;</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最后，再次执行指令：webpack</p>
+<h3 id="3：ES6"><a href="#3：ES6" class="headerlink" title="3：ES6"></a>3：ES6</h3><h4 id="3-1：ES6语法下的导入和导出"><a href="#3-1：ES6语法下的导入和导出" class="headerlink" title="3.1：ES6语法下的导入和导出"></a>3.1：ES6语法下的导入和导出</h4><p><strong>导出：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn0 = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fn0...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ES6语法导出</span></span><br><span class="line"><span class="keyword">export</span>&#123;fn0&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>导入：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;fn0&#125; <span class="keyword">from</span> <span class="string">&#x27;./lib&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fn0</span>();</span><br></pre></td></tr></table></figure>
+<p>但是直接运行会报错，随意我们需要加入babel。</p>
+<h4 id="3-2：-安装-babel"><a href="#3-2：-安装-babel" class="headerlink" title="3.2： 安装 babel"></a>3.2： 安装 babel</h4><blockquote>
+<p> 1）安装babel支持<br>npm install babel-preset-es2015 –save-dev<br>2）babel客户端全局安装<br>npm install babel-cli -g  </p>
+</blockquote>
+<h4 id="3-3：编写配置文件-babelrc"><a href="#3-3：编写配置文件-babelrc" class="headerlink" title="3.3：编写配置文件.babelrc"></a>3.3：编写配置文件.babelrc</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    &#x27;presets&#x27;<span class="punctuation">:</span><span class="punctuation">[</span>&#x27;es2015&#x27;<span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4：执行babel"><a href="#3-4：执行babel" class="headerlink" title="3.4：执行babel"></a>3.4：执行babel</h4><blockquote>
+<p> babel-node demo.js</p>
+</blockquote>
+<h4 id="3-5：其他语法"><a href="#3-5：其他语法" class="headerlink" title="3.5：其他语法"></a>3.5：其他语法</h4><h5 id="3-5-1：函数作用域-let-const"><a href="#3-5-1：函数作用域-let-const" class="headerlink" title="3.5.1：函数作用域 let const"></a>3.5.1：函数作用域 let const</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用let const代替var</span></span><br><span class="line"><span class="comment">// 注意 const 表示常量</span></span><br><span class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">const</span> c = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c);</span><br></pre></td></tr></table></figure>
+<p>我们一般情况下用let 和const代替var，因为var是函数作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">d</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> e = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(e);</span><br></pre></td></tr></table></figure>
+<p>所以，作用域和我们一般理解的稍微有区别。</p>
+<h5 id="3-5-2：字符串注入变量"><a href="#3-5-2：字符串注入变量" class="headerlink" title="3.5.2：字符串注入变量"></a>3.5.2：字符串注入变量</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">&#x27;zhangSan&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`my name is <span class="subst">$&#123;name&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-5-3：函数参数默认值"><a href="#3-5-3：函数参数默认值" class="headerlink" title="3.5.3：函数参数默认值"></a>3.5.3：函数参数默认值</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数默认值</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a=<span class="number">1</span>,b=<span class="number">2</span></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">add</span>());</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-5-4：箭头函数"><a href="#3-5-4：箭头函数" class="headerlink" title="3.5.4：箭头函数"></a>3.5.4：箭头函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通方法</span></span><br><span class="line"><span class="keyword">const</span> fn0 = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;这是一个方法Fn0&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 箭头函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">fn1</span> = (<span class="params"></span>) =&gt;&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;这是一个函数Fn1&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 带有参数的箭头函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">fn2</span> = (<span class="params">a,b</span>) =&gt;&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`相加结果为：<span class="subst">$&#123;a+b&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-5-5：对象初始化属性"><a href="#3-5-5：对象初始化属性" class="headerlink" title="3.5.5：对象初始化属性"></a>3.5.5：对象初始化属性</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 一般的对象</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">people</span>(<span class="params">name,age</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">name</span>:name,</span><br><span class="line">        <span class="attr">age</span>:age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> zhangsan = <span class="title function_">people</span>(<span class="string">&#x27;张三&#x27;</span>,<span class="number">18</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`姓名是：<span class="subst">$&#123;zhangsan.name&#125;</span>,年龄是<span class="subst">$&#123;zhangsan.age&#125;</span>`</span>)</span><br><span class="line"><span class="comment">// ES6 属性简化写法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">people2</span>(<span class="params">name,age</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name,</span><br><span class="line">        age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> lisi = <span class="title function_">people2</span>(<span class="string">&#x27;李四&#x27;</span>,<span class="number">20</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`姓名是：<span class="subst">$&#123;lisi.name&#125;</span>,年龄是<span class="subst">$&#123;lisi.age&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>私以为该函数只是返回了一个匿名类的对象</p>
+</blockquote>
+<h5 id="3-5-6：解构"><a href="#3-5-6：解构" class="headerlink" title="3.5.6：解构"></a>3.5.6：解构</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people =&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// const name = people.name</span></span><br><span class="line"><span class="comment">// const age = people.age</span></span><br><span class="line"><span class="comment">// console.log(`姓名$&#123;name&#125;,年龄$&#123;age&#125;`);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6中获取对象的属性，提供了解构</span></span><br><span class="line"><span class="comment">// 解构的名字必须和属性名或者方法名对应</span></span><br><span class="line"><span class="keyword">const</span> &#123;age,name&#125; = people</span><br><span class="line"><span class="comment">// console.log(`$&#123;name&#125;----&gt;$&#123;age&#125;`);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组也可以解构</span></span><br><span class="line"><span class="keyword">const</span> colors = [<span class="string">&#x27;red&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>,<span class="string">&#x27;pink&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> [a,b,c] = colors</span><br><span class="line"><span class="comment">// console.log(a)</span></span><br><span class="line"><span class="comment">// console.log(b)</span></span><br><span class="line"><span class="comment">// console.log(c)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">&#x27;red&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>,<span class="string">&#x27;pink&#x27;</span>]</span><br><span class="line"><span class="keyword">const</span> arr2 = [...arr,<span class="string">&#x27;green&#x27;</span>]</span><br><span class="line"><span class="comment">// console.log(arr2);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象</span></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;<span class="attr">name</span>:<span class="string">&#x27;张三丰&#x27;</span>,<span class="attr">age</span>:<span class="number">18</span>&#125;</span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;...obj1,<span class="attr">address</span>:<span class="string">&#x27;武汉&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">const</span> obj3 = &#123;obj1,<span class="attr">ipone</span>:<span class="number">123456</span>&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj3);</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/008/" rel="prev" title="jQuery基础（完结篇）">
+      <i class="fa fa-chevron-left"></i> jQuery基础（完结篇）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/0011/" rel="next" title="重学前端2：swagger和mockjs">
+      重学前端2：swagger和mockjs <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%9ANode-js"><span class="nav-number">1.</span> <span class="nav-text">1：Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%EF%BC%9A%E5%AE%89%E8%A3%85node-js"><span class="nav-number">1.1.</span> <span class="nav-text">1.1：安装node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E7%BC%96%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2：模块化编程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%9Awebpack"><span class="nav-number">2.</span> <span class="nav-text">2：webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%EF%BC%9A%E5%AE%89%E8%A3%85webpack"><span class="nav-number">2.1.</span> <span class="nav-text">2.1：安装webpack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%EF%BC%9Awebpack%E6%8C%87%E4%BB%A4%EF%BC%88JS%E6%89%93%E5%8C%85%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.2：webpack指令（JS打包）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3%EF%BC%9A%E6%89%93%E5%8C%85CSS%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">2.3：打包CSS文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%9AES6"><span class="nav-number">3.</span> <span class="nav-text">3：ES6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%EF%BC%9AES6%E8%AF%AD%E6%B3%95%E4%B8%8B%E7%9A%84%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA"><span class="nav-number">3.1.</span> <span class="nav-text">3.1：ES6语法下的导入和导出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2%EF%BC%9A-%E5%AE%89%E8%A3%85-babel"><span class="nav-number">3.2.</span> <span class="nav-text">3.2： 安装 babel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3%EF%BC%9A%E7%BC%96%E5%86%99%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-babelrc"><span class="nav-number">3.3.</span> <span class="nav-text">3.3：编写配置文件.babelrc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4%EF%BC%9A%E6%89%A7%E8%A1%8Cbabel"><span class="nav-number">3.4.</span> <span class="nav-text">3.4：执行babel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5%EF%BC%9A%E5%85%B6%E4%BB%96%E8%AF%AD%E6%B3%95"><span class="nav-number">3.5.</span> <span class="nav-text">3.5：其他语法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-1%EF%BC%9A%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F-let-const"><span class="nav-number">3.5.1.</span> <span class="nav-text">3.5.1：函数作用域 let const</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-2%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B3%A8%E5%85%A5%E5%8F%98%E9%87%8F"><span class="nav-number">3.5.2.</span> <span class="nav-text">3.5.2：字符串注入变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-3%EF%BC%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">3.5.3.</span> <span class="nav-text">3.5.3：函数参数默认值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-4%EF%BC%9A%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">3.5.4.</span> <span class="nav-text">3.5.4：箭头函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-5%EF%BC%9A%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B1%9E%E6%80%A7"><span class="nav-number">3.5.5.</span> <span class="nav-text">3.5.5：对象初始化属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-6%EF%BC%9A%E8%A7%A3%E6%9E%84"><span class="nav-number">3.5.6.</span> <span class="nav-text">3.5.6：解构</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
