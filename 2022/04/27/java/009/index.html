@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前端学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML从入门到放弃">
+<meta property="og:url" content="http://example.com/2022/04/27/java/009/index.html">
+<meta property="og:site_name" content="江湖救急">
+<meta property="og:description" content="前端学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-27T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T12:12:18.740Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="XML">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/04/27/java/009/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>XML从入门到放弃 | 江湖救急</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">江湖救急</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-navigation">
+
+    <a href="/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/27/java/009/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖救急">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          XML从入门到放弃
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-27T00:00:00-08:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-01 04:12:18" itemprop="dateModified" datetime="2023-02-01T04:12:18-08:00">2023-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XML/" itemprop="url" rel="index"><span itemprop="name">XML</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">前端学习笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h2><p>XML一种数据存储的可扩展的标记语言</p>
+<h3 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h3><p>阅读性好，<del>容易操作</del>。</p>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><p>自定义标签过于随意，不利于团队开发。</p>
+<h3 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h3><ol>
+<li>申明版本信息和编码格式（建议配置好后自动生成）</li>
+<li>用标签来决定DOM模型，且必须是双标签</li>
+<li>可以自定义属性和属性值（值必须带引号）</li>
+<li>必须有且只有1个根标签（否则报错）</li>
+<li>正确的嵌套层级</li>
+<li>特殊字符转码：&lt;&gt;用&gt;&lt;代替等</li>
+</ol>
+<h3 id="命名规范："><a href="#命名规范：" class="headerlink" title="命名规范："></a>命名规范：</h3><ol>
+<li>参考Java命名规范</li>
+<li>不能以xml字符开头</li>
+</ol>
+<h2 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h2><h3 id="解析步骤："><a href="#解析步骤：" class="headerlink" title="解析步骤："></a>解析步骤：</h3><ol>
+<li>准备一个或多个XML文档</li>
+<li>导入第三方jar包——DOM4J</li>
+<li>写代码读取数据</li>
+</ol>
+<h3 id="导包步骤："><a href="#导包步骤：" class="headerlink" title="导包步骤："></a>导包步骤：</h3><ol>
+<li>下载好jar包（.jar文件）</li>
+<li>复制到项目的lib文件夹下面（手动创建文件夹）</li>
+<li>右键点击jar包，添加为库（idea倒数第二个）–&gt;默认确定即可</li>
+</ol>
+<h3 id="解析技术："><a href="#解析技术：" class="headerlink" title="解析技术："></a>解析技术：</h3><h4 id="DOM解析："><a href="#DOM解析：" class="headerlink" title="DOM解析："></a>DOM解析：</h4><p>一次性加载到内存<br>优点：可以操作相关的DOM节点<br>缺点：文件过大容易导致内存溢出和加载时间过长</p>
+<h4 id="SAX解析："><a href="#SAX解析：" class="headerlink" title="SAX解析："></a>SAX解析：</h4><p>以事件驱动逐行解析<br>优点：快速，内存不溢出<br>缺点：无法进行删除等操作</p>
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><p>用DOM解析如果执行删除等操作，操作的是加载到内存中的副本，而不是原文件本身。</p>
+<h3 id="具体操作（仅为DOM解析）："><a href="#具体操作（仅为DOM解析）：" class="headerlink" title="具体操作（仅为DOM解析）："></a>具体操作（仅为DOM解析）：</h3><h4 id="传统写法（逐级获取）："><a href="#传统写法（逐级获取）：" class="headerlink" title="传统写法（逐级获取）："></a>传统写法（逐级获取）：</h4><ol>
+<li>new SAXReader();&#x2F;&#x2F;创建一个SAXReader对象</li>
+<li>对象.read(“xml文件路径”);&#x2F;&#x2F;以DOM模型将xml文件加载到内存中</li>
+<li>dom.getRootElement();&#x2F;&#x2F;获取root根目录&#x2F;标签</li>
+<li>elements();&#x2F;&#x2F;获取子节点集合</li>
+<li>getText();&#x2F;&#x2F;获取文本内容，也可以调用其他方法</li>
+</ol>
+<h4 id="XPath写法（搜索匹配）："><a href="#XPath写法（搜索匹配）：" class="headerlink" title="XPath写法（搜索匹配）："></a>XPath写法（搜索匹配）：</h4><ol>
+<li>导入相关的jar包(jaxen)，导包步骤查看上面。</li>
+<li>dom.selectSingleNode(“&#x2F;&#x2F;查询语法”);&#x2F;&#x2F;获取DOM节点更加灵活，类似于jQuery选择器与JS原生DOM</li>
+<li>步骤2匹配的对象类型是Node，用Element语法需要向下转型</li>
+</ol>
+<p>为了解决随意性问题，所以编写XML需要<strong>约束</strong>。</p>
+<h2 id="约束："><a href="#约束：" class="headerlink" title="约束："></a>约束：</h2><p>记得在书写XML的时候导入相关的约束文档。</p>
+<h3 id="DTD约束："><a href="#DTD约束：" class="headerlink" title="DTD约束："></a>DTD约束：</h3><ul>
+<li>[结构]定义可以书写的标签和属性，以及他们的顺序</li>
+<li>[数据]定义属性值的数据类型</li>
+</ul>
+<h3 id="Schema约束："><a href="#Schema约束：" class="headerlink" title="Schema约束："></a>Schema约束：</h3><ul>
+<li>[前奏]需要配置信息(本身也是xml文件)约束文档，引用地址，使用时约束</li>
+<li>[结构]定义可以书写的标签和属性，以及他们的顺序和个数，可以设置重复次数</li>
+<li>[数据]同上</li>
+</ul>
+<h3 id="不同处："><a href="#不同处：" class="headerlink" title="不同处："></a>不同处：</h3><p>DTD需要把结构从头写到尾，且阅读性差，代码较短<br>Schema只需要写出主体结构，阅读性好，代码较长</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/XML/" rel="tag"># XML</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/27/java/008/" rel="prev" title="jQuery基础（完结篇）">
+      <i class="fa fa-chevron-left"></i> jQuery基础（完结篇）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/07/java/0010/" rel="next" title="重学前端1：webpack和ES6">
+      重学前端1：webpack和ES6 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">优势：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">缺点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">基本语法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">命名规范：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">解析：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">解析步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%8C%85%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">导包步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">解析技术：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="nav-number">2.3.1.</span> <span class="nav-text">DOM解析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SAX%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="nav-number">2.3.2.</span> <span class="nav-text">SAX解析：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9%EF%BC%9A"><span class="nav-number">2.3.3.</span> <span class="nav-text">注意点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C%EF%BC%88%E4%BB%85%E4%B8%BADOM%E8%A7%A3%E6%9E%90%EF%BC%89%EF%BC%9A"><span class="nav-number">2.4.</span> <span class="nav-text">具体操作（仅为DOM解析）：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E5%86%99%E6%B3%95%EF%BC%88%E9%80%90%E7%BA%A7%E8%8E%B7%E5%8F%96%EF%BC%89%EF%BC%9A"><span class="nav-number">2.4.1.</span> <span class="nav-text">传统写法（逐级获取）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XPath%E5%86%99%E6%B3%95%EF%BC%88%E6%90%9C%E7%B4%A2%E5%8C%B9%E9%85%8D%EF%BC%89%EF%BC%9A"><span class="nav-number">2.4.2.</span> <span class="nav-text">XPath写法（搜索匹配）：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">约束：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD%E7%BA%A6%E6%9D%9F%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">DTD约束：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Schema%E7%BA%A6%E6%9D%9F%EF%BC%9A"><span class="nav-number">3.2.</span> <span class="nav-text">Schema约束：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E5%A4%84%EF%BC%9A"><span class="nav-number">3.3.</span> <span class="nav-text">不同处：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
