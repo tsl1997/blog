@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="SSM框架学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven">
+<meta property="og:url" content="http://example.com/03/index.html">
+<meta property="og:site_name" content="江湖救急">
+<meta property="og:description" content="SSM框架学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.120.show/blog/03/2.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/1.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/3.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/4.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/5.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/6.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/7.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/8.png">
+<meta property="og:image" content="https://cdn.120.show/blog/03/9.png">
+<meta property="article:published_time" content="2022-06-01T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-02T07:06:53.043Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="Maven">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/03/2.png">
+
+<link rel="canonical" href="http://example.com/03/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Maven | 江湖救急</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">江湖救急</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-navigation">
+
+    <a href="/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖救急">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Maven
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-01 00:00:00" itemprop="dateCreated datePublished" datetime="2022-06-01T00:00:00-08:00">2022-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-01 23:06:53" itemprop="dateModified" datetime="2023-02-01T23:06:53-08:00">2023-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSM/" itemprop="url" rel="index"><span itemprop="name">SSM</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">SSM框架学习笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1：什么是Maven？"><a href="#1：什么是Maven？" class="headerlink" title="1：什么是Maven？"></a>1：什么是Maven？</h2><p>maven是一个项目管理工具。</p>
+<h2 id="2：Maven能干什么？"><a href="#2：Maven能干什么？" class="headerlink" title="2：Maven能干什么？"></a>2：Maven能干什么？</h2><p>他可以帮助我们管理项目，包括自动编译，测试，删除，部署和下载依赖等操作。<br>私以为他最强大的就是依赖的管理。</p>
+<h2 id="3：我需要安装Maven吗？"><a href="#3：我需要安装Maven吗？" class="headerlink" title="3：我需要安装Maven吗？"></a>3：我需要安装Maven吗？</h2><p>不需要，因为IDEA已经集成了Maven，我们只需要配置一下即可。</p>
+<h2 id="4：配置Maven的中央仓库？"><a href="#4：配置Maven的中央仓库？" class="headerlink" title="4：配置Maven的中央仓库？"></a>4：配置Maven的中央仓库？</h2><p>本地项目—-本地仓库—–中央仓库<br>当我们构建本地项目的时候需要jar包，优先从本地仓库去找，如果没有就去中央仓库下载。<br>默认的中央仓库的国外的，下载速度较慢。所以，建议修改为国内的阿里云提供的镜像仓库。<br>修改的文件叫：settings.xml<br>里面建议配置这样一段：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">          https://maven.aliyun.com/repository/public</span><br><span class="line">      <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="5：Maven的目录结构是怎么样的？"><a href="#5：Maven的目录结构是怎么样的？" class="headerlink" title="5：Maven的目录结构是怎么样的？"></a>5：Maven的目录结构是怎么样的？</h2><p><img src="https://cdn.120.show/blog/03/2.png" alt="image.png"></p>
+<h2 id="6：如何添加依赖？获取依赖？"><a href="#6：如何添加依赖？获取依赖？" class="headerlink" title="6：如何添加依赖？获取依赖？"></a>6：如何添加依赖？获取依赖？</h2><p>我们可以在上图的pom.xml文件中写入以下内容来添加依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.25<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在<dependencies>中可以写入多个依赖，格式如上所示。</p>
+<h3 id="查找依赖："><a href="#查找依赖：" class="headerlink" title="查找依赖："></a>查找依赖：</h3><h3 id="1国外网站："><a href="#1国外网站：" class="headerlink" title="1国外网站："></a>1国外网站：</h3><p><a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com/</a><br><img src="https://cdn.120.show/blog/03/1.png" alt="image.png"></p>
+<p>我就以mysql为例子演示。</p>
+<p><img src="https://cdn.120.show/blog/03/3.png" alt="image.png"></p>
+<p>就选择第一个即可，JDBC。</p>
+<p><img src="https://cdn.120.show/blog/03/4.png" alt="image.png"></p>
+<p>我们随便选择一个。</p>
+<p><img src="https://cdn.120.show/blog/03/5.png" alt="image.png"></p>
+<p>把上图里面的代码复制到pom.xml即可。</p>
+<h3 id="2阿里云云效："><a href="#2阿里云云效：" class="headerlink" title="2阿里云云效："></a>2阿里云云效：</h3><p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mvn/search">https://developer.aliyun.com/mvn/search</a><br><img src="https://cdn.120.show/blog/03/6.png" alt="image.png"></p>
+<p>操作请看上图。</p>
+<p><img src="https://cdn.120.show/blog/03/7.png" alt="image.png"></p>
+<p>注意文件类型，我们需要的是jar包。</p>
+<p><img src="https://cdn.120.show/blog/03/8.png" alt="image.png"></p>
+<p>点击文件名后会弹出上图的界面，你可以复制依赖到目标pom.xml里面，也可以直接下载（这一点还是做的很方便的）。</p>
+<h2 id="7：Maven常用命令有哪些？"><a href="#7：Maven常用命令有哪些？" class="headerlink" title="7：Maven常用命令有哪些？"></a>7：Maven常用命令有哪些？</h2><p><img src="https://cdn.120.show/blog/03/9.png" alt="image.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Maven/" rel="tag"># Maven</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/029/" rel="prev" title="文件上传">
+      <i class="fa fa-chevron-left"></i> 文件上传
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/031/" rel="next" title="mybatis1">
+      mybatis1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AFMaven%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1：什么是Maven？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%BC%9AMaven%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2：Maven能干什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%BC%9A%E6%88%91%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85Maven%E5%90%97%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3：我需要安装Maven吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%EF%BC%9A%E9%85%8D%E7%BD%AEMaven%E7%9A%84%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">4：配置Maven的中央仓库？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%EF%BC%9AMaven%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">5：Maven的目录结构是怎么样的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%EF%BC%9A%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96%EF%BC%9F%E8%8E%B7%E5%8F%96%E4%BE%9D%E8%B5%96%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">6：如何添加依赖？获取依赖？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E4%BE%9D%E8%B5%96%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">查找依赖：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E5%9B%BD%E5%A4%96%E7%BD%91%E7%AB%99%EF%BC%9A"><span class="nav-number">6.2.</span> <span class="nav-text">1国外网站：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E9%98%BF%E9%87%8C%E4%BA%91%E4%BA%91%E6%95%88%EF%BC%9A"><span class="nav-number">6.3.</span> <span class="nav-text">2阿里云云效：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%EF%BC%9AMaven%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7：Maven常用命令有哪些？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
