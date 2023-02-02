@@ -22,13 +22,13 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="江湖救急">
-<meta property="og:url" content="http://example.com/tags/JS/index.html">
+<meta property="og:url" content="http://example.com/tags/js/index.html">
 <meta property="og:site_name" content="江湖救急">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="XS">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/tags/JS/">
+<link rel="canonical" href="http://example.com/tags/js/">
 
 
 <script id="page-configurations">
@@ -41,7 +41,7 @@
   };
 </script>
 
-  <title>标签: JS | 江湖救急</title>
+  <title>标签: js | 江湖救急</title>
   
 
 
@@ -163,7 +163,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h2 class="collection-header">JS
+        <h2 class="collection-header">js
           <small>标签</small>
         </h2>
       </div>
@@ -178,147 +178,193 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2022-04-27T00:00:00-08:00"
-              content="2022-04-27">
-          04-27
+              datetime="2022-07-23T00:00:00-08:00"
+              content="2022-07-23">
+          07-23
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/008/" itemprop="url">
-            <span itemprop="name">jQuery基础（完结篇）</span>
+          <a class="post-title-link" href="/045/" itemprop="url">
+            <span itemprop="name">JS</span>
           </a>
       </div>
 
     </header>
   </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    </div>
+  </div>
+  
+  
+  
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-26T00:00:00-08:00"
-              content="2022-04-26">
-          04-26
-        </time>
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/007/" itemprop="url">
-            <span itemprop="name">jQuery选择器</span>
-          </a>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
       </div>
+    </main>
 
-    </header>
-  </article>
+    <footer class="footer">
+      <div class="footer-inner">
+        
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-25T00:00:00-08:00"
-              content="2022-04-25">
-          04-25
-        </time>
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
       </div>
+    </footer>
+  </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/006/" itemprop="url">
-            <span itemprop="name">jQuery基础</span>
-          </a>
-      </div>
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-    </header>
-  </article>
+<script src="/js/utils.js"></script>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<script src="/js/motion.js"></script>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-23T00:00:00-08:00"
-              content="2022-04-23">
-          04-23
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/005/" itemprop="url">
-            <span itemprop="name">RegEXP+表单验证思路+BOM</span>
-          </a>
-      </div>
+<script src="/js/schemes/pisces.js"></script>
 
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<script src="/js/next-boot.js"></script>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-22T00:00:00-08:00"
-              content="2022-04-22">
-          04-22
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/004/" itemprop="url">
-            <span itemprop="name">DOM操作</span>
-          </a>
-      </div>
 
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-20T00:00:00-08:00"
-              content="2022-04-20">
-          04-20
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/003/" itemprop="url">
-            <span itemprop="name">JS工具类和函数</span>
-          </a>
-      </div>
 
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-19T00:00:00-08:00"
-              content="2022-04-19">
-          04-19
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/001/" itemprop="url">
-            <span itemprop="name">JS预习快速总结</span>
-          </a>
-      </div>
 
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-19T00:00:00-08:00"
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+-04-19T00:00:00-08:00"
               content="2022-04-19">
           04-19
         </time>
@@ -404,20 +450,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

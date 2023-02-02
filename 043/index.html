@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="分布式学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="总结">
+<meta property="og:url" content="http://example.com/043/index.html">
+<meta property="og:site_name" content="江湖救急">
+<meta property="og:description" content="分布式学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.120.show/blog/043/1.png">
+<meta property="og:image" content="https://cdn.120.show/blog/043/2.png">
+<meta property="og:image" content="https://cdn.120.show/blog/043/3.png">
+<meta property="og:image" content="https://cdn.120.show/blog/043/4.png">
+<meta property="og:image" content="https://cdn.120.show/blog/043/5.png">
+<meta property="og:image" content="https://cdn.120.show/blog/043/6.png">
+<meta property="og:image" content="https://cdn.120.show/blog/043/7.png">
+<meta property="article:published_time" content="2022-07-23T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-02T09:14:06.364Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/043/1.png">
+
+<link rel="canonical" href="http://example.com/043/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>总结 | 江湖救急</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">江湖救急</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-navigation">
+
+    <a href="/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/043/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖救急">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-23T00:00:00-08:00">2022-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-02 01:14:06" itemprop="dateModified" datetime="2023-02-02T01:14:06-08:00">2023-02-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">分布式学习笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-0用画来表达更加清楚。"><a href="#1-0用画来表达更加清楚。" class="headerlink" title="1.0用画来表达更加清楚。"></a>1.0用画来表达更加清楚。</h1><p>工程师不仅仅需要写软件工程还需要对硬件有基础的了解。<br><img src="https://cdn.120.show/blog/043/1.png"></p>
+<p>我们知道软件是运行在硬件设备上的，那么硬件是如何运行软件的呢？</p>
+<h2 id="1-1了解基础的硬件抽象概念：CPU、内存、硬盘"><a href="#1-1了解基础的硬件抽象概念：CPU、内存、硬盘" class="headerlink" title="1.1了解基础的硬件抽象概念：CPU、内存、硬盘"></a>1.1了解基础的硬件抽象概念：CPU、内存、硬盘</h2><p><img src="https://cdn.120.show/blog/043/2.png"></p>
+<p>CPU（指令集）：中央处理器，他负责计算机中对数据的运算和处理，速度最快。<br>RAM（内存，主存）：内存用来存储CPU运算需要的临时数据，速度其次，数据断电即无。<br>硬盘（IO设备）：用来存储长期保存的数据，速度最慢。<br>CPU是运算中心（处理数据），RAM和硬盘都是存储数据，一个临时存储，一个永久存储。</p>
+<h2 id="1-2了解操作系统："><a href="#1-2了解操作系统：" class="headerlink" title="1.2了解操作系统："></a>1.2了解操作系统：</h2><p>操作系统是在硬件之上，软件之下的特殊软件程序，他负责对整个硬件资源的整体调度。<br><img src="https://cdn.120.show/blog/043/3.png"></p>
+<p>操作系统分离了软件和硬件资源，使得整个系统资源的应用更加解耦和简单。<br>他使得软件不直接操作硬件资源，在一定程度上是对资源的保护，中间的介入使得系统变得安全和可靠。</p>
+<h3 id="1-2-1操作系统对于资源是如何抽象的："><a href="#1-2-1操作系统对于资源是如何抽象的：" class="headerlink" title="1.2.1操作系统对于资源是如何抽象的："></a>1.2.1操作系统对于资源是如何抽象的：</h3><p><img src="https://cdn.120.show/blog/043/4.png"></p>
+<p>操作系统对于硬件资源进行了一定程度的抽象，诸如：<br>将CPU抽象为进程和线程，并提供了进程管理（分时系统）；<br>将RAM抽象为虚拟内存，并提供了内存管理；<br>将硬盘抽象为文件和文件夹，并提供了文件管理。</p>
+<h2 id="1-3计算机网络："><a href="#1-3计算机网络：" class="headerlink" title="1.3计算机网络："></a>1.3计算机网络：</h2><p>将计算机看成一个整体，不同的计算机之间可以相互通信，其中OSI七层模型最为经典。<br><img src="https://cdn.120.show/blog/043/5.png"></p>
+<p>以五层模型为例（七层我也讲不清楚）。</p>
+<h3 id="1-3-1五层模型："><a href="#1-3-1五层模型：" class="headerlink" title="1.3.1五层模型："></a>1.3.1五层模型：</h3><p><img src="https://cdn.120.show/blog/043/6.png"></p>
+<h3 id="1-3-2物理层："><a href="#1-3-2物理层：" class="headerlink" title="1.3.2物理层："></a>1.3.2物理层：</h3><h3 id="1-3-3链路层："><a href="#1-3-3链路层：" class="headerlink" title="1.3.3链路层："></a>1.3.3链路层：</h3><h3 id="1-3-4网络层："><a href="#1-3-4网络层：" class="headerlink" title="1.3.4网络层："></a>1.3.4网络层：</h3><h3 id="1-3-5传输层："><a href="#1-3-5传输层：" class="headerlink" title="1.3.5传输层："></a>1.3.5传输层：</h3><h3 id="1-3-6应用层："><a href="#1-3-6应用层：" class="headerlink" title="1.3.6应用层："></a>1.3.6应用层：</h3><h2 id="1-4：编程语言"><a href="#1-4：编程语言" class="headerlink" title="1.4：编程语言"></a>1.4：编程语言</h2><p>编程语言是现代软件工程中最重要的一部分，了解语言的发展是有利于理解当前语言的。<br><img src="https://cdn.120.show/blog/043/7.png"></p>
+<p>编程语言大类可以分为两种：<strong>汇编语言</strong>和<strong>高级语言</strong>。<br>汇编语言在操作系统之下，之间和硬件打交道，因此节省内存，效率较高，但是难以构建大型复制的项目。<br>高级语言在操作系统智商，不直接接触硬件，</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/045/" rel="prev" title="JS">
+      <i class="fa fa-chevron-left"></i> JS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/049/" rel="next" title="Spring Cloud Netflix">
+      Spring Cloud Netflix <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-0%E7%94%A8%E7%94%BB%E6%9D%A5%E8%A1%A8%E8%BE%BE%E6%9B%B4%E5%8A%A0%E6%B8%85%E6%A5%9A%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">1.0用画来表达更加清楚。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1%E4%BA%86%E8%A7%A3%E5%9F%BA%E7%A1%80%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%8A%BD%E8%B1%A1%E6%A6%82%E5%BF%B5%EF%BC%9ACPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%A1%AC%E7%9B%98"><span class="nav-number">1.1.</span> <span class="nav-text">1.1了解基础的硬件抽象概念：CPU、内存、硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E4%BA%86%E8%A7%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">1.2了解操作系统：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%B9%E4%BA%8E%E8%B5%84%E6%BA%90%E6%98%AF%E5%A6%82%E4%BD%95%E6%8A%BD%E8%B1%A1%E7%9A%84%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1操作系统对于资源是如何抽象的：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">1.3计算机网络：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1五层模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2%E7%89%A9%E7%90%86%E5%B1%82%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2物理层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3%E9%93%BE%E8%B7%AF%E5%B1%82%EF%BC%9A"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3链路层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-4%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%9A"><span class="nav-number">1.3.4.</span> <span class="nav-text">1.3.4网络层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-5%E4%BC%A0%E8%BE%93%E5%B1%82%EF%BC%9A"><span class="nav-number">1.3.5.</span> <span class="nav-text">1.3.5传输层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-6%E5%BA%94%E7%94%A8%E5%B1%82%EF%BC%9A"><span class="nav-number">1.3.6.</span> <span class="nav-text">1.3.6应用层：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4%EF%BC%9A%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">1.4.</span> <span class="nav-text">1.4：编程语言</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
