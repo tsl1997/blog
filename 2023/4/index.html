@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="未完成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alchemy University 免费Web3教程：JavaScript第一周">
+<meta property="og:url" content="http://example.com/2023/4/index.html">
+<meta property="og:site_name" content="江湖救急">
+<meta property="og:description" content="未完成">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2013-05-08T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-05T16:03:23.993Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="AU">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Alchemy University 免费Web3教程：JavaScript第一周 | 江湖救急</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">江湖救急</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-navigation">
+
+    <a href="/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="江湖救急">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Alchemy University 免费Web3教程：JavaScript第一周
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-05-08 00:00:00" itemprop="dateCreated datePublished" datetime="2013-05-08T00:00:00-08:00">2013-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-05 08:03:23" itemprop="dateModified" datetime="2023-06-05T08:03:23-08:00">2023-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">未完成</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这一篇可以作废，但是为了记录，姑且一看。</p>
+<p><a target="_blank" rel="noopener" href="https://www.alchemy.com/">https://www.alchemy.com/</a></p>
+<p>这是一个有名的网站，因为他们的水龙头服务。</p>
+<p>我从他们官网上找到了这个：</p>
+<p><a target="_blank" rel="noopener" href="https://university.alchemy.com/">https://university.alchemy.com/</a></p>
+<p>炼金学院，他有三门免费的课程：js基础、以太坊开发、Web3之路</p>
+<p>你只需要注册一个账号就可以免费享受这些课程，我直接用谷歌账号登录的。</p>
+<h1 id="js基础——第一周"><a href="#js基础——第一周" class="headerlink" title="js基础——第一周"></a>js基础——第一周</h1><p>首先，我作为一个曾经学习一个星期JavaScript的人来说，我想着应该是不难的。</p>
+<p>我更多的是想知道，他如何让初学者入门，和国内的学习方式有什么不同吗？</p>
+<p>第一章他会教你怎么样使用他们的平台，还有如何加入社区，以及向谷歌寻求帮助。</p>
+<p>我会按照他的结构来调整行文结构，尽量保持一致。</p>
+<h2 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h2><h3 id="什么是程序？"><a href="#什么是程序？" class="headerlink" title="什么是程序？"></a>什么是程序？</h3><blockquote>
+<h2 id="What-are-Programs"><a href="#What-are-Programs" class="headerlink" title="What are Programs?"></a>What are Programs?</h2><p>Programs are text files that humans write. They tell computers what to do! Very often the text that we write in programs is referred to as <strong>code</strong>. People who write programs are referred to as <strong>programmers</strong> or <strong>coders</strong>. </p>
+<p>Programs are written in a programming <em>language</em> designed to be <strong>human-readable</strong>. In this way many programmers can work on the same code with a common understanding of what it’s trying to accomplish!</p>
+<p>When a program is ready to be executed by a machine, it is read line-by-line by a <strong>compiler</strong> or an <strong>interpreter</strong>. Both of these tools will translate the code into instructions a machine can run.</p>
+<h2 id="什么是程序？-1"><a href="#什么是程序？-1" class="headerlink" title="什么是程序？"></a>什么是程序？</h2><p>程序是人类编写的文本文件。他们告诉电脑该做什么！我们在程序中编写的文本通常称为<strong>代码</strong>。编写程序的人被称为<strong>程序员</strong>或<strong>编码员</strong>。</p>
+<p>程序是用设计为<strong>人类可读的编程</strong><em>语言</em>编写的。通过这种方式，许多程序员可以在对代码试图完成的目标达成共识的情况下处理相同的代码！</p>
+<p><strong>当程序准备好由机器执行时，它会被编译器</strong>或<strong>解释器</strong>逐行读取。这两种工具都会将代码翻译成机器可以运行的指令。</p>
+</blockquote>
+<h3 id="JavaScript简介"><a href="#JavaScript简介" class="headerlink" title="JavaScript简介"></a>JavaScript简介</h3><ol>
+<li>数值变量 Number Variable</li>
+<li>多个变量 Multiple Variables</li>
+<li>布尔值 Booleans</li>
+<li>字符串 Strings</li>
+<li>可变的let Mutable Let</li>
+<li>注释 Comments</li>
+</ol>
+<p>怎么说呢，他并不是直接从数据类型开始，或者说没有严格的死板的从数据类型走。</p>
+<p>感觉还算不错，就是例子太简单了一些。</p>
+<h3 id="函数与操作"><a href="#函数与操作" class="headerlink" title="函数与操作"></a>函数与操作</h3><ol>
+<li>获取消息 Get Message</li>
+<li>数值加二 Add Two</li>
+<li>乘法 Multiply</li>
+<li>平均数 Average</li>
+<li>随机数 Random</li>
+<li>地板 Floor</li>
+</ol>
+<p>除了第一个是处理String，其他的都还是处理数值，我有些不明白，他们为什么如此钟爱数值。</p>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><ol>
+<li>是否相等 Is Equal</li>
+<li>是否不相等 Is Not Equal</li>
+<li>否则 Else</li>
+<li>大于 Greater Than</li>
+<li>足够的 Is Enough</li>
+<li>否则如果 Else If</li>
+</ol>
+<p>我原本觉得应该是选择结构，但是实际上只出现了if和else，对于初学者来说这完全够用了。</p>
+<p>我个人觉得可能不会英语才是学习的障碍，另外这个编辑器还是蛮友好的，基本上之需要你写最重要的部分。</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ol>
+<li>总和 Summation</li>
+<li>阶乘 Factorial</li>
+<li>尖叫 Scream 字符串处理</li>
+<li>弹性尖叫 Modulus Scream</li>
+<li>双倍顶部 Top Double</li>
+</ol>
+<p>这些题目还是很有意思的，比如说尖叫就是利用循环来重复字母a，练习不至于太过僵硬。</p>
+<h2 id="练习题1"><a href="#练习题1" class="headerlink" title="练习题1"></a>练习题1</h2><ol>
+<li>是偶数吗 isEven</li>
+<li>较小的数 Smaller Number</li>
+<li>信息插入 Message Interpolation  此处需要学习对象相关知识</li>
+<li>号码检查 Number Check </li>
+<li>最大求和 Max Sum</li>
+</ol>
+<p>除了第三题有些莫名其妙外，其他的都还好，我一度以为他需要面向对象的知识，结果发现完全不需要。</p>
+<h2 id="数据存储-Data-Storage"><a href="#数据存储-Data-Storage" class="headerlink" title="数据存储 Data Storage"></a>数据存储 Data Storage</h2><h3 id="字符串处理-String-Manipulation"><a href="#字符串处理-String-Manipulation" class="headerlink" title="字符串处理 String Manipulation"></a>字符串处理 String Manipulation</h3><ol>
+<li>以X开头 Starts With X</li>
+<li>忽略大小写 Starts With Casing</li>
+<li>以X结尾 Ends With X</li>
+<li>所有的都是X吗 Is All X</li>
+<li>找到第一个X Find First X</li>
+<li>分割X Split at X</li>
+</ol>
+<p>挺有趣的，有些要看下测试文件才知道该怎么过关 emmm中间穿插学习了数组。</p>
+<h3 id="数组-Arrays"><a href="#数组-Arrays" class="headerlink" title="数组 Arrays"></a>数组 Arrays</h3><ol>
+<li>创建数组 Create Array</li>
+<li>(数组中)有一吗 Has One</li>
+<li>偶数求和 Sum Even</li>
+<li>独一无二的 Unique</li>
+<li>加入一个(元素) Add One</li>
+<li>删除事件 Remove Occurrences</li>
+</ol>
+<p>他都有一些提示的，会提示一些方法，其实不用他的方法也可以写出来，有兴趣的自己尝试一下。</p>
+<h3 id="对象-Objects"><a href="#对象-Objects" class="headerlink" title="对象 Objects"></a>对象 Objects</h3><ol>
+<li>披萨订单 Pizza Order</li>
+<li>有多少个披萨 How Many Pizzas</li>
+<li>多少个订单 Many Orders</li>
+<li>类型订单 Typed Orders </li>
+<li>按照类型添加 Add By Type</li>
+<li>对象键 Object Keys </li>
+<li>秘密键 Secret Key</li>
+</ol>
+<p>请看清楚测试题目的要求，很多题目不难的，但是将要求看错了emmm看测试文件才知道该怎么写。</p>
+<p>我个人觉得他把对象说的太简单了，就是键值对，但是在JS里面这又没啥问题，可能是学Java的太执着了。</p>
+<h2 id="练习题2"><a href="#练习题2" class="headerlink" title="练习题2"></a>练习题2</h2><ol>
+<li>最短的字符串 Shortest String</li>
+<li>减半的值 Half Value</li>
+<li>计数C Count C</li>
+<li>计数元音 Count Vowels</li>
+<li>反转 Reverse</li>
+<li>回文 Palindrome</li>
+<li>一起求和 Sum Together</li>
+<li>数元素 Count the Elements</li>
+<li>玩家手牌得分 Player Hand Score</li>
+</ol>
+<p>都是很好的题目，有些方法你得回去重新看，或者去搜索。我建议用最朴素的方法区完成他，这感觉真不错。</p>
+<h2 id="中级JS特性-Intermediate-JavaScript-Features"><a href="#中级JS特性-Intermediate-JavaScript-Features" class="headerlink" title="中级JS特性 Intermediate JavaScript Features"></a>中级JS特性 Intermediate JavaScript Features</h2><h3 id="逻辑运算符-Logical-Operators"><a href="#逻辑运算符-Logical-Operators" class="headerlink" title="逻辑运算符 Logical Operators"></a>逻辑运算符 Logical Operators</h3><ol>
+<li>或者运算符 OR Operator</li>
+<li>默认运算符 Default Operator</li>
+<li>并且运算符 AND Operator</li>
+<li>保护运算符 Guard Operator</li>
+<li>取反运算符 NOT Operator</li>
+</ol>
+<p>蛮有意思的，原本我以为只有三个的，没有想到OR和AND还有其他的意思。稍加思索，也觉得这是可行的。</p>
+<h3 id="异常-Exceptions"><a href="#异常-Exceptions" class="headerlink" title="异常 Exceptions"></a>异常 Exceptions</h3><ol>
+<li>抛出错误 Throw an Error</li>
+<li>捕获错误 Catch An Error</li>
+<li>返回错误 Return Error</li>
+<li>产生错误 Start an Error</li>
+</ol>
+<p>总的来说，和Java差不多，都是tay和catch关键词。如果你没有学过Java，那得努力看点其他资料。</p>
+<h3 id="类型转换-Type-Conversion"><a href="#类型转换-Type-Conversion" class="headerlink" title="类型转换 Type Conversion"></a>类型转换 Type Conversion</h3><ol>
+<li>字符串转数字 String to Number</li>
+<li>转化成字符串 To String</li>
+<li>布尔值转换 Is Truthy</li>
+<li>宽松的比较 Loose Equals</li>
+<li>对象和JSON Object to JSON</li>
+<li>有效的JSON Valid JSON</li>
+</ol>
+<p>初学者注意下显式转换和隐式转换。</p>
+<p>JS提供了两个内置方法来处理对象和JSON，分别如下：</p>
+<blockquote>
+<p>JSON.stringify();   将Object转为JSON</p>
+<p>JSON.parse();       将JSON转为Object</p>
+</blockquote>
+<h3 id="解构-Destructuring-Rest-amp-Spread"><a href="#解构-Destructuring-Rest-amp-Spread" class="headerlink" title="解构 Destructuring, Rest &amp; Spread"></a>解构 Destructuring, Rest &amp; Spread</h3><p>ECMAScript新特性：() &#x3D;&gt; {}、class、import</p>
+<p>因为到了这里我也不会，所以就多写一点，也作为备忘录吧。</p>
+<h4 id="解构-Destructuring"><a href="#解构-Destructuring" class="headerlink" title="解构 Destructuring"></a>解构 Destructuring</h4><p>解构可以拆包一个对象，将他的属性赋值到新的变量中。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var student=<span class="punctuation">&#123;</span></span><br><span class="line">    name<span class="punctuation">:</span>&#x27;张三&#x27;<span class="punctuation">,</span></span><br><span class="line">    age<span class="punctuation">:</span><span class="number">18</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">var <span class="punctuation">&#123;</span>age<span class="punctuation">,</span>name<span class="punctuation">&#125;</span>=student</span><br><span class="line">console.log(name); <span class="comment">// 张三</span></span><br><span class="line">console.log(age); <span class="comment">// 18</span></span><br></pre></td></tr></table></figure>
+
+<p>这里我特意使用初学者熟悉的var而非const，不过在这里这关系不大。</p>
+<p>我构建了一个学生对象，有name和age两个属性，按照一般的赋值方法是：</p>
+<blockquote>
+<p>var name &#x3D; student.name</p>
+</blockquote>
+<p>通过结构我们能够更加方便的取值，但是请注意变量名要和属性名相同，如果你用names是无法取到值的。</p>
+<p>解构对象时：你可以只取一个值，也可以取多个值，顺序可以颠倒，但是名字一定要对应。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = <span class="punctuation">[</span><span class="string">&quot;hello&quot;</span><span class="punctuation">,</span> <span class="string">&quot;world&quot;</span><span class="punctuation">]</span>;</span><br><span class="line">var <span class="punctuation">[</span>b<span class="punctuation">,</span> a<span class="punctuation">]</span> = arr;</span><br><span class="line">console.log(b); <span class="comment">// hello</span></span><br><span class="line">console.log(a); <span class="comment">// world</span></span><br></pre></td></tr></table></figure>
+
+<p>解构还可以用于数组，毕竟数组也是引用类型。</p>
+<p>解构数组时，按照下标顺序解构，名字不重要。</p>
+<p>同样适用于函数参数，比如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function addThree(<span class="punctuation">[</span>a<span class="punctuation">,</span>b<span class="punctuation">,</span>c<span class="punctuation">]</span>) <span class="punctuation">&#123;</span></span><br><span class="line">    return a + b + c;</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">function getName(<span class="punctuation">&#123;</span>name<span class="punctuation">:</span>name<span class="punctuation">&#125;</span>) <span class="punctuation">&#123;</span></span><br><span class="line">    return name;</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">var sum = addThree(<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">]</span>);</span><br><span class="line">var name = getName(<span class="punctuation">&#123;</span>name<span class="punctuation">:</span>&#x27;王小二&#x27;<span class="punctuation">&#125;</span>);</span><br><span class="line">console.log(sum); <span class="comment">// 6</span></span><br><span class="line">console.log(name); <span class="comment">// 王小二</span></span><br></pre></td></tr></table></figure>
+
+<p>其实就是上面的内容，只是做了一个自动转换而已，用起来感觉很方便的。</p>
+<h4 id="可变参数-Rest-Parameters"><a href="#可变参数-Rest-Parameters" class="headerlink" title="可变参数 Rest Parameters"></a>可变参数 Rest Parameters</h4><p>在函数的参数上使用…来完成可变参数。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function log(...args) <span class="punctuation">&#123;</span></span><br><span class="line">    console.log(args);</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">log(<span class="number">1</span><span class="punctuation">,</span> &#x27;<span class="number">2</span>&#x27;<span class="punctuation">,</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span> <span class="number">4.8</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span>name<span class="punctuation">:</span>&#x27;高祖&#x27;<span class="punctuation">&#125;</span>); <span class="comment">// [1, &#x27;2&#x27;, true, 4.8, &#123;name:&#x27;高祖&#x27;&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p>他将所有的参数封装到了数组里面，自己多写几个案例体会一下。</p>
+<h4 id="展开参数-Spread-Arguments"><a href="#展开参数-Spread-Arguments" class="headerlink" title="展开参数 Spread Arguments"></a>展开参数 Spread Arguments</h4><p>看代码自己体会，将可变参数逆着运用，区别在于不是获取多少参数，而是展开多少参数。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var numbers = <span class="punctuation">[</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">,</span> <span class="number">3</span><span class="punctuation">,</span> <span class="number">4</span><span class="punctuation">]</span>;</span><br><span class="line">function add(a<span class="punctuation">,</span> b<span class="punctuation">,</span> c) <span class="punctuation">&#123;</span></span><br><span class="line">  return a + b + c;</span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">var sum = add(...numbers);</span><br><span class="line">console.log(sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<p>解构只是给你提供便利，你任然可以按照之前的方式写代码，这是个人习惯，而非强制。</p>
+<h2 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a>练习3</h2><ol>
+<li>被3或5整除，但非同时 Either Not Both</li>
+<li>用单词替换数字 Fizz Buzz</li>
+</ol>
+<p>考验一点点逻辑思维，稍加思索就可以给出正确答案。</p>
+<h2 id="类和原型-Classes-amp-Prototypes"><a href="#类和原型-Classes-amp-Prototypes" class="headerlink" title="类和原型 Classes &amp; Prototypes"></a>类和原型 Classes &amp; Prototypes</h2><h3 id="This关键词-This-Keyword"><a href="#This关键词-This-Keyword" class="headerlink" title="This关键词 This Keyword"></a>This关键词 This Keyword</h3><ol>
+<li>使用This Using This</li>
+<li>绑定This Binding This</li>
+<li>隐式绑定 Implicit Binding</li>
+<li>未绑定函数 Unbound Function</li>
+</ol>
+<p>这里我其实是云里雾里的，我觉得我可能还需要看其他的资料才能明白这到底是怎么回事。</p>
+<p>如果只是做题，我觉得题目和答案，就是那种看答案才知道题目意思的感觉。</p>
+<h3 id="原型链-Prototype-Chain"><a href="#原型链-Prototype-Chain" class="headerlink" title="原型链 Prototype Chain"></a>原型链 Prototype Chain</h3><ol>
+<li>逐渐成形 Taking Shape</li>
+<li>改变形态 Move Shape</li>
+<li>圆形 Circle Shape</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AU/" rel="tag"># AU</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/5/" rel="next" title="浙江打工记">
+      浙江打工记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E5%91%A8"><span class="nav-number">1.</span> <span class="nav-text">js基础——第一周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A8%8B%E5%BA%8F%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是程序？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-are-Programs"><span class="nav-number">1.2.</span> <span class="nav-text">What are Programs?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A8%8B%E5%BA%8F%EF%BC%9F-1"><span class="nav-number">1.3.</span> <span class="nav-text">什么是程序？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">JavaScript简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8E%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.2.</span> <span class="nav-text">函数与操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9"><span class="nav-number">1.3.3.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.3.4.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%981"><span class="nav-number">1.4.</span> <span class="nav-text">练习题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-Data-Storage"><span class="nav-number">1.5.</span> <span class="nav-text">数据存储 Data Storage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86-String-Manipulation"><span class="nav-number">1.5.1.</span> <span class="nav-text">字符串处理 String Manipulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84-Arrays"><span class="nav-number">1.5.2.</span> <span class="nav-text">数组 Arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1-Objects"><span class="nav-number">1.5.3.</span> <span class="nav-text">对象 Objects</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%982"><span class="nav-number">1.6.</span> <span class="nav-text">练习题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E7%BA%A7JS%E7%89%B9%E6%80%A7-Intermediate-JavaScript-Features"><span class="nav-number">1.7.</span> <span class="nav-text">中级JS特性 Intermediate JavaScript Features</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6-Logical-Operators"><span class="nav-number">1.7.1.</span> <span class="nav-text">逻辑运算符 Logical Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8-Exceptions"><span class="nav-number">1.7.2.</span> <span class="nav-text">异常 Exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-Type-Conversion"><span class="nav-number">1.7.3.</span> <span class="nav-text">类型转换 Type Conversion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84-Destructuring-Rest-amp-Spread"><span class="nav-number">1.7.4.</span> <span class="nav-text">解构 Destructuring, Rest &amp; Spread</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84-Destructuring"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">解构 Destructuring</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0-Rest-Parameters"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">可变参数 Rest Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%95%E5%BC%80%E5%8F%82%E6%95%B0-Spread-Arguments"><span class="nav-number">1.7.4.3.</span> <span class="nav-text">展开参数 Spread Arguments</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A03"><span class="nav-number">1.8.</span> <span class="nav-text">练习3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%92%8C%E5%8E%9F%E5%9E%8B-Classes-amp-Prototypes"><span class="nav-number">1.9.</span> <span class="nav-text">类和原型 Classes &amp; Prototypes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#This%E5%85%B3%E9%94%AE%E8%AF%8D-This-Keyword"><span class="nav-number">1.9.1.</span> <span class="nav-text">This关键词 This Keyword</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE-Prototype-Chain"><span class="nav-number">1.9.2.</span> <span class="nav-text">原型链 Prototype Chain</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
