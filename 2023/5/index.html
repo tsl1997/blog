@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="未完成-日记">
+  <meta name="description" content="本教程面向web3从业人员和Java程序员的初学指南">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浙江打工记">
+<meta property="og:title" content="Java×以太坊 1批量生成以太坊钱包">
 <meta property="og:url" content="http://example.com/2023/5/index.html">
 <meta property="og:site_name" content="江湖救急">
-<meta property="og:description" content="未完成-日记">
+<meta property="og:description" content="本教程面向web3从业人员和Java程序员的初学指南">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2013-05-09T08:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-05T16:04:35.116Z">
+<meta property="og:image" content="https://cdn.120.show/blog/2023/5/1.png">
+<meta property="article:published_time" content="2023-07-10T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-10T15:46:25.061Z">
 <meta property="article:author" content="XS">
-<meta property="article:tag" content="浙江">
+<meta property="article:tag" content="web3">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/2023/5/1.png">
 
 <link rel="canonical" href="http://example.com/2023/5/">
 
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>浙江打工记 | 江湖救急</title>
+  <title>Java×以太坊 1批量生成以太坊钱包 | 江湖救急</title>
   
 
 
@@ -179,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          浙江打工记
+          Java×以太坊 1批量生成以太坊钱包
         </h1>
 
         <div class="post-meta">
@@ -188,28 +190,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2013-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2013-05-09T00:00:00-08:00">2013-05-09</time>
+              <time title="创建时间：2023-07-10 00:00:00 / 修改时间：07:46:25" itemprop="dateCreated datePublished" datetime="2023-07-10T00:00:00-08:00">2023-07-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-05 08:04:35" itemprop="dateModified" datetime="2023-06-05T08:04:35-08:00">2023-06-05</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%89%93%E5%B7%A5/" itemprop="url" rel="index"><span itemprop="name">打工</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">未完成-日记</div>
+            <div class="post-description">本教程面向web3从业人员和Java程序员的初学指南</div>
 
         </div>
       </header>
@@ -220,36 +216,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="浙江打工记"><a href="#浙江打工记" class="headerlink" title="浙江打工记"></a>浙江打工记</h1><blockquote>
-<p>东坡云，“事如春梦了无痕”，苟不记之笔墨<em>，</em>未免有辜彼苍之厚。——沈复《浮生六记》</p>
+        <h3 id="观前提示："><a href="#观前提示：" class="headerlink" title="观前提示："></a>观前提示：</h3><p>©版权所有：本教程由<a target="_blank" rel="noopener" href="https://120.show/">先圣</a>编写，如需转载，请标明出处。</p>
+<p>本文受众：Web3从业人员、程序员</p>
+<p>浏览推荐：为了最佳观感，本文地址为：<a target="_blank" rel="noopener" href="https://blog.120.show/2023/5">https://blog.120.show/2023/5</a></p>
+<h3 id="正文开始："><a href="#正文开始：" class="headerlink" title="正文开始："></a>正文开始：</h3><h4 id="准备环境："><a href="#准备环境：" class="headerlink" title="准备环境："></a>准备环境：</h4><blockquote>
+<p>Java-JDK 1.8以上版本（建议IDEA集成）</p>
+<p>Maven（建议IDEA集成）</p>
+<p>IDEA编辑器（也可以使用VScode或其他编辑器）</p>
 </blockquote>
-<p>因取之私人笔记，有取舍，方为作文。行文或前后不搭，或错乱颠倒，本来就不是给他人看，留给自己揣摩。</p>
-<h2 id="三月武汉"><a href="#三月武汉" class="headerlink" title="三月武汉"></a>三月武汉</h2><h3 id="①“金三”已不再，换了人间"><a href="#①“金三”已不再，换了人间" class="headerlink" title="①“金三”已不再，换了人间"></a>①“金三”已不再，换了人间</h3><p>或许最大的错误就是使用BOSS来找工作。</p>
-<p>以前听说“金三银四”好找工作，在今年这个情况似乎被打破了。</p>
-<p>当然，也许只有我一个人这么糟糕。</p>
-<h3 id="②赴日IT，取死之道"><a href="#②赴日IT，取死之道" class="headerlink" title="②赴日IT，取死之道"></a>②赴日IT，取死之道</h3><p>溺水的人会抓住最后一根稻草，在绝望下，学校开始了忽悠之路。</p>
-<p>赴日IT，年薪20万RMB，还不赶快过来？</p>
+<h4 id="创建Maven项目："><a href="#创建Maven项目：" class="headerlink" title="创建Maven项目："></a>创建Maven项目：</h4><p>本文使用<a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/">IDEA</a>版本为2022版，如有界面差异，请选择对应的版本。</p>
+<p>打开IDEA、新建空项目、选择Maven+JDK1.8以上、创建。</p>
+<p><img src="https://cdn.120.show/blog/2023/5/1.png" alt="image-20230710232653248"></p>
+<h4 id="添加Web3j依赖库："><a href="#添加Web3j依赖库：" class="headerlink" title="添加Web3j依赖库："></a>添加Web3j依赖库：</h4><p>在pom.xml文件中，添加以下依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- web3J依赖 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.web3j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="复制主要代码："><a href="#复制主要代码：" class="headerlink" title="复制主要代码："></a>复制主要代码：</h4><p>创建一个名为GenerateEtherWallet的Java类，然后复制下面代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.security.*;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.*;</span><br><span class="line"><span class="keyword">import</span> org.web3j.utils.Numeric;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenerateEtherWallet</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// 生成随机的私钥</span></span><br><span class="line">		<span class="type">SecureRandom</span> <span class="variable">secureRandom</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecureRandom</span>();</span><br><span class="line">		<span class="type">byte</span>[] privateKeyBytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">32</span>];</span><br><span class="line">		secureRandom.nextBytes(privateKeyBytes);</span><br><span class="line">		<span class="type">String</span> <span class="variable">privateKey</span> <span class="operator">=</span> Numeric.toHexStringNoPrefix(privateKeyBytes);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 通过私钥生成公钥和地址</span></span><br><span class="line">		<span class="type">ECKeyPair</span> <span class="variable">keyPair</span> <span class="operator">=</span> ECKeyPair.create(<span class="keyword">new</span> <span class="title class_">BigInteger</span>(privateKey, <span class="number">16</span>));</span><br><span class="line">		<span class="type">String</span> <span class="variable">publicKey</span> <span class="operator">=</span> keyPair.getPublicKey().toString(<span class="number">16</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">address</span> <span class="operator">=</span> Keys.getAddress(keyPair.getPublicKey());</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 输出私钥、公钥和地址</span></span><br><span class="line">		System.out.println(<span class="string">&quot;私钥：&quot;</span> + privateKey);</span><br><span class="line">		System.out.println(<span class="string">&quot;公钥：&quot;</span> + publicKey);</span><br><span class="line">		System.out.println(<span class="string">&quot;地址：&quot;</span> + address);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行项目："><a href="#运行项目：" class="headerlink" title="运行项目："></a>运行项目：</h4><p>按F10+Shift 或者 点击绿色三角形 开始运行项目。</p>
+<p>控制台正常应该显示：</p>
 <blockquote>
-<p>东京最低工资标准为1072日元&#x2F;时，折合人民币54元&#x2F;时。</p>
+<p>私钥：dce017abd29d8ba884794e72157718a90e2f72af1f6cc6329b8333e49e874f25<br>公钥：a583e78eb4aa39f1a7581e8febc9401aa2e66bc40d10e26f7cfc0af0e14dfedb80b57eed8180f485d0504a5ae796ee2d973831ecbbdaf0ca860d9951b1858e1c<br>地址：17a04150123b23cfb2c21b599e68d2a0d35dbf6b</p>
 </blockquote>
-<p>就算小日本守规矩，一天8小时，一个月22天（指双休）。那也有：</p>
-<p>22*8&#x3D;176小时</p>
-<p>就算按最低工资标准算：</p>
-<p>176*54&#x3D;9504元&#x2F;月</p>
-<p>但是，不要忘记了，日本人是出了名的喜欢加班，而且还推崇“躬匠”精神。所以，实际上最少还要加上不少时间。</p>
-<p>如果计算日本的劳动法加班费补偿，我觉得赴日IT就是取死之道。</p>
-<p>你去超市当服务员也可以拿这个钱，为什么要去给人当牛做马搞IT？</p>
-<h3 id="③游戏编程，人间地狱"><a href="#③游戏编程，人间地狱" class="headerlink" title="③游戏编程，人间地狱"></a>③游戏编程，人间地狱</h3><p>学校又推荐一个游戏公司，出名的坑。</p>
-<p>公司说：你们技术不行，先把游戏编程技术练好，然后过两个月做好作品，最后优秀的员工才录用。</p>
-<p>第一：两个月学习期间没有工资。</p>
-<p>第二：学习自己去网上看视频，但是要到20KM外的公司报到。</p>
-<p>第三：录用的条件不详细说，录用的工资也不谈。</p>
-<p>第四：两个月内做出来的所有作品都是免费为公司做的贡献。</p>
-<p>美其名曰，你们要感恩，给你们一个机会很难的。</p>
-<h2 id="四月嘉兴"><a href="#四月嘉兴" class="headerlink" title="四月嘉兴"></a>四月嘉兴</h2><h3 id="①叔叔一家"><a href="#①叔叔一家" class="headerlink" title="①叔叔一家"></a>①叔叔一家</h3><p>16日，找到工作了。</p>
-<p>20日，送去工厂。</p>
-<p>30日，放假，去叔叔家。</p>
-<h3 id="②工厂见闻"><a href="#②工厂见闻" class="headerlink" title="②工厂见闻"></a>②工厂见闻</h3><h2 id="五月牙疼"><a href="#五月牙疼" class="headerlink" title="五月牙疼"></a>五月牙疼</h2><p>六月…</p>
+<h4 id="修改代码："><a href="#修改代码：" class="headerlink" title="修改代码："></a>修改代码：</h4><p>如果需要生成多个钱包，加入循环即可。如果不懂代码，可以简单复制下面的代码（for循环）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.security.*;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.*;</span><br><span class="line"><span class="keyword">import</span> org.web3j.utils.Numeric;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GenerateEtherWallet</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// 修改中间的 i &lt; 10 这一项，需要1000个就改成 i&lt;1000</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;第&quot;</span> + (i+<span class="number">1</span>) + <span class="string">&quot;个钱包：&quot;</span>);</span><br><span class="line">			GenerateEtherWallet.newWallet();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">newWallet</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="comment">// 生成随机的私钥</span></span><br><span class="line">		<span class="type">SecureRandom</span> <span class="variable">secureRandom</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecureRandom</span>();</span><br><span class="line">		<span class="type">byte</span>[] privateKeyBytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">32</span>];</span><br><span class="line">		secureRandom.nextBytes(privateKeyBytes);</span><br><span class="line">		<span class="type">String</span> <span class="variable">privateKey</span> <span class="operator">=</span> Numeric.toHexStringNoPrefix(privateKeyBytes);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 通过私钥生成公钥和地址</span></span><br><span class="line">		<span class="type">ECKeyPair</span> <span class="variable">keyPair</span> <span class="operator">=</span> ECKeyPair.create(<span class="keyword">new</span> <span class="title class_">BigInteger</span>(privateKey, <span class="number">16</span>));</span><br><span class="line">		<span class="type">String</span> <span class="variable">publicKey</span> <span class="operator">=</span> keyPair.getPublicKey().toString(<span class="number">16</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">address</span> <span class="operator">=</span> Keys.getAddress(keyPair.getPublicKey());</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 输出私钥、公钥和地址</span></span><br><span class="line">		System.out.println(<span class="string">&quot;私钥：&quot;</span> + privateKey);</span><br><span class="line">		System.out.println(<span class="string">&quot;公钥：&quot;</span> + publicKey);</span><br><span class="line">		System.out.println(<span class="string">&quot;地址：&quot;</span> + address);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体看&#x2F;&#x2F;后面的注释内容，i&lt;10表示将运行10次方法，即生成10个钱包。</p>
+<p>如果你需要10000个钱包，改成i&lt;10000即可。</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a target="_blank" rel="noopener" href="https://chat.openai.com/">AI-ChatGPT问答</a></p>
+<p><a target="_blank" rel="noopener" href="https://ethereum.org/zh/developers/docs/programming-languages/java/">以太坊-面向Java开发者的以太坊资源</a></p>
 
     </div>
 
@@ -259,7 +254,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B5%99%E6%B1%9F/" rel="tag"># 浙江</a>
+              <a href="/tags/web3/" rel="tag"># web3</a>
           </div>
 
         
@@ -267,11 +262,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/1/" rel="next" title="为什么写点东西">
-      为什么写点东西 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/4/" rel="prev" title="Alchemy University 免费Web3教程：JavaScript第一周">
+      <i class="fa fa-chevron-left"></i> Alchemy University 免费Web3教程：JavaScript第一周
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -330,7 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%99%E6%B1%9F%E6%89%93%E5%B7%A5%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">浙江打工记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%9C%88%E6%AD%A6%E6%B1%89"><span class="nav-number">1.1.</span> <span class="nav-text">三月武汉</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0%E2%80%9C%E9%87%91%E4%B8%89%E2%80%9D%E5%B7%B2%E4%B8%8D%E5%86%8D%EF%BC%8C%E6%8D%A2%E4%BA%86%E4%BA%BA%E9%97%B4"><span class="nav-number">1.1.1.</span> <span class="nav-text">①“金三”已不再，换了人间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1%E8%B5%B4%E6%97%A5IT%EF%BC%8C%E5%8F%96%E6%AD%BB%E4%B9%8B%E9%81%93"><span class="nav-number">1.1.2.</span> <span class="nav-text">②赴日IT，取死之道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A2%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%EF%BC%8C%E4%BA%BA%E9%97%B4%E5%9C%B0%E7%8B%B1"><span class="nav-number">1.1.3.</span> <span class="nav-text">③游戏编程，人间地狱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E6%9C%88%E5%98%89%E5%85%B4"><span class="nav-number">1.2.</span> <span class="nav-text">四月嘉兴</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0%E5%8F%94%E5%8F%94%E4%B8%80%E5%AE%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">①叔叔一家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1%E5%B7%A5%E5%8E%82%E8%A7%81%E9%97%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">②工厂见闻</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E6%9C%88%E7%89%99%E7%96%BC"><span class="nav-number">1.3.</span> <span class="nav-text">五月牙疼</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%89%8D%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">观前提示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%96%87%E5%BC%80%E5%A7%8B%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">正文开始：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">准备环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAMaven%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">创建Maven项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Web3j%E4%BE%9D%E8%B5%96%E5%BA%93%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">添加Web3j依赖库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E4%B8%BB%E8%A6%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.4.</span> <span class="nav-text">复制主要代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">运行项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">修改代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -442,5 +437,8 @@
 
   
 
+  
+
+  
 </body>
 </html>
