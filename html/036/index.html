@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="SSM框架学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springmvc工作原理">
+<meta property="og:url" content="http://example.com/html/036/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="SSM框架学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.120.show/blog/036/1.png">
+<meta property="og:image" content="https://cdn.120.show/blog/036/2.png">
+<meta property="og:image" content="https://cdn.120.show/blog/036/3.png">
+<meta property="og:image" content="https://cdn.120.show/blog/036/4.png">
+<meta property="og:image" content="https://cdn.120.show/blog/036/5.png">
+<meta property="og:image" content="https://cdn.120.show/blog/036/6.png">
+<meta property="og:image" content="https://cdn.120.show/blog/036/7.png">
+<meta property="article:published_time" content="2022-06-13T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-02T07:21:39.967Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="SpringMVC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/036/1.png">
+
+<link rel="canonical" href="http://example.com/html/036/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>springmvc工作原理 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/shuoshuo/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/html/036/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          springmvc工作原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-13 00:00:00" itemprop="dateCreated datePublished" datetime="2022-06-13T00:00:00-08:00">2022-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-01 23:21:39" itemprop="dateModified" datetime="2023-02-01T23:21:39-08:00">2023-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSM/" itemprop="url" rel="index"><span itemprop="name">SSM</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">SSM框架学习笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="B-x2F-S架构"><a href="#B-x2F-S架构" class="headerlink" title="B&#x2F;S架构"></a>B&#x2F;S架构</h2><p>客户端（浏览器）——服务器<br><img src="https://cdn.120.show/blog/036/1.png"><br>工作原理如下：</p>
+<ol>
+<li>客户端——&gt;发送请求到服务器</li>
+<li>服务器处理请求（得到结果）</li>
+<li>服务器——&gt;返回响应结果给客户端</li>
+</ol>
+<h2 id="三层架构："><a href="#三层架构：" class="headerlink" title="三层架构："></a>三层架构：</h2><p>表示层——业务处理层——数据访问层<br>UI——service——dao<br><img src="https://cdn.120.show/blog/036/2.png"><br><strong>调用方向为：</strong><br>表示层——&gt;业务处理层——&gt;数据访问层<br>调用方法有两个部分很重要：<strong>参数和返回值</strong><br>无法逆向操作。</p>
+<h3 id="数据访问层："><a href="#数据访问层：" class="headerlink" title="数据访问层："></a>数据访问层：</h3><p>数据访问层——数据库<br>dao——DB<br><img src="https://cdn.120.show/blog/036/3.png"></p>
+<p><strong>单向操作：</strong><br>数据访问层需要连接数据库，执行SQL语句，将结果返回。</p>
+<h3 id="表示层："><a href="#表示层：" class="headerlink" title="表示层："></a>表示层：</h3><p>控制器+视图<br>Controller+页面html&#x2F;jsp……<br><img src="https://cdn.120.show/blog/036/4.png"><br>流程如下：</p>
+<ol>
+<li>客户端——&gt;发送请求到控制器</li>
+<li>控制器——&gt;调用业务处理层，获取处理结果</li>
+<li>控制器——&gt;请求页面（带上数据）</li>
+<li>页面（获取数据）——&gt;响应页面给客户端</li>
+</ol>
+<h4 id="网页："><a href="#网页：" class="headerlink" title="网页："></a>网页：</h4><p>最经典的页面为HTML，超文本标记语言，用做数据的展示和获取。<br><img src="https://cdn.120.show/blog/036/5.png"><br>网页主要用来处理数据的显示，以一种良好的格式（超文本HyperText）<br><strong>数据：从哪里来？到哪里去？</strong><br>对于展示给用户的数据，从数据库来，到网页上去，经过服务器。<br>对于用户输入的数据（如表单)，从网页来，到数据库厘去，经过服务器。</p>
+<h2 id="MVC架构："><a href="#MVC架构：" class="headerlink" title="MVC架构："></a>MVC架构：</h2><p>模型+视图+控制器<br>Model-View-Controller<br><img src="https://cdn.120.show/blog/036/6.png"></p>
+<p>模型层&#x3D;业务处理层+数据访问层<br>控制器+视图&#x3D;表示层<br>MVC是三层架构不同的说法，侧重点不同而已，我甚至可以说两层（上图）。</p>
+<h2 id="springmvc架构："><a href="#springmvc架构：" class="headerlink" title="springmvc架构："></a>springmvc架构：</h2><p>同MVC架构，使用spring技术实现。<br>参考上图，只是在控制器上又进行了细分。<br><img src="https://cdn.120.show/blog/036/7.png"></p>
+<p>工作流程：</p>
+<ol>
+<li>用户——&gt;发送请求到核心控制器(DispatcherServlet)</li>
+<li>核心控制器——&gt;寻找（适配）对应的用户控制器(HandlerAdapter)</li>
+<li>用户控制器（返回结果）——&gt;核心控制器</li>
+<li>视图层将结果——&gt;返回给用户</li>
+</ol>
+<h3 id="数据载体："><a href="#数据载体：" class="headerlink" title="数据载体："></a>数据载体：</h3><p>传统的MVC架构使用<strong>jsp四大域对象</strong>作为数据载体，<br>springmvc架构使用一个类<strong>ModelAndView</strong>作为数据载体。<br>在<strong>用户控制器</strong>中，我们需要将<strong>转发</strong>的<strong>页面和数据</strong>都封装到<strong>ModelAndView类</strong>中。<br>在<strong>核心用户控制器</strong>中，他会自动的把<strong>ModelAndView类</strong>进行拆分，将<strong>数据</strong>填入<strong>页面</strong>。<br>最后用户收到的页面是<strong>有数据的页面</strong>。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/html/037/" rel="prev" title="springmvc01环境配置">
+      <i class="fa fa-chevron-left"></i> springmvc01环境配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/html/901/" rel="next" title="关于数据库被删库那件事">
+      关于数据库被删库那件事 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#B-x2F-S%E6%9E%B6%E6%9E%84"><span class="nav-text">B&#x2F;S架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%EF%BC%9A"><span class="nav-text">三层架构：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%B1%82%EF%BC%9A"><span class="nav-text">数据访问层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E5%B1%82%EF%BC%9A"><span class="nav-text">表示层：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%EF%BC%9A"><span class="nav-text">网页：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC%E6%9E%B6%E6%9E%84%EF%BC%9A"><span class="nav-text">MVC架构：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springmvc%E6%9E%B6%E6%9E%84%EF%BC%9A"><span class="nav-text">springmvc架构：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%BD%BD%E4%BD%93%EF%BC%9A"><span class="nav-text">数据载体：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

@@ -24,7 +24,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java×以太坊 1批量生成以太坊钱包">
 <meta property="og:url" content="http://example.com/2023/5/index.html">
-<meta property="og:site_name" content="江湖救急">
+<meta property="og:site_name" content="先圣博客">
 <meta property="og:description" content="本教程面向web3从业人员和Java程序员的初学指南">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.120.show/blog/2023/5/1.png">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Java×以太坊 1批量生成以太坊钱包 | 江湖救急</title>
+  <title>Java×以太坊 1批量生成以太坊钱包 | 先圣博客</title>
   
 
 
@@ -99,7 +99,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">江湖救急</h1>
+      <h1 class="site-title">先圣博客</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -135,11 +135,21 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-navigation">
+        <li class="menu-item menu-item-shuoshuo">
 
-    <a href="/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+    <a href="/shuoshuo/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
 
   </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
   </ul>
 </nav>
 
@@ -177,7 +187,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="江湖救急">
+      <meta itemprop="name" content="先圣博客">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -328,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%89%8D%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">观前提示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%96%87%E5%BC%80%E5%A7%8B%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">正文开始：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">准备环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAMaven%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">创建Maven项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Web3j%E4%BE%9D%E8%B5%96%E5%BA%93%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">添加Web3j依赖库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E4%B8%BB%E8%A6%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.4.</span> <span class="nav-text">复制主要代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">运行项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">修改代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%89%8D%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="nav-text">观前提示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%96%87%E5%BC%80%E5%A7%8B%EF%BC%9A"><span class="nav-text">正文开始：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">准备环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAMaven%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-text">创建Maven项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Web3j%E4%BE%9D%E8%B5%96%E5%BA%93%EF%BC%9A"><span class="nav-text">添加Web3j依赖库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E4%B8%BB%E8%A6%81%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-text">复制主要代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-text">运行项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-text">修改代码：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-text">参考资料：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -342,20 +352,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">89</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

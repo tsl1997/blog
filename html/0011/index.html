@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前端学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学前端2：swagger和mockjs">
+<meta property="og:url" content="http://example.com/html/0011/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="前端学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/1.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/2.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/3.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/4.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/5.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/6.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/7.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/8.png">
+<meta property="og:image" content="https://cdn.120.show/blog/0011/9.png">
+<meta property="article:published_time" content="2022-12-09T08:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-01T12:47:34.185Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="swagger">
+<meta property="article:tag" content="mockjs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/0011/1.png">
+
+<link rel="canonical" href="http://example.com/html/0011/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>重学前端2：swagger和mockjs | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/shuoshuo/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/html/0011/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          重学前端2：swagger和mockjs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-09T00:00:00-08:00">2022-12-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-01 04:47:34" itemprop="dateModified" datetime="2023-02-01T04:47:34-08:00">2023-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">前端学习笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="Swagger："><a href="#Swagger：" class="headerlink" title="Swagger："></a>Swagger：</h3><h4 id="1：在线编辑器"><a href="#1：在线编辑器" class="headerlink" title="1：在线编辑器"></a>1：在线编辑器</h4><p><a target="_blank" rel="noopener" href="https://editor.swagger.io/">https://editor.swagger.io/</a></p>
+<blockquote>
+<p>左边书写，右边显示，有错误提示，无语法提示。</p>
+</blockquote>
+<p><img src="https://cdn.120.show/blog/0011/1.png" alt="image.png"></p>
+<h4 id="2：导出YAML文件"><a href="#2：导出YAML文件" class="headerlink" title="2：导出YAML文件"></a>2：导出YAML文件</h4><blockquote>
+<p>按图操作</p>
+</blockquote>
+<p><img src="https://cdn.120.show/blog/0011/2.png" alt="image.png"></p>
+<h4 id="3：语法规则"><a href="#3：语法规则" class="headerlink" title="3：语法规则"></a>3：语法规则</h4><h5 id="（1）固定字段"><a href="#（1）固定字段" class="headerlink" title="（1）固定字段"></a>（1）固定字段</h5><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>swagger</td>
+<td>string</td>
+<td>必需的。使用指定的规范版本。</td>
+</tr>
+<tr>
+<td>info</td>
+<td>Info Object</td>
+<td>必需的。提供元数据API。</td>
+</tr>
+<tr>
+<td>host</td>
+<td>string</td>
+<td>主机名或ip服务API。</td>
+</tr>
+<tr>
+<td>basePath</td>
+<td>string</td>
+<td>API的基本路径</td>
+</tr>
+<tr>
+<td>schemes</td>
+<td>[string]</td>
+<td>API的传输协议。 值必须从列表中:”http”,”https”,”ws”,”wss”。</td>
+</tr>
+<tr>
+<td>consumes</td>
+<td>[string]</td>
+<td>一个MIME类型的api可以使用列表。值必须是所描述的Mime类型。</td>
+</tr>
+<tr>
+<td>produces</td>
+<td>[string]</td>
+<td>MIME类型的api可以产生的列表。  值必须是所描述的Mime类型。</td>
+</tr>
+<tr>
+<td>paths</td>
+<td><a href="#pathsObject">路径对象</a></td>
+<td>必需的。可用的路径和操作的API。</td>
+</tr>
+<tr>
+<td>definitions</td>
+<td><a href="#definitionsObject">定义对象</a></td>
+<td>一个对象数据类型生产和使用操作。</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td><a href="#parametersDefinitionsObject">参数定义对象</a></td>
+<td>一个对象来保存参数,可以使用在操作。 这个属性不为所有操作定义全局参数。</td>
+</tr>
+<tr>
+<td>responses</td>
+<td><a href="#responsesDefinitionsObject">反应定义对象</a></td>
+<td>一个对象响应,可以跨操作使用。 这个属性不为所有操作定义全球响应。</td>
+</tr>
+<tr>
+<td>externalDocs</td>
+<td><a href="#externalDocumentationObject">外部文档对象</a></td>
+<td>额外的外部文档。</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>string</td>
+<td>什么操作的一个简短的总结。 最大swagger-ui可读性,这一领域应小于120个字符。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td><a target="_blank" rel="noopener" href="https://help.github.com/articles/github-flavored-markdown">详细解释操作的行为。GFM语法可用于富文本表示。</a></td>
+</tr>
+<tr>
+<td>operationId</td>
+<td>string</td>
+<td>独特的字符串用于识别操作。 id必须是唯一的在所有业务中所描述的API。 工具和库可以使用operationId来唯一地标识一个操作,因此,建议遵循通用的编程的命名约定。</td>
+</tr>
+<tr>
+<td>deprecated</td>
+<td>boolean</td>
+<td>声明该操作被弃用。 使用声明的操作应该没有。 默认值是false。</td>
+</tr>
+</tbody></table>
+<h5 id="（2）字段类型与格式定义"><a href="#（2）字段类型与格式定义" class="headerlink" title="（2）字段类型与格式定义"></a>（2）字段类型与格式定义</h5><table>
+<thead>
+<tr>
+<th>普通的名字</th>
+<th>type</th>
+<th>format</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>integer</td>
+<td>integer</td>
+<td>int32</td>
+<td>签署了32位</td>
+</tr>
+<tr>
+<td>long</td>
+<td>integer</td>
+<td>int64</td>
+<td>签署了64位</td>
+</tr>
+<tr>
+<td>float</td>
+<td>number</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>double</td>
+<td>number</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>byte</td>
+<td>string</td>
+<td>byte</td>
+<td>base64编码的字符</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>string</td>
+<td>binary</td>
+<td>任何的八位字节序列</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>date</td>
+<td>string</td>
+<td>date</td>
+<td>所定义的full-date- - - - - -RFC3339</td>
+</tr>
+<tr>
+<td>dateTime</td>
+<td>string</td>
+<td>date-time</td>
+<td>所定义的date-time- - - - - -RFC3339</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>password</td>
+<td>用来提示用户界面输入需要模糊。</td>
+</tr>
+</tbody></table>
+<h4 id="4：离线安装（可选）"><a href="#4：离线安装（可选）" class="headerlink" title="4：离线安装（可选）"></a>4：离线安装（可选）</h4><p>（1）下载 <a target="_blank" rel="noopener" href="https://github.com/swagger-api/swagger-editor/releases/download/v2.10.4/swagger-editor.zip">https://github.com/swagger-api/swagger-editor/releases/download/v2.10.4/swagger-editor.zip</a>。<br>（2）解压swagger-editor,<br>（3）全局安装http-server(http-server是一个简单的零配置命令行http服务器)</p>
+<blockquote>
+<p>npm install -g http-server</p>
+</blockquote>
+<p>（4）启动swagger-editor</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http-server swagger-editor</span><br><span class="line">如果上面的指令不能正常执行，可以尝试下面的指令</span><br><span class="line">http-server</span><br></pre></td></tr></table></figure>
+<p>（5）浏览器打开： <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+<h3 id="Mock："><a href="#Mock：" class="headerlink" title="Mock："></a>Mock：</h3><h4 id="1：官网和安装"><a href="#1：官网和安装" class="headerlink" title="1：官网和安装"></a>1：官网和安装</h4><p><a target="_blank" rel="noopener" href="http://mockjs.com/">http://mockjs.com/</a><br><img src="https://cdn.120.show/blog/0011/3.png" alt="image.png"></p>
+<blockquote>
+<p>安装命令：<br>npm install mockjs</p>
+</blockquote>
+<p>更多示范代码请参考官网。</p>
+<h4 id="2：使用"><a href="#2：使用" class="headerlink" title="2：使用"></a>2：使用</h4><h5 id="2-1：引入"><a href="#2-1：引入" class="headerlink" title="2.1：引入"></a>2.1：引入</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mock = <span class="built_in">require</span>(<span class="string">&#x27;mockjs&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="2-2：使用mock方法"><a href="#2-2：使用mock方法" class="headerlink" title="2.2：使用mock方法"></a>2.2：使用mock方法</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传统写法</span></span><br><span class="line"><span class="keyword">let</span> data = [&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">&#x27;测试&#x27;</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">&#x27;测试&#x27;</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">&#x27;测试&#x27;</span>&#125;]</span><br><span class="line"><span class="comment">// 新写法</span></span><br><span class="line"><span class="keyword">let</span> data2 = mock.<span class="title function_">mock</span>(&#123;</span><br><span class="line">    <span class="string">&#x27;list|5&#x27;</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&#x27;id|+1&#x27;</span>:<span class="number">1</span>,</span><br><span class="line">            <span class="string">&#x27;name|2-4&#x27;</span>:<span class="string">&#x27;测试&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data,<span class="literal">null</span>,<span class="number">2</span>))</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data2,<span class="literal">null</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我们在属性后面加上|后面就可以配置规则了，例如上面示范代码’list|5’代表里面的对象重复5次</p>
+</blockquote>
+<h4 id="3：语法规范"><a href="#3：语法规范" class="headerlink" title="3：语法规范"></a>3：语法规范</h4><p>参考官网和github的文档解释：<br>官网（有代码）：<a target="_blank" rel="noopener" href="http://mockjs.com/examples.html">http://mockjs.com/examples.html</a><br>github（有说明）：<a target="_blank" rel="noopener" href="https://github.com/nuysoft/Mock/wiki/Syntax-Specification">https://github.com/nuysoft/Mock/wiki/Syntax-Specification</a><br>自己去看，把原截图删除了，图片管理太麻烦了。</p>
+<h4 id="4：在线数据模拟Easy-Mock"><a href="#4：在线数据模拟Easy-Mock" class="headerlink" title="4：在线数据模拟Easy Mock"></a>4：在线数据模拟Easy Mock</h4><p><a target="_blank" rel="noopener" href="https://mock.mengxuegu.com/login">https://mock.mengxuegu.com/login</a><br><img src="https://cdn.120.show/blog/0011/4.png" alt="image.png"><br>随意创建一个用户，然后登陆。<br><img src="https://cdn.120.show/blog/0011/5.png" alt="image.png"><br>初始化自由一个演示项目的。</p>
+<h5 id="4-1：添加项目"><a href="#4-1：添加项目" class="headerlink" title="4.1：添加项目"></a>4.1：添加项目</h5><p>我们点击+号。<br>我们配置如下图两步走：<br><img src="https://cdn.120.show/blog/0011/6.png" alt="image.png"></p>
+<h5 id="4-2：修改默认生成响应规则"><a href="#4-2：修改默认生成响应规则" class="headerlink" title="4.2：修改默认生成响应规则"></a>4.2：修改默认生成响应规则</h5><p><img src="https://cdn.120.show/blog/0011/7.png" alt="image.png"><br>我们就修改查询到的城市：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;flag&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;code&quot;</span>: <span class="number">200</span>,</span><br><span class="line">  <span class="string">&quot;message&quot;</span>: <span class="string">&quot;查询城市列表成功&quot;</span>,</span><br><span class="line">  <span class="string">&quot;data|10&quot;</span>: [&#123;</span><br><span class="line">    <span class="string">&quot;id|+1&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;@county(true)&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ishot|0-1&quot;</span>: <span class="string">&quot;0&quot;</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后我们测试一下：<br><img src="https://cdn.120.show/blog/0011/8.png" alt="image.png"><br>接口测试地址：<br><a target="_blank" rel="noopener" href="https://mock.mengxuegu.com/mock/639345e193a67b5f10669d70/base/city">https://mock.mengxuegu.com/mock/639345e193a67b5f10669d70/base/city</a><br><img src="https://cdn.120.show/blog/0011/9.png" alt="image.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/swagger/" rel="tag"># swagger</a>
+              <a href="/tags/mockjs/" rel="tag"># mockjs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/html/0010/" rel="prev" title="重学前端1：webpack和ES6">
+      <i class="fa fa-chevron-left"></i> 重学前端1：webpack和ES6
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/linux/MongoDB%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" rel="next" title="MongoDB安装教程">
+      MongoDB安装教程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swagger%EF%BC%9A"><span class="nav-text">Swagger：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%9A%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text">1：在线编辑器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%9A%E5%AF%BC%E5%87%BAYAML%E6%96%87%E4%BB%B6"><span class="nav-text">2：导出YAML文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%9A%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="nav-text">3：语法规则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%9B%BA%E5%AE%9A%E5%AD%97%E6%AE%B5"><span class="nav-text">（1）固定字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="nav-text">（2）字段类型与格式定义</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%EF%BC%9A%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-text">4：离线安装（可选）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock%EF%BC%9A"><span class="nav-text">Mock：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%9A%E5%AE%98%E7%BD%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-text">1：官网和安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%9A%E4%BD%BF%E7%94%A8"><span class="nav-text">2：使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1%EF%BC%9A%E5%BC%95%E5%85%A5"><span class="nav-text">2.1：引入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2%EF%BC%9A%E4%BD%BF%E7%94%A8mock%E6%96%B9%E6%B3%95"><span class="nav-text">2.2：使用mock方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%9A%E8%AF%AD%E6%B3%95%E8%A7%84%E8%8C%83"><span class="nav-text">3：语法规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%EF%BC%9A%E5%9C%A8%E7%BA%BF%E6%95%B0%E6%8D%AE%E6%A8%A1%E6%8B%9FEasy-Mock"><span class="nav-text">4：在线数据模拟Easy Mock</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1%EF%BC%9A%E6%B7%BB%E5%8A%A0%E9%A1%B9%E7%9B%AE"><span class="nav-text">4.1：添加项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2%EF%BC%9A%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%94%9F%E6%88%90%E5%93%8D%E5%BA%94%E8%A7%84%E5%88%99"><span class="nav-text">4.2：修改默认生成响应规则</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
