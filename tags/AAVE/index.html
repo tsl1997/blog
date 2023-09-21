@@ -20,21 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="个人学习笔记">
-<meta property="og:type" content="article">
-<meta property="og:title" content="智能合约学习 1">
-<meta property="og:url" content="http://example.com/2023/12/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="先圣博客">
+<meta property="og:url" content="http://example.com/tags/AAVE/index.html">
 <meta property="og:site_name" content="先圣博客">
-<meta property="og:description" content="个人学习笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-13T05:31:00.000Z">
-<meta property="article:modified_time" content="2023-09-18T15:19:12.238Z">
 <meta property="article:author" content="XS">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="infura">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/12/">
+<link rel="canonical" href="http://example.com/tags/AAVE/">
 
 
 <script id="page-configurations">
@@ -42,12 +36,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>智能合约学习 1 | 先圣博客</title>
+  <title>标签: AAVE | 先圣博客</title>
   
 
 
@@ -170,110 +164,51 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content tag">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="XS">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="先圣博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          智能合约学习 1
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-12 21:31:00" itemprop="dateCreated datePublished" datetime="2023-09-12T21:31:00-08:00">2023-09-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-18 07:19:12" itemprop="dateModified" datetime="2023-09-18T07:19:12-08:00">2023-09-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web3/" itemprop="url" rel="index"><span itemprop="name">web3</span></a>
-                </span>
-            </span>
-
-          
-            <div class="post-description">个人学习笔记</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">AAVE
+          <small>标签</small>
+        </h2>
+      </div>
 
       
-        <h3 id="观前提示："><a href="#观前提示：" class="headerlink" title="观前提示："></a>观前提示：</h3><p>©版权所有：本教程由<a target="_blank" rel="noopener" href="https://120.show/">先圣</a>编写，如需转载，请标明出处。</p>
-<p>本文受众：Web3从业人员、程序员</p>
-<p>浏览推荐：为了最佳观感，本文地址为：<a target="_blank" rel="noopener" href="https://blog.120.show/2023/12">https://blog.120.show/2023/12</a></p>
-<h3 id="正文开始："><a href="#正文开始：" class="headerlink" title="正文开始："></a>正文开始：</h3><p>建议直接看github仓库，或者登录官网跟着一步步学习。</p>
-<p>1Helloworld合约，我用mumbai部署，下同（也可以私有链部署）：</p>
-<p>0x0171E966d7146C8bACe656762673E0955784E3f7</p>
-<p>0xef35c22bf23a03d8d50c8e5a150195d695cb77a5</p>
-<p>2数据类型：</p>
-<p>0x93277f16f0114796b9609ead68adb214740d9e6f</p>
-<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p><a target="_blank" rel="noopener" href="https://github.com/AmazingAng/WTF-Solidity">WTF-Solidity Github</a></p>
-<p><a target="_blank" rel="noopener" href="https://wtf.academy/">WTF-Solidity官网</a></p>
-
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/infura/" rel="tag"># infura</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2023-09-21T23:13:00-08:00"
+              content="2023-09-21">
+          09-21
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2023/16/" itemprop="url">
+            <span itemprop="name">AAVE测试版GHO教程——MInt无数测试币</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/11/" rel="prev" title="Java×以太坊 4Goerli测试网转账REC20代币UNI">
-      <i class="fa fa-chevron-left"></i> Java×以太坊 4Goerli测试网转账REC20代币UNI
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/13/" rel="next" title="Github账号注册技巧">
-      Github账号注册技巧 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
@@ -326,7 +261,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E5%89%8D%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="nav-text">观前提示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%96%87%E5%BC%80%E5%A7%8B%EF%BC%9A"><span class="nav-text">正文开始：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-text">参考资料：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -340,7 +274,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -353,7 +287,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-count">105</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
