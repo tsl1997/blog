@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="个人学习记录，ZETA是L0，所以尝试交互增加权重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZETA测试网开发踩坑记">
+<meta property="og:url" content="http://example.com/2023/27/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="个人学习记录，ZETA是L0，所以尝试交互增加权重">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109185209717.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109190023071.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109190613723.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109191756846.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109192504180.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109192929115.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109194245649.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109194616955.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109194735974.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109194921460.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109195138366.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109195737780.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109202032082.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109202112028.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109202249717.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109202842357.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109205033393.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109205223052.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109211917048.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109212028775.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109224657690.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231111002234230.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231111002610006.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109210646752.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109213451216.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109213606171.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109214345621.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109214436275.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109225203642.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109225913818.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109230319899.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109231727777.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109231953819.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109232027044.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231109233530732.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231110001519906.png">
+<meta property="og:image" content="http://example.com/img/2023/11/12/image-20231111003948662.png">
+<meta property="article:published_time" content="2023-11-12T12:15:00.000Z">
+<meta property="article:modified_time" content="2023-11-12T12:16:33.118Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="ZETA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/2023/11/12/image-20231109185209717.png">
+
+<link rel="canonical" href="http://example.com/2023/27/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ZETA测试网开发踩坑记 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/27/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ZETA测试网开发踩坑记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-12 20:15:00 / 修改时间：20:16:33" itemprop="dateCreated datePublished" datetime="2023-11-12T20:15:00+08:00">2023-11-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">测试网</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">个人学习记录，ZETA是L0，所以尝试交互增加权重</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文不是指南，只是个人学习记录，仅供参考。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zetachain.com/docs/developers/tokens/">ZETA开发指南：发送和存入代币</a></p>
+<p>首先，我们需要去安装他说的模板，这一步已经难倒了90%的外行人。</p>
+<h3 id="安装模板"><a href="#安装模板" class="headerlink" title="安装模板"></a>安装模板</h3><p><a target="_blank" rel="noopener" href="https://github.com/zeta-chain/template">github模板</a></p>
+<p><img src="/img/2023/11/12/image-20231109185209717.png" alt="image-20231109185209717"></p>
+<p>外行人：</p>
+<p>按照上图操作下载ZIP包，然后解压进入。</p>
+<p>内行人：</p>
+<p>找个地方(放项目），执行下面命令。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zeta-chain/template.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Yarn"><a href="#安装Yarn" class="headerlink" title="安装Yarn"></a>安装Yarn</h3><p>关于Node.js的安装，可以查看我的这篇文章<a href="../25">Windows安装Node.js</a>。</p>
+<blockquote>
+<p>yarn是一个包管理工具，类似于npm，但是比npm更加强大，可以并行下载依赖包。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure>
+
+<p>我们在项目文件下启动终端，来执行以下命令：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn</span><br></pre></td></tr></table></figure>
+
+<p>该命令默认安装依赖模块。（你无需理会专业术语）</p>
+<p><img src="/img/2023/11/12/image-20231109190023071.png" alt="image-20231109190023071"></p>
+<p>更多Yarn相关请查看：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1964249">Yarn安装与使用详细介绍</a></p>
+<h3 id="创建账号"><a href="#创建账号" class="headerlink" title="创建账号"></a>创建账号</h3><p>我们根据github的文档来操作，创建账号使用的命令是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat account --save</span><br></pre></td></tr></table></figure>
+
+<p>该操作会生成测试账号，并且将私钥保存在名为.env的文件中。</p>
+<p><img src="/img/2023/11/12/image-20231109190613723.png" alt="image-20231109190613723"></p>
+<p>从上图可以看到，他直接在控制台输出了钱包的私钥地址等信息，建议手动保存一份。</p>
+<h3 id="查询余额"><a href="#查询余额" class="headerlink" title="查询余额"></a>查询余额</h3><p>我们根据文档来操作，执行下面的命令：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat balances</span><br></pre></td></tr></table></figure>
+
+<p>这可能有点慢，但是他还给你画了一个表，的确不错。</p>
+<p><img src="/img/2023/11/12/image-20231109191756846.png" alt="image-20231109191756846"></p>
+<p>如果想查询不同的地址，可以使用address命令，操作如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat balances --address ADDRESS</span><br></pre></td></tr></table></figure>
+
+<p>自己把地址替换一下就好了。</p>
+<p><img src="/img/2023/11/12/image-20231109192504180.png" alt="image-20231109192504180"></p>
+<h3 id="领取水龙头"><a href="#领取水龙头" class="headerlink" title="领取水龙头"></a>领取水龙头</h3><p>根据文档操作，获取水龙头代币。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat faucet</span><br></pre></td></tr></table></figure>
+
+<p>我遇到了错误：</p>
+<p><img src="/img/2023/11/12/image-20231109192929115.png" alt="image-20231109192929115"></p>
+<p>暂时还不知道是哪里出问题了，我们尝试其他的命令。</p>
+<p>请求将代币发送到不同的链，比如goerli testnet：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat faucet --chain goerli_testnet</span><br></pre></td></tr></table></figure>
+
+<p>还是遇到了同样的错误，就不截屏了。</p>
+<h3 id="发送代币"><a href="#发送代币" class="headerlink" title="发送代币"></a>发送代币</h3><p>直接跳过了一些部分，来到了我感兴趣的地方，也是我本次学习的目的。</p>
+<p>首先，我用其他账号再Goerli链上给他发送了，0.05GETH 和 2 ZETA。</p>
+<p>前者拿来当手续费，后者来测试跨链，想看看是如何操作的，毕竟什么获取水龙头失败了。</p>
+<p>所以，ZETA是从uniswap里面兑换的，合约如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0000c304D2934c00Db1d51995b9f6996AffD17c0</span><br></pre></td></tr></table></figure>
+
+<p>我们的测试账号也的确拥有了测试代币。</p>
+<p><img src="/img/2023/11/12/image-20231109194245649.png" alt="image-20231109194245649"></p>
+<p>我们开始下一步，看看文档怎么说，从Goerli转移ZETA到ZetaChain链上，使用下面的代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat send-zeta --amount 1 --network goerli_testnet --destination zeta_testnet</span><br></pre></td></tr></table></figure>
+
+<p>操作截图如下所示：</p>
+<p><img src="/img/2023/11/12/image-20231109194616955.png" alt="image-20231109194616955"></p>
+<p>他一会儿就给出了成功的哈希值，我们去链上看看他做了什么。</p>
+<p><img src="/img/2023/11/12/image-20231109194735974.png" alt="image-20231109194735974"></p>
+<p>然后看看具体使用了什么方法和参数：</p>
+<p>方法叫：approve</p>
+<p>有两个参数分别是地址、代币数量</p>
+<p><img src="/img/2023/11/12/image-20231109194921460.png" alt="image-20231109194921460"></p>
+<p>如果使用的是etherscan是可以解析数据的，如上图所示，但是我还是不理解这个地址。</p>
+<p>然后我又去搜索了一下，发现这是一个合约地址。</p>
+<p><img src="/img/2023/11/12/image-20231109195138366.png" alt="image-20231109195138366"></p>
+<p>最后，我需要去看看，有没有在ZetaChain链收到代币。</p>
+<p>我们再次使用查询命令，当然你也可以去ZetaScan上面查询：</p>
+<p><a target="_blank" rel="noopener" href="https://explorer.zetachain.com/">https://explorer.zetachain.com/</a></p>
+<p><img src="/img/2023/11/12/image-20231109195737780.png" alt="image-20231109195737780"></p>
+<h3 id="发送代币2"><a href="#发送代币2" class="headerlink" title="发送代币2"></a>发送代币2</h3><p>这次我们从mumbai上面发送到ZetaChain链上。</p>
+<p>关于ZETA在不同链的代币合约：<a target="_blank" rel="noopener" href="https://www.zetachain.com/docs/reference/testnet/">ZETA Testnet Token</a></p>
+<p>这次我发送了0.1wMATIC 和 139ZETA到测试用户mumbai链上。</p>
+<p>文档说明没有给案例，但是无非是修改一个单词而已，把Goerli改成mumbai，所以命令如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat send-zeta --amount 139 --network mumbai_testnet --destination zeta_testnet</span><br></pre></td></tr></table></figure>
+
+<p>刚开始我遇到了一个错误，如下图所示：</p>
+<p><img src="/img/2023/11/12/image-20231109202032082.png" alt="image-20231109202032082"></p>
+<p>然后我查询了一下余额：</p>
+<p><img src="/img/2023/11/12/image-20231109202112028.png" alt="image-20231109202112028"></p>
+<p>随后有再次尝试，结果成功了。</p>
+<p>所以，我现在还不知道为什么会出错，就莫名其妙成功了。</p>
+<p>这种行为表现在链上就是：</p>
+<p><img src="/img/2023/11/12/image-20231109202249717.png" alt="image-20231109202249717"></p>
+<p>肯定是Send这一条成功了，最开始调用Approve却是失败了。</p>
+<p>最后，我们这次去ZetaScan去查看：</p>
+<p><img src="/img/2023/11/12/image-20231109202842357.png" alt="image-20231109202842357"></p>
+<h3 id="跨链返回"><a href="#跨链返回" class="headerlink" title="跨链返回"></a>跨链返回</h3><p>我们尝试将代币从ZETA跨链回来，我们就选择跨会Goerli吧。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat send-zeta --amount 2 --network zeta_testnet --destination goerli_testnet</span><br></pre></td></tr></table></figure>
+
+<p>其实就是把两个单词的位置调头了而已，如此简洁优雅。</p>
+<p>不出意外的话，出意外了。</p>
+<p>我不小心复制错了，将Goerli上面最后1个ZETA也跨过去了。</p>
+<p><img src="/img/2023/11/12/image-20231109205033393.png" alt="image-20231109205033393"></p>
+<p>还好问题不大，我们跨回来就是的。</p>
+<p>所以，我选择了一次性跨2个ZETA回来，但是结果如下：</p>
+<p><img src="/img/2023/11/12/image-20231109205223052.png" alt="image-20231109205223052"></p>
+<p>这是变成了包裹代币吗？？？</p>
+<p>在官方的文档中，我们找到了这样一句话：</p>
+<blockquote>
+<p><code>send-zeta</code><a target="_blank" rel="noopener" href="https://www.zetachain.com/docs/developers/cross-chain-messaging/connector/">将本机 ZETA 发送到 ZetaChain 上的包装 ZETA 合约，批准连接器</a>合约使用包装的 ZETA ，然后最终调用连接器的<code>send</code>方法将包装的 ZETA 发送到连接的链。</p>
+</blockquote>
+<h3 id="ZRC20"><a href="#ZRC20" class="headerlink" title="ZRC20"></a>ZRC20</h3><p>你可以理解为ERC20的扩展，将各种链上的主流资产全部当成ZRC20代币，比如GETH、tBNB等。</p>
+<p>我们尝试将GETH充值到ZetaChain链上当ZRC20资产：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat send-zrc20 --amount 0.01 --network goerli_testnet --destination zeta_testnet</span><br></pre></td></tr></table></figure>
+
+<p>无非就是将 send-zeta 换成了 send-zrc20 仅此而已，所以说这语法看着很舒服。</p>
+<p><img src="/img/2023/11/12/image-20231109211917048.png" alt="image-20231109211917048"></p>
+<p>我们成功的发送了0.01GETH到ZetaChain上，但是在这个命令行里面看不到代币。</p>
+<p>我们得去ZetaSan浏览器里面看：</p>
+<p><img src="/img/2023/11/12/image-20231109212028775.png" alt="image-20231109212028775"></p>
+<hr>
+<p>虚线部分为补仓内容。</p>
+<p>过了一段时间，他上面才会显示出代币，例如这样：</p>
+<p><img src="/img/2023/11/12/image-20231109224657690.png" alt="image-20231109224657690"></p>
+<hr>
+<p>我们尝试将代币全部跨回去：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat send-zrc20 --amount 0.01 --network zeta_testnet --destination goerli_testnet</span><br></pre></td></tr></table></figure>
+
+<p>又调转单词位置，优雅。</p>
+<p>同样的，在跨回去的过程中，又遇到问题了。</p>
+<blockquote>
+<p>An unexpected error occurred:</p>
+<p>Error: cannot estimate gas; transaction may fail or may require manual gas limit</p>
+</blockquote>
+<p>第二天，我想明白了，这不就是没有GAS费吗？</p>
+<p>因为我们需要发送回去，所以在Goerli链上交易的GAS费也要我们承担，也就是说0.01Geth ZRC20代币是不可能全部跨回去的，我开始忘记了这一点。</p>
+<p>所以，这次我跨链0.009个回去就成功了。</p>
+<p><img src="/img/2023/11/12/image-20231111002234230.png" alt="image-20231111002234230"></p>
+<p>我就上嘛，输出信息如下：</p>
+<blockquote>
+<p>Transaction hash: 0x52dd9f6ce29a23a6bcc6e9848078a190d51837fd92fd368f689d59f023392570</p>
+</blockquote>
+<p><img src="/img/2023/11/12/image-20231111002610006.png" alt="image-20231111002610006"></p>
+<p>跨链取回ZRC20代币成功！</p>
+<h3 id="全链合约Hello"><a href="#全链合约Hello" class="headerlink" title="全链合约Hello"></a>全链合约Hello</h3><p>根据github文档操作，现在创建一个新的全链合约：</p>
+<h4 id="创建合约："><a href="#创建合约：" class="headerlink" title="创建合约："></a>创建合约：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat omnichain MyContract</span><br></pre></td></tr></table></figure>
+
+<p>创建完成后，会多出来一个文件夹和SOL合约文件：</p>
+<p><img src="/img/2023/11/12/image-20231109210646752.png" alt="image-20231109210646752"></p>
+<p>好了，现在我们看具体教程：</p>
+<p><a target="_blank" rel="noopener" href="https://www.zetachain.com/docs/developers/omnichain/tutorials/hello/">First Omnichain Contract</a></p>
+<h4 id="编译合约"><a href="#编译合约" class="headerlink" title="编译合约:"></a>编译合约:</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat compile --force</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/11/12/image-20231109213451216.png" alt="image-20231109213451216"></p>
+<h4 id="部署合约："><a href="#部署合约：" class="headerlink" title="部署合约："></a>部署合约：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat deploy --network zeta_testnet</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/11/12/image-20231109213606171.png" alt="image-20231109213606171"></p>
+<p>合约部署成功，显示信息摘录：</p>
+<blockquote>
+<p>Successfully deployed contract on ZetaChain.<br>Contract address: 0xBbbbc34C0Ee6b48332EBfC6367B8c1d3D8FA17cb<br>Explorer: <a target="_blank" rel="noopener" href="https://athens3.explorer.zetachain.com/address/0xBbbbc34C0Ee6b48332EBfC6367B8c1d3D8FA17cb">https://athens3.explorer.zetachain.com/address/0xBbbbc34C0Ee6b48332EBfC6367B8c1d3D8FA17cb</a></p>
+</blockquote>
+<h4 id="调试合约："><a href="#调试合约：" class="headerlink" title="调试合约："></a>调试合约：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat interact --contract 0xBbbbc34C0Ee6b48332EBfC6367B8c1d3D8FA17cb --amount 0.005 --network goerli_testnet</span><br></pre></td></tr></table></figure>
+
+<p>将上面的合同地址替换成你刚才部署的，修改要发送的GETH代币数量，我改成了0.005更具有辨别度。</p>
+<p><img src="/img/2023/11/12/image-20231109214345621.png" alt="image-20231109214345621"></p>
+<p>他显示我是成功了的。</p>
+<blockquote>
+<p>Successfully broadcasted a token transfer transaction on goerli_testnet network.<br>Transaction hash: 0xb6bdcc893769fa90a1b7d5f481c594b1699e997502f9212569530cae3d416e51</p>
+</blockquote>
+<p>我不确定，所以去浏览器看看。</p>
+<p>在Goerli链上确实有这笔操作：</p>
+<p><img src="/img/2023/11/12/image-20231109214436275.png" alt="image-20231109214436275"></p>
+<p>但是ZetaScan上面没有，我又去看了看，这个教程作者的那笔交易。</p>
+<p>发现他Goerli上面的时间是：Aug-01-2023 08:56:00 AM +UTC</p>
+<p>然后Zeta的确定时间是：August 1st 2023, 4:57:28 PM</p>
+<p>相隔接近8个小时，所以现在一时半会看不到估计也是正常的。</p>
+<h3 id="全链合约swap"><a href="#全链合约swap" class="headerlink" title="全链合约swap"></a>全链合约swap</h3><p>我以为完了，结果才是第一部分。</p>
+<p>我们就跳过抵押部分，直接来swap吧。</p>
+<h4 id="创建新合约："><a href="#创建新合约：" class="headerlink" title="创建新合约："></a>创建新合约：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat omnichain Swap</span><br></pre></td></tr></table></figure>
+
+<p>我们将合约修改一下，直接拷贝下面的文件，内容太长请自行访问：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zeta-chain/example-contracts/blob/main/omnichain/swap/contracts/Swap.sol">https://github.com/zeta-chain/example-contracts/blob/main/omnichain/swap/contracts/Swap.sol</a></p>
+<p>然后再修改一下 tasks&#x2F;interact.ts 文件，也去复制。</p>
+<p>这一复制过来全红。</p>
+<p>我准备删除文件，看到这个你就知道不小心删除文件有多痛苦了。（我忘记了我还有git）</p>
+<p><img src="/img/2023/11/12/image-20231109225203642.png" alt="image-20231109225203642"></p>
+<p>我决定了，重新建合约不再听他鬼话，先不修改部署一下。</p>
+<blockquote>
+<p>把.env文件复制到新项目中去，还是使用刚才的账号哦。</p>
+</blockquote>
+<h4 id="部署合约：-1"><a href="#部署合约：-1" class="headerlink" title="部署合约："></a>部署合约：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat deploy --network zeta_testnet</span><br></pre></td></tr></table></figure>
+
+<p>等等还是报错，我找下原因。</p>
+<p><img src="/img/2023/11/12/image-20231109225913818.png" alt="image-20231109225913818"></p>
+<p>他说找不到合约swap这个文件？？？怎么可能呢？</p>
+<p>我想想看，哪里出问题了。</p>
+<p><strong>EVM定律：先编译，后运行。</strong></p>
+<p>艹，没编译，我看着教程来，估计教程作者忘记写了，这……</p>
+<p><img src="/img/2023/11/12/image-20231109230319899.png" alt="image-20231109230319899"></p>
+<p>果然如此，经验主义害死人。</p>
+<p>控制台输出合约相关信息：</p>
+<blockquote>
+<p> Successfully deployed contract on ZetaChain.<br>Contract address: 0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34<br>Explorer: <a target="_blank" rel="noopener" href="https://athens3.explorer.zetachain.com/address/0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34">https://athens3.explorer.zetachain.com/address/0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34</a></p>
+</blockquote>
+<h4 id="调用合约："><a href="#调用合约：" class="headerlink" title="调用合约："></a>调用合约：</h4><p>我们来尝试调用他，发送0.01个GETH兑换到MATIC链。</p>
+<p>请自行修改相关信息，如合约地址，发送的代币数量，跨链的来源和去处。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat interact --contract 0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34 --amount 0.01 --network goerli_testnet --recipient 0x4C521B3b696Dfa7e7c96391d4c820f7A4524A681 --destination mumbai_testnet</span><br></pre></td></tr></table></figure>
+
+<p>奶奶的，该作者又复制错指令了，npx少了一个n，我是说怎么看着奇奇怪怪的。</p>
+<p>我上面已经修改好语句了，这不是误人子弟吗？</p>
+<p>你可以使用cctx的指令来跟踪你的跨链交易信息：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat cctx 0xb2f6273f2b7f8c46702e3c13dffc3c597289325621f0183b417f7dc4538d60f0</span><br></pre></td></tr></table></figure>
+
+<p>上面的连个指令都成功了。</p>
+<p><img src="/img/2023/11/12/image-20231109231727777.png" alt="image-20231109231727777"></p>
+<p>我们去链上查询一下：</p>
+<p>首先是Goerli链，的确有扣币的交易：</p>
+<p><img src="/img/2023/11/12/image-20231109231953819.png" alt="image-20231109231953819"></p>
+<p>然后，Mumbai上面有收到打过来的币：</p>
+<p><img src="/img/2023/11/12/image-20231109232027044.png" alt="image-20231109232027044"></p>
+<p>从时间上面来看，这笔跨链交易花了6分钟，在10分钟以内还是比较快的。</p>
+<h4 id="交易ZETA-gt-MATIC："><a href="#交易ZETA-gt-MATIC：" class="headerlink" title="交易ZETA-&gt;MATIC："></a>交易ZETA-&gt;MATIC：</h4><p>我们尝试一下其他的，比如zeta兑换mumbai：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat interact --contract 0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34 --amount 1 --network zeta_testnet --recipient 0x4C521B3b696Dfa7e7c96391d4c820f7A4524A681 --destination mumbai_testnet</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/11/12/image-20231109233530732.png" alt="image-20231109233530732"></p>
+<p>控制台输出信息如下：</p>
+<blockquote>
+<p> Successfully broadcasted a token transfer transaction on zeta_testnet network.<br>Transaction hash: 0x7083e512a857726d0b2b33c2a6fe49338cc322c260d9d9134bbcd98e70da7dee</p>
+</blockquote>
+<p>我们跟踪一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat cctx 0x7083e512a857726d0b2b33c2a6fe49338cc322c260d9d9134bbcd98e70da7dee</span><br></pre></td></tr></table></figure>
+
+<p>我看估计得等到明天才有结果。</p>
+<h4 id="交易ZETA-gt-BNB："><a href="#交易ZETA-gt-BNB：" class="headerlink" title="交易ZETA-&gt;BNB："></a>交易ZETA-&gt;BNB：</h4><p>趁早无聊，干脆尝试一下从ZetaChain到Bsc Testnet，毕竟文档上没有说这个。</p>
+<p>而且生成的默认钱包也不显示bsc testnet，但是我还是想试试看。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat interact --contract 0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34 --amount 1 --network zeta_testnet --recipient 0x4C521B3b696Dfa7e7c96391d4c820f7A4524A681 --destination bsc_testnet</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/11/12/image-20231110001519906.png" alt="image-20231110001519906"></p>
+<p>我又震惊了，成功了？？？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat cctx 0x70c5766db9b9c31d7c762c97706b1f259f8bf4fb0f78bcd4f6a426d96a8506d1</span><br></pre></td></tr></table></figure>
+
+<p>还是把跟踪指令也复制一遍，估计又是跨链好长时间的那种。</p>
+<blockquote>
+<p>第二天，还是未跨链成功……</p>
+</blockquote>
+<h4 id="交易MATIC-gt-ZETA"><a href="#交易MATIC-gt-ZETA" class="headerlink" title="交易MATIC-&gt;ZETA"></a>交易MATIC-&gt;ZETA</h4><p>我准备将mumbai上面的MTAIC交换为ZetaChain上面的ZETA，我想试试看这种交易能不能成功。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat interact --contract 0x62D3aFd4E8A7D0b77983a13e11BF7F329730eA34 --amount 0.01 --network mumbai_testnet --recipient 0x4C521B3b696Dfa7e7c96391d4c820f7A4524A681 --destination zeta_testnet</span><br></pre></td></tr></table></figure>
+
+<p>理论上这个语法是没有毛病可以执行的。</p>
+<p><img src="/img/2023/11/12/image-20231111003948662.png" alt="image-20231111003948662"></p>
+<p>控制台输出信息如下：</p>
+<blockquote>
+<p>Successfully broadcasted a token transfer transaction on mumbai_testnet network.<br>Transaction hash: ex7e63494da6680882bf7d895ebec2ca00b3da11d4fe238dd24d4ce1887f8aaa97</p>
+</blockquote>
+<p>我们跟踪一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat cctx ex7e63494da6680882bf7d895ebec2ca00b3da11d4fe238dd24d4ce1887f8aaa97</span><br></pre></td></tr></table></figure>
+
+<p>我就不该有期望这能成功的，估计和上面两个一样，这个合约只能跨链交易原生代币。</p>
+<p>应该不包括ZETA，这沾边的都在漫长的等待。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ZETA/" rel="tag"># ZETA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/26/" rel="prev" title="链上永存留言——修改版">
+      <i class="fa fa-chevron-left"></i> 链上永存留言——修改版
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%A8%A1%E6%9D%BF"><span class="nav-text">安装模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Yarn"><span class="nav-text">安装Yarn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%B4%A6%E5%8F%B7"><span class="nav-text">创建账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BD%99%E9%A2%9D"><span class="nav-text">查询余额</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%86%E5%8F%96%E6%B0%B4%E9%BE%99%E5%A4%B4"><span class="nav-text">领取水龙头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E4%BB%A3%E5%B8%81"><span class="nav-text">发送代币</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E4%BB%A3%E5%B8%812"><span class="nav-text">发送代币2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E9%93%BE%E8%BF%94%E5%9B%9E"><span class="nav-text">跨链返回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZRC20"><span class="nav-text">ZRC20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%93%BE%E5%90%88%E7%BA%A6Hello"><span class="nav-text">全链合约Hello</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%90%88%E7%BA%A6%EF%BC%9A"><span class="nav-text">创建合约：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%90%88%E7%BA%A6"><span class="nav-text">编译合约:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%90%88%E7%BA%A6%EF%BC%9A"><span class="nav-text">部署合约：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%90%88%E7%BA%A6%EF%BC%9A"><span class="nav-text">调试合约：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%93%BE%E5%90%88%E7%BA%A6swap"><span class="nav-text">全链合约swap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E5%90%88%E7%BA%A6%EF%BC%9A"><span class="nav-text">创建新合约：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%90%88%E7%BA%A6%EF%BC%9A-1"><span class="nav-text">部署合约：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E5%90%88%E7%BA%A6%EF%BC%9A"><span class="nav-text">调用合约：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%98%93ZETA-gt-MATIC%EF%BC%9A"><span class="nav-text">交易ZETA-&gt;MATIC：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%98%93ZETA-gt-BNB%EF%BC%9A"><span class="nav-text">交易ZETA-&gt;BNB：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%98%93MATIC-gt-ZETA"><span class="nav-text">交易MATIC-&gt;ZETA</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
