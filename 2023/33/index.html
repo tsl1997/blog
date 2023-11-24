@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="mumbai上必须使用EIP1559才能交易，所以这是必须掌握的技能。纯技术。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java使用EIP 1559发送ETH交易">
+<meta property="og:url" content="http://example.com/2023/33/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="mumbai上必须使用EIP1559才能交易，所以这是必须掌握的技能。纯技术。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-24T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-24T16:06:12.671Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/33/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java使用EIP 1559发送ETH交易 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/33/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java使用EIP 1559发送ETH交易
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-24 20:00:00" itemprop="dateCreated datePublished" datetime="2023-11-24T20:00:00+08:00">2023-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-25 00:06:12" itemprop="dateModified" datetime="2023-11-25T00:06:12+08:00">2023-11-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/EIP1559/" itemprop="url" rel="index"><span itemprop="name">EIP1559</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">mumbai上必须使用EIP1559才能交易，所以这是必须掌握的技能。纯技术。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>磨刀不误砍柴工。</p>
+<p>但是，在磨刀的过程中，总会遇到一些问题。比如，一个简单的发送ETH代币（你矿业链接为GAS费代币），在Goerli上可以正常转账，在mumbai上却失败了。</p>
+<p>错误如下：</p>
+<blockquote>
+<p>Error processing transaction request: only replay-protected (EIP-155) transactions allowed over RPC</p>
+</blockquote>
+<p>如果你去谷歌搜索该错误，会得到一些回复，但是他们要么不是使用Java构建的，要么是同样没有解决问题。</p>
+<p>我去询问AI，因为没有付费，所以还是GPT3.5，他和我说换一个写法（然后换了数中还是失败了）。</p>
+<p>最后，我从其中一个看起来比较有希望的写法入手，查看了源码才构建成功的。</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><p>我创建了Mavne项目，pom.xml中导如了以下依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- web3J依赖 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.web3j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.8.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- web3J合约依赖 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.web3j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>contracts<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.8.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>没有什么比直接上代码更有说服力的了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tx1559;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> HMB-XS</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2023年11月24日14:53:42</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.Credentials;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.WalletUtils;</span><br><span class="line"><span class="keyword">import</span> org.web3j.protocol.Web3j;</span><br><span class="line"><span class="keyword">import</span> org.web3j.protocol.core.methods.response.EthSendTransaction;</span><br><span class="line"><span class="keyword">import</span> org.web3j.protocol.http.HttpService;</span><br><span class="line"><span class="keyword">import</span> org.web3j.tx.RawTransactionManager;</span><br><span class="line"><span class="keyword">import</span> org.web3j.tx.gas.DefaultGasProvider;</span><br><span class="line"><span class="keyword">import</span> org.web3j.utils.Convert;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EIP1559TransactionMATIC</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// 初始化web3j客户端</span></span><br><span class="line">		<span class="type">Web3j</span> <span class="variable">web3</span> <span class="operator">=</span> Web3j.build(<span class="keyword">new</span> <span class="title class_">HttpService</span>(<span class="string">&quot;https://polygon-mumbai.infura.io/v3/72cc4dbd0f0749089cb4da266cf833bf&quot;</span>));</span><br><span class="line">		<span class="type">Credentials</span> <span class="variable">credentials</span> <span class="operator">=</span> Credentials.create(<span class="string">&quot;你的私钥&quot;</span>);</span><br><span class="line">		<span class="comment">// 填入目标地址 给自己发送</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">toAddress</span> <span class="operator">=</span> <span class="string">&quot;目标地址&quot;</span>;</span><br><span class="line">		<span class="comment">// 交易金额</span></span><br><span class="line">		<span class="type">BigInteger</span> <span class="variable">amountInWei</span> <span class="operator">=</span> Convert.toWei(<span class="string">&quot;0.001&quot;</span>, Convert.Unit.ETHER).toBigInteger();</span><br><span class="line">		<span class="comment">// 获取当前网络的建议费用</span></span><br><span class="line">		<span class="type">BigInteger</span> <span class="variable">maxPriorityFeePerGas</span> <span class="operator">=</span> web3.ethGasPrice().send().getGasPrice();</span><br><span class="line">		<span class="comment">// 为了提高成功打包的可能性，可以在建议费用的基础上稍微提高一点</span></span><br><span class="line">		<span class="comment">// 在建议费用的基础上增加1 Gwei</span></span><br><span class="line">		<span class="type">BigInteger</span> <span class="variable">maxFeePerGas</span> <span class="operator">=</span> maxPriorityFeePerGas.add(BigInteger.valueOf(<span class="number">1000000000</span>));</span><br><span class="line">		<span class="comment">// 构建交易对象</span></span><br><span class="line">		<span class="type">EthSendTransaction</span> <span class="variable">ethSendTransaction</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RawTransactionManager</span>(</span><br><span class="line">				web3, credentials)</span><br><span class="line">				.sendEIP1559Transaction(</span><br><span class="line">						<span class="number">80001L</span>,</span><br><span class="line">						maxPriorityFeePerGas, <span class="comment">// 优先级</span></span><br><span class="line">						maxFeePerGas, <span class="comment">// 最大费用</span></span><br><span class="line">						DefaultGasProvider.GAS_LIMIT,</span><br><span class="line">						toAddress,</span><br><span class="line">						<span class="string">&quot;&quot;</span>,</span><br><span class="line">						amountInWei</span><br><span class="line">				);</span><br><span class="line">		<span class="type">String</span> <span class="variable">transactionHash</span> <span class="operator">=</span> ethSendTransaction.getTransactionHash();</span><br><span class="line">		<span class="comment">// 交易哈希</span></span><br><span class="line">		System.out.println(transactionHash);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，他会打印成功的交易哈希。</p>
+<p>交易提交成功还需要等待被矿工打包才算完成交易。</p>
+<p>在上面的代码中，我们创建了一个类RawTransactionManager()..sendEIP1559Transaction()来完成交易。</p>
+<p>前面的参数只有两个，web3和credentials。</p>
+<p>后面的参数有多种实现，我尝试了其中的一种，更多的可以根据形参和说明来完成。</p>
+<p>除了目标地址和金额外，我们还需要额外的指定链ID、以及GAS费的参数。</p>
+<p>在询问够GPT后才写出了什么的代码，虽然不完美，但我感觉已经很好了。</p>
+<p>不同的链要切换不同的链ID，比如Goerli的链ID为5，其他的自行搜索。</p>
+<p>Java的好处就在于虽然我不知道你是怎么做的，但是给我源码就能运行。</p>
+<h3 id="安全的钱包"><a href="#安全的钱包" class="headerlink" title="安全的钱包"></a>安全的钱包</h3><h4 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h4><p>其实官方文档有说的，但是文档那玩意，一般人还真没谁看。毕竟问AI不香吗，现在我觉得真不香，之前看文档就好了。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.web3j.io/4.8.7/transactions/wallet_files/">钱包文件</a></p>
+<p>因为我是直接问AI的，所以就跳过，但是还是建议看看。早看了就没有上面的问题了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> wallet;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.WalletUtils;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> HMB-XS</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2023年11月24日15:28:23</span></span><br><span class="line"><span class="comment"> * 该类创建钱包，并且保存在资源目录wallet下面，钱包格式json</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CreateWalletFileExample</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;123456789&quot;</span>; <span class="comment">// 设置密码</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">destination</span> <span class="operator">=</span> <span class="string">&quot;src/main/resources/wallet&quot;</span>; <span class="comment">// 设置保存文件的路径</span></span><br><span class="line">		<span class="comment">// 创建目标文件夹（如果不存在）</span></span><br><span class="line">		<span class="type">Path</span> <span class="variable">directory</span> <span class="operator">=</span> Paths.get(destination);</span><br><span class="line">		Files.createDirectories(directory);</span><br><span class="line">		<span class="comment">// 生成新的钱包文件并返回文件名</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> WalletUtils.generateFullNewWalletFile(password, directory.toFile());</span><br><span class="line">		<span class="comment">// 打印结果</span></span><br><span class="line">		System.out.println(<span class="string">&quot;Wallet file created: &quot;</span> + fileName);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在项目的Resources目录wallet下面会生成json的钱包文件。</p>
+<p>默认名称格式：</p>
+<blockquote>
+<p>UTC–2023-11-24T15-36-52.251000000Z–0d85fdfa3ed8df5c137045074804105312616ab4.json</p>
+</blockquote>
+<p>为了在项目更加方便的引用，你可以进行重命名，比如我重命名为test.json。</p>
+<h4 id="加载钱包"><a href="#加载钱包" class="headerlink" title="加载钱包"></a>加载钱包</h4><p>我们可以使用JSON文件加载钱包，这样比直接在代码里面上私钥要安全的多。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> wallet;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> HMB-XS</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2023年11月24日15:39:48</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.Credentials;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.WalletUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoadCredentialsExample</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;123456789&quot;</span>; <span class="comment">// 钱包密码</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">keyFilePath</span> <span class="operator">=</span> <span class="string">&quot;src/main/resources/wallet/test.json&quot;</span>; <span class="comment">// 钱包文件路径</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 使用钱包文件和密码加载凭证对象</span></span><br><span class="line">		<span class="type">Credentials</span> <span class="variable">credentials</span> <span class="operator">=</span> WalletUtils.loadCredentials(password, keyFilePath);</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot;Address: &quot;</span> + credentials.getAddress());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="交易发送"><a href="#交易发送" class="headerlink" title="交易发送"></a>交易发送</h4><p>我们可以在最前面的代码里面将Credentials是生成方法来交易。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tx1559;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> HMB-XS</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2023年11月24日14:53:42</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.Credentials;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.WalletUtils;</span><br><span class="line"><span class="keyword">import</span> org.web3j.protocol.Web3j;</span><br><span class="line"><span class="keyword">import</span> org.web3j.protocol.core.methods.response.EthSendTransaction;</span><br><span class="line"><span class="keyword">import</span> org.web3j.protocol.http.HttpService;</span><br><span class="line"><span class="keyword">import</span> org.web3j.tx.RawTransactionManager;</span><br><span class="line"><span class="keyword">import</span> org.web3j.tx.gas.DefaultGasProvider;</span><br><span class="line"><span class="keyword">import</span> org.web3j.utils.Convert;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EIP1559TransactionExample</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="comment">// 初始化web3j客户端</span></span><br><span class="line">		<span class="type">Web3j</span> <span class="variable">web3</span> <span class="operator">=</span> Web3j.build(<span class="keyword">new</span> <span class="title class_">HttpService</span>(<span class="string">&quot;https://goerli.infura.io/v3/bc809e6905c34cb1b7e3536a0934ce06&quot;</span>));</span><br><span class="line">		<span class="comment">// 使用JSON文件来加载钱包</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;123456789&quot;</span>; <span class="comment">// 钱包密码</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">keyFilePath</span> <span class="operator">=</span> <span class="string">&quot;src/main/resources/wallet/test.json&quot;</span>; <span class="comment">// 钱包文件路径</span></span><br><span class="line">		<span class="comment">// 使用钱包文件和密码加载凭证对象</span></span><br><span class="line">		<span class="type">Credentials</span> <span class="variable">credentials</span> <span class="operator">=</span> WalletUtils.loadCredentials(password, keyFilePath);</span><br><span class="line">		<span class="comment">// 填入目标地址 给自己发送</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">toAddress</span> <span class="operator">=</span> <span class="string">&quot;0xefbc3db9875083cc1d00dad3fe9c8989b2d8d9bb&quot;</span>;</span><br><span class="line">		<span class="comment">// 交易金额</span></span><br><span class="line">		<span class="type">BigInteger</span> <span class="variable">amountInWei</span> <span class="operator">=</span> Convert.toWei(<span class="string">&quot;0.001&quot;</span>, Convert.Unit.ETHER).toBigInteger();</span><br><span class="line">		<span class="comment">// 获取当前网络的建议费用</span></span><br><span class="line">		<span class="type">BigInteger</span> <span class="variable">maxPriorityFeePerGas</span> <span class="operator">=</span> web3.ethGasPrice().send().getGasPrice();</span><br><span class="line">		<span class="comment">// 为了提高成功打包的可能性，可以在建议费用的基础上稍微提高一点</span></span><br><span class="line">		<span class="comment">// 在建议费用的基础上增加1 Gwei</span></span><br><span class="line">		<span class="type">BigInteger</span> <span class="variable">maxFeePerGas</span> <span class="operator">=</span> maxPriorityFeePerGas.add(BigInteger.valueOf(<span class="number">1000000000</span>));</span><br><span class="line">		<span class="comment">// 构建交易对象</span></span><br><span class="line">		<span class="type">EthSendTransaction</span> <span class="variable">ethSendTransaction</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RawTransactionManager</span>(</span><br><span class="line">				web3, credentials)</span><br><span class="line">				.sendEIP1559Transaction(</span><br><span class="line">						<span class="number">5L</span>,</span><br><span class="line">						maxPriorityFeePerGas, <span class="comment">// 优先级</span></span><br><span class="line">						maxFeePerGas, <span class="comment">// 最大费用</span></span><br><span class="line">						DefaultGasProvider.GAS_LIMIT,</span><br><span class="line">						toAddress,</span><br><span class="line">						<span class="string">&quot;&quot;</span>,</span><br><span class="line">						amountInWei</span><br><span class="line">				);</span><br><span class="line">		<span class="type">String</span> <span class="variable">transactionHash</span> <span class="operator">=</span> ethSendTransaction.getTransactionHash();</span><br><span class="line">		<span class="comment">// 交易哈希</span></span><br><span class="line">		System.out.println(transactionHash);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中，我们演示了Goerli链的EIP1559交易。</p>
+<p>这样的代码安全了很多。</p>
+<h3 id="老式钱包生成器"><a href="#老式钱包生成器" class="headerlink" title="老式钱包生成器"></a>老式钱包生成器</h3><p>我做了点改进，不在控制台输出，而是保存在txt文本中。</p>
+<p>为了方便取用，我分别命名了三个文件：key.txt、address.txt、keyaddress.txt</p>
+<p>这样就可以直接调用而不做转换了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> wallet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.ECKeyPair;</span><br><span class="line"><span class="keyword">import</span> org.web3j.crypto.Keys;</span><br><span class="line"><span class="keyword">import</span> org.web3j.utils.Numeric;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.FileWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="keyword">import</span> java.security.SecureRandom;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> HMB-XS</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2023年07月16日21:41:51</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NewWallet</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">10</span>; <span class="comment">// 这里输入要生成的数量</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// 创建文件写入器</span></span><br><span class="line">			<span class="type">BufferedWriter</span> <span class="variable">addressWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;src/main/resources/address.txt&quot;</span>));</span><br><span class="line">			<span class="type">BufferedWriter</span> <span class="variable">keyAddressWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;src/main/resources/keyaddress.txt&quot;</span>));</span><br><span class="line">			<span class="type">BufferedWriter</span> <span class="variable">keyWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;src/main/resources/key.txt&quot;</span>));</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">				<span class="comment">// 生成随机的私钥</span></span><br><span class="line">				<span class="type">SecureRandom</span> <span class="variable">secureRandom</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecureRandom</span>();</span><br><span class="line">				<span class="type">byte</span>[] privateKeyBytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">32</span>];</span><br><span class="line">				secureRandom.nextBytes(privateKeyBytes);</span><br><span class="line">				<span class="type">String</span> <span class="variable">privateKey</span> <span class="operator">=</span> Numeric.toHexStringNoPrefix(privateKeyBytes);</span><br><span class="line">				<span class="comment">// 通过私钥生成公钥和地址</span></span><br><span class="line">				<span class="type">ECKeyPair</span> <span class="variable">keyPair</span> <span class="operator">=</span> ECKeyPair.create(<span class="keyword">new</span> <span class="title class_">BigInteger</span>(privateKey, <span class="number">16</span>));</span><br><span class="line">				<span class="type">String</span> <span class="variable">address</span> <span class="operator">=</span> Keys.getAddress(keyPair.getPublicKey());</span><br><span class="line">				<span class="comment">// 输出私钥、公钥和地址</span></span><br><span class="line"><span class="comment">//				System.out.println(&quot;第&quot; + (i + 1) + &quot;个钱包：&quot;);</span></span><br><span class="line"><span class="comment">//				System.out.println(&quot;0x&quot; + address);</span></span><br><span class="line"><span class="comment">//				System.out.println(privateKey);</span></span><br><span class="line"></span><br><span class="line">				<span class="comment">// 将地址和私钥写入文件</span></span><br><span class="line">				addressWriter.write(<span class="string">&quot;0x&quot;</span> + address);</span><br><span class="line">				addressWriter.newLine();</span><br><span class="line">				keyWriter.write(privateKey);</span><br><span class="line">				keyWriter.newLine();</span><br><span class="line">				keyAddressWriter.write(<span class="string">&quot;第&quot;</span> + (i+<span class="number">1</span>) +<span class="string">&quot;个钱包：&quot;</span>);</span><br><span class="line">				keyAddressWriter.newLine();</span><br><span class="line">				keyAddressWriter.write(<span class="string">&quot;0x&quot;</span> + address);</span><br><span class="line">				keyAddressWriter.newLine();</span><br><span class="line">				keyAddressWriter.write(privateKey);</span><br><span class="line">				keyAddressWriter.newLine();</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 关闭文件写入器</span></span><br><span class="line">			keyWriter.close();</span><br><span class="line">			addressWriter.close();</span><br><span class="line">			keyAddressWriter.close();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生成后的文件将显示这样。</p>
+<p>例如我生成三个作为测试：</p>
+<p>key.txt</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2a3d084065b790fbbf6eb451947e9e77a7fc9222b3738d308bebfb429d8a2bfc</span><br><span class="line">51484a337537de28eefbb8df693e9917440e489f0f42514178269100e39633fa</span><br><span class="line">7cce608c7a2c60d05ae7d08687504893bab15d60dca9625effecffd1dba993c7</span><br></pre></td></tr></table></figure>
+
+<p>addre.txt</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x33244fdcab048bd249393c03d569235ea0823e3a</span><br><span class="line">0x4ce99a807c4f254ec4743f42aa505a64949d292a</span><br><span class="line">0xe64dad11e301a4fe1deab9740bbb0b41a77a5e52</span><br></pre></td></tr></table></figure>
+
+<p>keyaddress.txt</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第1个钱包：</span><br><span class="line">0x33244fdcab048bd249393c03d569235ea0823e3a</span><br><span class="line">2a3d084065b790fbbf6eb451947e9e77a7fc9222b3738d308bebfb429d8a2bfc</span><br><span class="line">第2个钱包：</span><br><span class="line">0x4ce99a807c4f254ec4743f42aa505a64949d292a</span><br><span class="line">51484a337537de28eefbb8df693e9917440e489f0f42514178269100e39633fa</span><br><span class="line">第3个钱包：</span><br><span class="line">0xe64dad11e301a4fe1deab9740bbb0b41a77a5e52</span><br><span class="line">7cce608c7a2c60d05ae7d08687504893bab15d60dca9625effecffd1dba993c7</span><br></pre></td></tr></table></figure>
+
+<p>这样，如果我想批量读取钱包地址，就直接读取addre.txt文件好了。</p>
+<p>我让AI帮我写好了代码。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package test;</span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.FileReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">/**</span><br><span class="line"> * @author HMB-XS</span><br><span class="line"> * @date 2023年11月23日20:15:05</span><br><span class="line"> **/</span><br><span class="line">public class ReadTxt &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// AI写就是省时间，技术革命</span><br><span class="line">		String filePath = &quot;src/main/resources/address.txt&quot;;</span><br><span class="line">		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) &#123;</span><br><span class="line">			String line;</span><br><span class="line">			while ((line = br.readLine()) != null) &#123;</span><br><span class="line">				System.out.println(line);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这就非常棒了，稍微改进下就可以批量发送交易了。</p>
+<p>如果你问为什么不直接使用合约，因为要链上交互记录。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/32/" rel="prev" title="去中心化数据库Glacier教程">
+      <i class="fa fa-chevron-left"></i> 去中心化数据库Glacier教程
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Maven%E4%BE%9D%E8%B5%96"><span class="nav-text">Maven依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%9A%84%E9%92%B1%E5%8C%85"><span class="nav-text">安全的钱包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">创建方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E9%92%B1%E5%8C%85"><span class="nav-text">加载钱包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E5%8F%91%E9%80%81"><span class="nav-text">交易发送</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%81%E5%BC%8F%E9%92%B1%E5%8C%85%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-text">老式钱包生成器</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
