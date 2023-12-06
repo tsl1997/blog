@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文演示了新人如何打铭文。强调！CAT没有任何价值，是单纯的空气MEME。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="新人如何在EVM兼容链上面打铭文——CAT">
+<meta property="og:url" content="http://example.com/2023/inscription/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="本文演示了新人如何打铭文。强调！CAT没有任何价值，是单纯的空气MEME。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206140718990.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206141004418.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206141400330.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206142041500.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206142232985.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206145518701.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206144834602.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206182924294.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183129752.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183437187.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183553208.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183846808.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206184209809.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206184733114.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206185500731.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206185911793.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206190146543.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206193236325.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206193726249.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/Nyan_cat_250px_frame.jpg">
+<meta property="article:published_time" content="2023-12-06T12:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-06T12:08:38.301Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206140718990.png">
+
+<link rel="canonical" href="http://example.com/2023/inscription/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>新人如何在EVM兼容链上面打铭文——CAT | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/inscription/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          新人如何在EVM兼容链上面打铭文——CAT
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-06 20:00:00 / 修改时间：20:08:38" itemprop="dateCreated datePublished" datetime="2023-12-06T20:00:00+08:00">2023-12-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%93%AD%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">铭文</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">本文演示了新人如何打铭文。强调！CAT没有任何价值，是单纯的空气MEME。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>写给萌新的第一个铭文教程！</p>
+<h3 id="1：什么是铭文？"><a href="#1：什么是铭文？" class="headerlink" title="1：什么是铭文？"></a>1：什么是铭文？</h3><p>铭文inscription，你可以把他当成一种代币。最开始在BTC上流行，因为BTC不是图灵完备的。所以他们使用了最简单的办法，就是在转账时铭刻信息，这个信息就是铭文。大家开始统一起来，如何指定协议，如何部署，如何mint(免费获取代币)，如何交易。目前ordi已经是BRC20的龙头。</p>
+<h3 id="2：EVM上面的铭文"><a href="#2：EVM上面的铭文" class="headerlink" title="2：EVM上面的铭文"></a>2：EVM上面的铭文</h3><p>鉴于BTC网络的火热，EVM兼容链也开始炒作铭文，通常采用自传的方式（from&#x3D;to)，铭刻16进制数据。</p>
+<p>ETH上面有eths铭文；</p>
+<p>BSC上面有BNBs铭文；</p>
+<p>MATIC上有POLS、NI、ANTS等铭文。</p>
+<h3 id="3：新协议NI下的空气铭文CAT"><a href="#3：新协议NI下的空气铭文CAT" class="headerlink" title="3：新协议NI下的空气铭文CAT"></a>3：新协议NI下的空气铭文CAT</h3><p>CAT是猫咪，对应的是DOGE，他是一种纯MEME铭文。</p>
+<p>这代表着他只有部署者，而没有官方；</p>
+<p>只有社区，而没有主力；</p>
+<p>只有MEME，而没有价值。</p>
+<h3 id="4：如何打铭文"><a href="#4：如何打铭文" class="headerlink" title="4：如何打铭文"></a>4：如何打铭文</h3><p>此教程将演示，常规方法下的转账铭刻。</p>
+<h4 id="4-1-安装任意插件钱包"><a href="#4-1-安装任意插件钱包" class="headerlink" title="4.1 安装任意插件钱包"></a>4.1 安装任意插件钱包</h4><p>我们以小狐狸MetaMask为例，打开切换网络到Polygon Mainnet主网。</p>
+<p>发送MATIC，目的自己账号（自传）。</p>
+<p>金额，0。</p>
+<p>16进制数据：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x646174613a2c7b2261223a224e657874496e736372697074696f6e222c2270223a226f7072632d3230222c226f70223a226d696e74222c227469636b223a22434154222c22616d74223a22313030303030303030227d</span><br></pre></td></tr></table></figure>
+
+<p>字符串文本数据：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:,&#123;&quot;a&quot;:&quot;NextInscription&quot;,&quot;p&quot;:&quot;oprc-20&quot;,&quot;op&quot;:&quot;mint&quot;,&quot;tick&quot;:&quot;CAT&quot;,&quot;amt&quot;:&quot;100000000&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206140718990.png" alt="image-20231206140718990"></p>
+<h4 id="4-2-如何开启16进制数据"><a href="#4-2-如何开启16进制数据" class="headerlink" title="4.2 如何开启16进制数据"></a>4.2 如何开启16进制数据</h4><p>有些人的小狐狸是没有的，因为默认是不开启的。</p>
+<p>我们需要更改一下设置，高级，打开16进制数据的设置。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206141004418.png" alt="image-20231206141004418"></p>
+<h4 id="4-3-查看铭文"><a href="#4-3-查看铭文" class="headerlink" title="4.3  查看铭文"></a>4.3  查看铭文</h4><p>因为不会写索引，就把别人的面板抄了一下，将就着用。</p>
+<p><a target="_blank" rel="noopener" href="https://dune.com/queries/3256015">https://dune.com/queries/3256015</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206141400330.png" alt="image-20231206141400330"></p>
+<h4 id="4-4-OKX工具打铭文"><a href="#4-4-OKX工具打铭文" class="headerlink" title="4.4 OKX工具打铭文"></a>4.4 OKX工具打铭文</h4><p>工具为OKX钱包官方的，好处是比手转要快。</p>
+<p>（你需要安装OKX的插件钱包）</p>
+<p><a target="_blank" rel="noopener" href="https://www.okx.com/cn/web3/hot/inscription">https://www.okx.com/cn/web3/hot/inscription</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206142041500.png" alt="image-20231206142041500"></p>
+<p>看图填写，值得注意的是，如果使用文本模式，是不需要写data:,因为他已经帮你写好了。</p>
+<p>每次交易都需要授权，比手动转要快一些，手机上按指纹授权好像更快。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206142232985.png" alt="image-20231206142232985"></p>
+<h4 id="4-5-EVM-ink-网站打"><a href="#4-5-EVM-ink-网站打" class="headerlink" title="4.5 EVM.ink 网站打"></a>4.5 EVM.ink 网站打</h4><p><a target="_blank" rel="noopener" href="https://evm.ink/tokens?orderBy=Owners:+Most+Unique&protocol=oprc-20&searchTick=CAT">一键抵达打CAT</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206145518701.png" alt="image-20231206145518701"></p>
+<p>你可以可以去evm.ink查看索引。</p>
+<p>（evm.ink的转移铭文不受社区保护）。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206144834602.png" alt="image-20231206144834602"></p>
+<h4 id="4-6-脚本打铭文-Python版"><a href="#4-6-脚本打铭文-Python版" class="headerlink" title="4.6 脚本打铭文 Python版"></a>4.6 脚本打铭文 Python版</h4><p>做人做到底，送佛送到西。</p>
+<p>怎么能没有脚本呢？至于脚本的安装环境，自己百度即可。</p>
+<h5 id="4-6-1下载项目"><a href="#4-6-1下载项目" class="headerlink" title="4.6.1下载项目"></a>4.6.1下载项目</h5><p><a target="_blank" rel="noopener" href="https://github.com/chriscczhou/polsMint">https://github.com/chriscczhou/polsMint</a></p>
+<p>自己看说明安装运行即可，需要提前安装Python的环境，百度教程一大把。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206182924294.png" alt="image-20231206182924294"></p>
+<p>没有安装git的人可以使用传统三步下载。</p>
+<p>安装了git的人直接克隆一份：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/chriscczhou/polsMint.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183129752.png" alt="image-20231206183129752"></p>
+<p>完成后进入项目目录，这个时候推荐使用轻量级的VSCODE打开编辑。</p>
+<p>当然，你要使用重量级编辑器当我没说。</p>
+<h5 id="4-6-2安装依赖"><a href="#4-6-2安装依赖" class="headerlink" title="4.6.2安装依赖"></a>4.6.2安装依赖</h5><p>安装依赖。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install web3==6.11.3</span><br><span class="line">pip install python-dotenv==1.0.0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183437187.png" alt="image-20231206183437187"></p>
+<h5 id="4-6-3修改配置"><a href="#4-6-3修改配置" class="headerlink" title="4.6.3修改配置"></a>4.6.3修改配置</h5><p><strong>修改配置文件！！！</strong></p>
+<p><strong>修改配置文件！！！</strong></p>
+<p><strong>修改配置文件！！！</strong></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183553208.png" alt="image-20231206183553208"></p>
+<p>在.env文件中填入地址和私钥。</p>
+<p>然后把文件PolsMint修改一下，其中的data数据替换为自己需要的。</p>
+<p>这里提供CAT的16进制数据测试：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x646174613a2c7b2261223a224e657874496e736372697074696f6e222c2270223a226f7072632d3230222c226f70223a226d696e74222c227469636b223a22434154222c22616d74223a22313030303030303030227d</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206183846808.png" alt="image-20231206183846808"></p>
+<p>该脚本的循环次数无上限，只能手动停止（或者GAS耗完）。</p>
+<p>如果的小伙伴可以根据自己的实际情况改动他。</p>
+<h5 id="4-6-4运行程序"><a href="#4-6-4运行程序" class="headerlink" title="4.6.4运行程序"></a>4.6.4运行程序</h5><p>我们尝试运行他，Go！</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206184209809.png" alt="image-20231206184209809"></p>
+<p>在VSCODE中，可以使用右键，选择Run Code运行脚本。</p>
+<p>你可以更换节点，如果节点响应过慢的话。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206184733114.png" alt="image-20231206184733114"></p>
+<p>脚本的作者输出了太多没有必要的内容。</p>
+<p>简单点，只需要成功次数和交易哈希就好了。</p>
+<h4 id="4-7-脚本打铭文-Java版"><a href="#4-7-脚本打铭文-Java版" class="headerlink" title="4.7 脚本打铭文 Java版"></a>4.7 脚本打铭文 Java版</h4><p>因为大部分的JAVA程序员都有JDK8、IDEA、Maven的环境，所以就默认你们全部安装了。</p>
+<h5 id="4-7-1创建Maven项目"><a href="#4-7-1创建Maven项目" class="headerlink" title="4.7.1创建Maven项目"></a>4.7.1创建Maven项目</h5><p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206185500731.png" alt="image-20231206185500731"></p>
+<p>名字随意。</p>
+<p>项目位置自己选择。</p>
+<p>语言Java，构建系统选择Maven，JDK1.8就够了。</p>
+<p>创建。</p>
+<h5 id="4-7-2添加依赖"><a href="#4-7-2添加依赖" class="headerlink" title="4.7.2添加依赖"></a>4.7.2添加依赖</h5><p>依赖内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- web3J依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.web3j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.8.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206185911793.png" alt="image-20231206185911793"></p>
+<p>第一次会下载到本地仓库，以后使用就直接从本地获取了。</p>
+<h5 id="4-7-3创建脚本类"><a href="#4-7-3创建脚本类" class="headerlink" title="4.7.3创建脚本类"></a>4.7.3创建脚本类</h5><p>随意创建一个类，干脆叫好了。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206190146543.png" alt="image-20231206190146543"></p>
+<p>必须在项目的src&#x2F;main&#x2F;java目录下的才有效。</p>
+<h5 id="4-7-4编写脚本"><a href="#4-7-4编写脚本" class="headerlink" title="4.7.4编写脚本"></a>4.7.4编写脚本</h5><p>打铭文无非就是自传，确认铭刻数据，交易的Gas费，铭刻次数，还有节点。</p>
+<p>我们将变动的量全部提取出来放在最上面。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">import org.web3j.crypto.Credentials;</span><br><span class="line">import org.web3j.protocol.Web3j;</span><br><span class="line">import org.web3j.protocol.core.methods.response.EthSendTransaction;</span><br><span class="line">import org.web3j.protocol.http.HttpService;</span><br><span class="line">import org.web3j.tx.RawTransactionManager;</span><br><span class="line">import org.web3j.utils.Convert;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.math.BigInteger;</span><br><span class="line"></span><br><span class="line">public class MintCat &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// 填写网络节点API 默认公共节点</span><br><span class="line">		String api = &quot;https://polygon-rpc.com&quot;;</span><br><span class="line">		// 填写链ID MATIC链是137</span><br><span class="line">		long chainId = 137L;</span><br><span class="line">		// 钱包私钥</span><br><span class="line">		String key = &quot;&quot;;</span><br><span class="line">		// 循环次数 默认100次</span><br><span class="line">		int num = 100;</span><br><span class="line">		// 铭文数据 默认CAT</span><br><span class="line">		String data = &quot;0x646174613a2c7b2261223a224e657874496e736372697074696f6e222c2270223a226f7072632d3230222c226f70223a226d696e74222c227469636b223a22434154222c22616d74223a22313030303030303030227d&quot;;</span><br><span class="line">		// 创建连接对象</span><br><span class="line">		Web3j web3 = Web3j.build(new HttpService(api));</span><br><span class="line">		// 创建钱包对象</span><br><span class="line">		Credentials credentials = Credentials.create(key);</span><br><span class="line">		// 获取自己的钱包地址</span><br><span class="line">		String address = credentials.getAddress();</span><br><span class="line">		// 交易金额</span><br><span class="line">		BigInteger amount = Convert.toWei(&quot;0&quot;, Convert.Unit.ETHER).toBigInteger();</span><br><span class="line">		// 循环执行交易==打铭文</span><br><span class="line">		for(int i = 0; i &lt; num; i++)&#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				// 获取当前网络的建议费用</span><br><span class="line">				BigInteger maxPriorityFeePerGas = web3.ethGasPrice().send().getGasPrice();</span><br><span class="line">				BigInteger maxFeePerGas = maxPriorityFeePerGas.add(BigInteger.valueOf(1000000000L));// 加10Gwei</span><br><span class="line">				// 构建交易对象</span><br><span class="line">				EthSendTransaction ethSendTransaction = new RawTransactionManager(</span><br><span class="line">						web3, credentials)</span><br><span class="line">						.sendEIP1559Transaction(</span><br><span class="line">								chainId,</span><br><span class="line">								maxPriorityFeePerGas, // 优先级</span><br><span class="line">								maxFeePerGas, // 最大费用</span><br><span class="line">								BigInteger.valueOf(30000L),// gasLimit 手动调整</span><br><span class="line">								address,</span><br><span class="line">								data,</span><br><span class="line">								amount</span><br><span class="line">						);</span><br><span class="line">				String transactionHash = ethSendTransaction.getTransactionHash();</span><br><span class="line">				// 交易哈希</span><br><span class="line">				System.out.println(&quot;【&quot;+(i+1)+&quot;】&quot;+transactionHash);</span><br><span class="line">			&#125; catch (IOException e) &#123;</span><br><span class="line">				throw new RuntimeException(e);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-7-5运行结束"><a href="#4-7-5运行结束" class="headerlink" title="4.7.5运行结束"></a>4.7.5运行结束</h5><p>我们填入一个私钥测试一下。</p>
+<p>注意，<strong>公共节点一般都有请求限制</strong>，比如每秒20请求。</p>
+<p>如果需要更快的速度和响应，可以去注册私人节点。</p>
+<p>Alchemy、Infura、Ankr等API服务商都可以提供私人节点，且有一定的免费额度。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206193236325.png" alt="image-20231206193236325"></p>
+<h5 id="4-7-6代码开源"><a href="#4-7-6代码开源" class="headerlink" title="4.7.6代码开源"></a>4.7.6代码开源</h5><p>注册一个github账号，然后开源。</p>
+<p>加上说明文档，一共三个文件。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/cat-inscription/mint">https://github.com/cat-inscription/mint</a></p>
+<p>你也可以直接下载他然后运行。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/image-20231206193726249.png" alt="image-20231206193726249"></p>
+<h3 id="5铭文如何玩"><a href="#5铭文如何玩" class="headerlink" title="5铭文如何玩"></a>5铭文如何玩</h3><p>你可以用你想到的任何方式去玩CAT，因为他就是空气，请不要赋予他任何价值。</p>
+<p>我希望新人在任何时候都可以打上一张CAT作为铭文入门的学习案例，所以他的总量是一亿张。</p>
+<h4 id="5-1关于NI协议："><a href="#5-1关于NI协议：" class="headerlink" title="5.1关于NI协议："></a>5.1关于NI协议：</h4><p><a target="_blank" rel="noopener" href="https://github.com/NextInscription/node">https://github.com/NextInscription/node</a></p>
+<p>你可以部署任何的铭文，只要他的形式是这样的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:,&#123;&quot;a&quot;:&quot;NextInscription&quot;,&quot;p&quot;:&quot;类型&quot;,&quot;op&quot;:&quot;deploy&quot;,&quot;tick&quot;:&quot;名称&quot;,&quot;max&quot;:&quot;总量&quot;,&quot;lim&quot;:&quot;单次mint数量&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把这个文本转换为16进制的数据，然后自转就可以了，这就算部署成功。</p>
+<p>mint和转移也在该文档中有所规定。</p>
+<h4 id="5-2关于EVM-ink的文档"><a href="#5-2关于EVM-ink的文档" class="headerlink" title="5.2关于EVM.ink的文档"></a>5.2关于EVM.ink的文档</h4><p>该文档开启了关于EVM链的铭文的一些定义规则。</p>
+<p><a target="_blank" rel="noopener" href="https://inscriptions.gitbook.io/docs/">https://inscriptions.gitbook.io/docs/</a></p>
+<p>但是，从pols开始的分歧表示，社区不认可合约铸造的铭文。</p>
+<blockquote>
+<p>合约铸造的铭文依旧会在EVM.ink上面索引，但是有<strong>合约</strong>的标签。</p>
+</blockquote>
+<h4 id="5-3索引和分歧"><a href="#5-3索引和分歧" class="headerlink" title="5.3索引和分歧"></a>5.3索引和分歧</h4><p>pols的索引问题导致了原本的龙头一蹶不振。</p>
+<p>anteater的问题是，没部署，却先mint，后来更是出现了数种。</p>
+<p>NI有望解决该问题，而CAT是符合NI协议的纯MEME空气币。</p>
+<blockquote>
+<p>你可以用任何方式使用CAT，因为他就是空气。</p>
+</blockquote>
+<h4 id="5-4价值定义"><a href="#5-4价值定义" class="headerlink" title="5.4价值定义"></a>5.4价值定义</h4><p>1CAT&#x3D;1CAT</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/6/Nyan_cat_250px_frame.jpg" alt="Nyan_cat_250px_frame"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/33/" rel="prev" title="Java×以太坊 3使用EIP 1559发送ETH交易">
+      <i class="fa fa-chevron-left"></i> Java×以太坊 3使用EIP 1559发送ETH交易
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%AD%E6%96%87%EF%BC%9F"><span class="nav-text">1：什么是铭文？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%9AEVM%E4%B8%8A%E9%9D%A2%E7%9A%84%E9%93%AD%E6%96%87"><span class="nav-text">2：EVM上面的铭文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%9A%E6%96%B0%E5%8D%8F%E8%AE%AENI%E4%B8%8B%E7%9A%84%E7%A9%BA%E6%B0%94%E9%93%AD%E6%96%87CAT"><span class="nav-text">3：新协议NI下的空气铭文CAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%9A%E5%A6%82%E4%BD%95%E6%89%93%E9%93%AD%E6%96%87"><span class="nav-text">4：如何打铭文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E5%AE%89%E8%A3%85%E4%BB%BB%E6%84%8F%E6%8F%92%E4%BB%B6%E9%92%B1%E5%8C%85"><span class="nav-text">4.1 安装任意插件钱包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF16%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE"><span class="nav-text">4.2 如何开启16进制数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E6%9F%A5%E7%9C%8B%E9%93%AD%E6%96%87"><span class="nav-text">4.3  查看铭文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-OKX%E5%B7%A5%E5%85%B7%E6%89%93%E9%93%AD%E6%96%87"><span class="nav-text">4.4 OKX工具打铭文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-EVM-ink-%E7%BD%91%E7%AB%99%E6%89%93"><span class="nav-text">4.5 EVM.ink 网站打</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-%E8%84%9A%E6%9C%AC%E6%89%93%E9%93%AD%E6%96%87-Python%E7%89%88"><span class="nav-text">4.6 脚本打铭文 Python版</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-6-1%E4%B8%8B%E8%BD%BD%E9%A1%B9%E7%9B%AE"><span class="nav-text">4.6.1下载项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-6-2%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-text">4.6.2安装依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-6-3%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">4.6.3修改配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-6-4%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-text">4.6.4运行程序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-%E8%84%9A%E6%9C%AC%E6%89%93%E9%93%AD%E6%96%87-Java%E7%89%88"><span class="nav-text">4.7 脚本打铭文 Java版</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-7-1%E5%88%9B%E5%BB%BAMaven%E9%A1%B9%E7%9B%AE"><span class="nav-text">4.7.1创建Maven项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-7-2%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="nav-text">4.7.2添加依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-7-3%E5%88%9B%E5%BB%BA%E8%84%9A%E6%9C%AC%E7%B1%BB"><span class="nav-text">4.7.3创建脚本类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-7-4%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="nav-text">4.7.4编写脚本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-7-5%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9D%9F"><span class="nav-text">4.7.5运行结束</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-7-6%E4%BB%A3%E7%A0%81%E5%BC%80%E6%BA%90"><span class="nav-text">4.7.6代码开源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E9%93%AD%E6%96%87%E5%A6%82%E4%BD%95%E7%8E%A9"><span class="nav-text">5铭文如何玩</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1%E5%85%B3%E4%BA%8ENI%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="nav-text">5.1关于NI协议：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2%E5%85%B3%E4%BA%8EEVM-ink%E7%9A%84%E6%96%87%E6%A1%A3"><span class="nav-text">5.2关于EVM.ink的文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%86%E6%AD%A7"><span class="nav-text">5.3索引和分歧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4%E4%BB%B7%E5%80%BC%E5%AE%9A%E4%B9%89"><span class="nav-text">5.4价值定义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">153</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
