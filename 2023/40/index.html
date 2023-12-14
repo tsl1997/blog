@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="狗狗币创始人的第一个硬币。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bells挖矿教程(难度太大已放弃)">
+<meta property="og:url" content="http://example.com/2023/40/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="狗狗币创始人的第一个硬币。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161054176.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161159253.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161227557.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161838544.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214162146614.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214163004550.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214163303101.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214163924551.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214164040245.png">
+<meta property="og:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214165914904.png">
+<meta property="article:published_time" content="2023-12-14T09:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-14T09:45:53.029Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="cion">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161054176.png">
+
+<link rel="canonical" href="http://example.com/2023/40/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Bells挖矿教程(难度太大已放弃) | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/40/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bells挖矿教程(难度太大已放弃)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-14 17:00:00 / 修改时间：17:45:53" itemprop="dateCreated datePublished" datetime="2023-12-14T17:00:00+08:00">2023-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/POW/" itemprop="url" rel="index"><span itemprop="name">POW</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">狗狗币创始人的第一个硬币。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><p>狗狗币创始人部署的老公链，冲鸭！（不用冲了，已经挖不动了）</p>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/MyTuShen/status/1734993888312779059">https://twitter.com/MyTuShen/status/1734993888312779059</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161054176.png" alt="image-20231214161054176"></p>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/wanghebbf/status/1735049983798468784">https://twitter.com/wanghebbf/status/1735049983798468784</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161159253.png" alt="image-20231214161159253"></p>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/adamamcbride/status/1734970425778815413">https://twitter.com/adamamcbride/status/1734970425778815413</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161227557.png" alt="image-20231214161227557"></p>
+<h3 id="钱包下载："><a href="#钱包下载：" class="headerlink" title="钱包下载："></a>钱包下载：</h3><p>从这个地址下载钱包：</p>
+<p><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/0B9Jd8wswMvMTZU9QekxncWwtQkU/edit?resourcekey=0-PCIM2DJCGSO6n1l5PNfhow">https://drive.google.com/file/d/0B9Jd8wswMvMTZU9QekxncWwtQkU/edit?resourcekey=0-PCIM2DJCGSO6n1l5PNfhow</a></p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214161838544.png" alt="image-20231214161838544"></p>
+<p>下载好解压后，我们打开运行他。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214162146614.png" alt="image-20231214162146614"></p>
+<p>你的杀毒软件可能会报毒，这是正常现象，不用担心。</p>
+<h3 id="同步数据："><a href="#同步数据：" class="headerlink" title="同步数据："></a>同步数据：</h3><p>您需要在 PC 上访问此位置 </p>
+<p>C:\Users{username}\AppData\Roaming\Bells </p>
+<p>“{username}”是您的用户名。到达该位置的一个简单方法是单击“此电脑”，然后单击“Windows (C)”，然后单击“用户”文件夹。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214163004550.png" alt="image-20231214163004550"></p>
+<p>然后我们新建一个名为 的文件，文件内容如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dns=1</span><br><span class="line">irc=1</span><br><span class="line">listen=1</span><br><span class="line">dnsseed=1</span><br><span class="line">daemon=1</span><br><span class="line">server=1</span><br><span class="line">rpcport=19918</span><br><span class="line">rpcuser=XXXX</span><br><span class="line">rpcpassword=XXXX</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214163303101.png" alt="image-20231214163303101"></p>
+<p>提示：</p>
+<p>将文本中的“XXXX”更改为只有您知道的用户名和密码。</p>
+<p><strong>不要与任何人分享此信息</strong>，因为这会让他们拿走您的硬币。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214163924551.png" alt="image-20231214163924551"></p>
+<h3 id="尝试挖矿："><a href="#尝试挖矿：" class="headerlink" title="尝试挖矿："></a>尝试挖矿：</h3><p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214164040245.png" alt="image-20231214164040245"></p>
+<p>点击挖矿。</p>
+<p>挖矿难度过大，直接停止吧，又一个暴富机会擦肩而过。</p>
+<p><img src="https://gnfd-testnet-sp1.bnbchain.org/view/web/blog/2023/12/14/image-20231214165914904.png" alt="image-20231214165914904"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cion/" rel="tag"># cion</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/39/" rel="prev" title="一鱼多吃：Dmail x Zeta 邮件和域名">
+      <i class="fa fa-chevron-left"></i> 一鱼多吃：Dmail x Zeta 邮件和域名
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%B1%E5%8C%85%E4%B8%8B%E8%BD%BD%EF%BC%9A"><span class="nav-text">钱包下载：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="nav-text">同步数据：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%8C%96%E7%9F%BF%EF%BC%9A"><span class="nav-text">尝试挖矿：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">160</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">125</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
