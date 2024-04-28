@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="SOL测试网，白嫖！白嫖！白嫖！当然，服务器的钱还是要出的......">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XEN服务器挖矿教程">
+<meta property="og:url" content="http://example.com/2024/xen/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="SOL测试网，白嫖！白嫖！白嫖！当然，服务器的钱还是要出的......">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-28T18:54:00.000Z">
+<meta property="article:modified_time" content="2024-04-28T18:53:57.212Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="挖矿">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/xen/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>XEN服务器挖矿教程 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/xen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          XEN服务器挖矿教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-29 02:54:00 / 修改时间：02:53:57" itemprop="dateCreated datePublished" datetime="2024-04-29T02:54:00+08:00">2024-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%92%B8%E6%AF%9B/" itemprop="url" rel="index"><span itemprop="name">撸毛</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">SOL测试网，白嫖！白嫖！白嫖！当然，服务器的钱还是要出的......</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本教程参考资料：</p>
+<p>官方教程：<a target="_blank" rel="noopener" href="https://xen.pub/other/SolXEN_420_miner_v1.1_instructions.pdf">https://xen.pub/other/SolXEN_420_miner_v1.1_instructions.pdf</a></p>
+<p>视频教程：<a target="_blank" rel="noopener" href="https://twitter.com/pcobidco/status/1784608423390413119">https://twitter.com/pcobidco/status/1784608423390413119</a></p>
+<h4 id="安装RUST："><a href="#安装RUST：" class="headerlink" title="安装RUST："></a>安装RUST：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --proto <span class="string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装SOL："><a href="#安装SOL：" class="headerlink" title="安装SOL："></a>安装SOL：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -sSfL https://release.solana.com/stable/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>设置环境变量：(看上一步屏幕上出现什么就写什么)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/root/.local/share/solana/install/active_release/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查询SOL："><a href="#查询SOL：" class="headerlink" title="查询SOL："></a>查询SOL：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana --version</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建新钱包："><a href="#创建新钱包：" class="headerlink" title="创建新钱包："></a>创建新钱包：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new</span><br></pre></td></tr></table></figure>
+
+<p>默认地址：</p>
+<blockquote>
+<p>&#x2F;root&#x2F;.config&#x2F;solana&#x2F;id.json</p>
+</blockquote>
+<h4 id="设置SOL测试网："><a href="#设置SOL测试网：" class="headerlink" title="设置SOL测试网："></a>设置SOL测试网：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana config <span class="built_in">set</span> --url https://api.testnet.solana.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="获取测试币："><a href="#获取测试币：" class="headerlink" title="获取测试币："></a>获取测试币：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana airdrop 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="查询余额（测试币）："><a href="#查询余额（测试币）：" class="headerlink" title="查询余额（测试币）："></a>查询余额（测试币）：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solana balance</span><br></pre></td></tr></table></figure>
+
+<p>这里可能获取不到，建议去水龙头网站<a target="_blank" rel="noopener" href="https://faucet.solana.com/">https://faucet.solana.com/</a>获取。</p>
+<p>备用水龙头：<a target="_blank" rel="noopener" href="https://www.testnetfaucet.org/">https://www.testnetfaucet.org/</a></p>
+<p>浏览器查询余额：</p>
+<p><a target="_blank" rel="noopener" href="https://explorer.solana.com/address/8u3pJcoHCW1FkLZ2sNoPsowV5d6MTSVVGrfTdhWgqbKH?cluster=testnet">https://explorer.solana.com/address/8u3pJcoHCW1FkLZ2sNoPsowV5d6MTSVVGrfTdhWgqbKH?cluster=testnet</a></p>
+<h4 id="重命名钱包："><a href="#重命名钱包：" class="headerlink" title="重命名钱包："></a>重命名钱包：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> -f /root/.config/solana/id.json /root/.config/solana/id1.json</span><br></pre></td></tr></table></figure>
+
+<p>继续创建钱包，获取测试币，重命名为id2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">solana-keygen new</span><br><span class="line">solana airdrop 1</span><br><span class="line">solana balance</span><br><span class="line"><span class="built_in">mv</span> -f /root/.config/solana/id.json /root/.config/solana/id2.json</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置其他环境："><a href="#配置其他环境：" class="headerlink" title="配置其他环境："></a>配置其他环境：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">cargo new my_project</span><br><span class="line"><span class="built_in">cd</span> my_project</span><br><span class="line">nano Cargo.toml</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加内容：-ctrl-X-保存Y"><a href="#添加内容：-ctrl-X-保存Y" class="headerlink" title="添加内容：(ctrl X 保存Y)"></a>添加内容：(ctrl X 保存Y)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">solana-client = <span class="string">&quot;1.10&quot;</span></span><br><span class="line">solana-sdk = <span class="string">&quot;1.10&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="编辑配置文件："><a href="#编辑配置文件：" class="headerlink" title="编辑配置文件："></a>编辑配置文件：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano src/main.rs</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改后的配置："><a href="#修改后的配置：" class="headerlink" title="修改后的配置："></a>修改后的配置：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">use solana_client::rpc_client::RpcClient;</span><br><span class="line">use solana_sdk::&#123;</span><br><span class="line">    compute_budget::ComputeBudgetInstruction,</span><br><span class="line">    instruction::&#123;AccountMeta, Instruction&#125;,</span><br><span class="line">    pubkey::Pubkey,</span><br><span class="line">    signature::&#123;Keypair, Signer&#125;,</span><br><span class="line">    transaction::Transaction,</span><br><span class="line">    system_instruction,</span><br><span class="line">&#125;;</span><br><span class="line">use solana_sdk::signer::keypair::read_keypair_file;</span><br><span class="line">use std::&#123;str::FromStr, <span class="built_in">sync</span>::Arc, thread&#125;;</span><br><span class="line">use std::path::PathBuf;</span><br><span class="line"></span><br><span class="line">fn <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">let</span> rpc_url = String::from(<span class="string">&quot;https://api.testnet.solana.com&quot;</span>);</span><br><span class="line">    //let rpc_url = String::from(<span class="string">&quot;http://127.0.0.1:8899&quot;</span>);</span><br><span class="line">    <span class="built_in">let</span> client = RpcClient::new(&amp;rpc_url);</span><br><span class="line">    <span class="built_in">let</span> client = Arc::new(client);</span><br><span class="line"></span><br><span class="line">    // Load keypairs <span class="keyword">for</span> two payer accounts</span><br><span class="line">    <span class="built_in">let</span> keypair_path1 = PathBuf::from(<span class="string">&quot;/root/.config/solana/id1.json&quot;</span>);</span><br><span class="line">    <span class="built_in">let</span> keypair_path2 = PathBuf::from(<span class="string">&quot;/root/.config/solana/id2.json&quot;</span>);</span><br><span class="line">    <span class="built_in">let</span> payer1 = read_keypair_file(&amp;keypair_path1).expect(<span class="string">&quot;Failed to read keypair from file 1&quot;</span>);</span><br><span class="line">    <span class="built_in">let</span> payer2 = read_keypair_file(&amp;keypair_path2).expect(<span class="string">&quot;Failed to read keypair from file 2&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> key_bytes1 = payer1.to_bytes();</span><br><span class="line">    <span class="built_in">let</span> key_bytes2 = payer2.to_bytes();</span><br><span class="line"></span><br><span class="line">    // Use two different sets of threads <span class="keyword">for</span> each payer</span><br><span class="line">    <span class="built_in">let</span> handles1: Vec&lt;_&gt; = (0..10).map(|_| &#123;</span><br><span class="line">        <span class="built_in">let</span> client = Arc::<span class="built_in">clone</span>(&amp;client);</span><br><span class="line">        <span class="built_in">let</span> key_bytes = key_bytes1.clone();</span><br><span class="line"></span><br><span class="line">        thread::spawn(move || &#123;</span><br><span class="line">            <span class="built_in">let</span> payer = Keypair::from_bytes(&amp;key_bytes).expect(<span class="string">&quot;Failed to deserialize keypair&quot;</span>);</span><br><span class="line">            send_transaction(&amp;client, &amp;payer);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;).collect();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> handles2: Vec&lt;_&gt; = (0..10).map(|_| &#123;</span><br><span class="line">        <span class="built_in">let</span> client = Arc::<span class="built_in">clone</span>(&amp;client);</span><br><span class="line">        <span class="built_in">let</span> key_bytes = key_bytes2.clone();</span><br><span class="line"></span><br><span class="line">        thread::spawn(move || &#123;</span><br><span class="line">            <span class="built_in">let</span> payer = Keypair::from_bytes(&amp;key_bytes).expect(<span class="string">&quot;Failed to deserialize keypair&quot;</span>);</span><br><span class="line">            send_transaction(&amp;client, &amp;payer);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;).collect();</span><br><span class="line"></span><br><span class="line">    // Wait <span class="keyword">for</span> all threads to complete</span><br><span class="line">    handles1.into_iter().chain(handles2).for_each(|handle| &#123;</span><br><span class="line">        handle.join().unwrap();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn send_transaction(client: &amp;RpcClient, payer: &amp;Keypair) &#123;</span><br><span class="line">//    <span class="built_in">let</span> program_id = Pubkey::from_str(<span class="string">&quot;E3cXtz25rC1SeBVCkudZyWtzDfyDRcHvVUVuiReW2hiG&quot;</span>).unwrap();</span><br><span class="line">    <span class="built_in">let</span> program_id = Pubkey::from_str(<span class="string">&quot;7R2KMCUW1GimTEiS8tp8jJrde2N66yQiJ1MEUTbaPgfq&quot;</span>).unwrap();</span><br><span class="line">    //let program_id = Pubkey::from_str(<span class="string">&quot;7R2KMCUW1GimTEiS8tp8jJrde2N66yQiJ1MEUTbaPgfq&quot;</span>).unwrap();</span><br><span class="line">    <span class="built_in">let</span> result_account = Keypair::new();</span><br><span class="line">    <span class="built_in">let</span> space = 5;</span><br><span class="line">    <span class="built_in">let</span> rent_exemption = client.get_minimum_balance_for_rent_exemption(space).unwrap();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> create_account_instruction = system_instruction::create_account(</span><br><span class="line">        &amp;payer.pubkey(),</span><br><span class="line">        &amp;result_account.pubkey(),</span><br><span class="line">        rent_exemption,</span><br><span class="line">        space as u64,</span><br><span class="line">        &amp;program_id,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> process_instruction_accounts = vec![</span><br><span class="line">        AccountMeta::new(result_account.pubkey(), <span class="literal">false</span>),</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> process_instruction = Instruction::new_with_bincode(</span><br><span class="line">        program_id,</span><br><span class="line">        &amp;[0],</span><br><span class="line">        process_instruction_accounts,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> max_units = 1_200_000;</span><br><span class="line">    <span class="built_in">let</span> compute_budget_instruction = ComputeBudgetInstruction::set_compute_unit_limit(max_units);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> mut transaction = Transaction::new_with_payer(</span><br><span class="line">        &amp;[compute_budget_instruction, create_account_instruction, process_instruction],</span><br><span class="line">        Some(&amp;payer.pubkey()),</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">let</span> recent_blockhash = client.get_latest_blockhash().unwrap();</span><br><span class="line">    transaction.sign(&amp;[payer, &amp;result_account], recent_blockhash);</span><br><span class="line"></span><br><span class="line">    match client.send_and_confirm_transaction(&amp;transaction) &#123;</span><br><span class="line">        Ok(_) =&gt; println!(<span class="string">&quot;Transaction sent successfully.&quot;</span>),</span><br><span class="line">        Err(e) =&gt; eprintln!(<span class="string">&quot;Failed to send transaction: &#123;&#125;&quot;</span>, e),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装GCC："><a href="#安装GCC：" class="headerlink" title="安装GCC："></a>安装GCC：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gcc</span><br></pre></td></tr></table></figure>
+
+<h4 id="构建："><a href="#构建：" class="headerlink" title="构建："></a>构建：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo build</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行："><a href="#运行：" class="headerlink" title="运行："></a>运行：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo run</span><br></pre></td></tr></table></figure>
+
+<p>据说可能会停止运行，所以还是老办法。</p>
+<h4 id="编写脚本："><a href="#编写脚本：" class="headerlink" title="编写脚本："></a>编写脚本：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim offline_script.sh</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>按下 <code>i</code> 键进入插入模式，这样你就可以输入文本了。</li>
+<li>输入你想要编辑的文本。</li>
+<li>按下 <code>Esc</code> 键退出插入模式。</li>
+<li>如果想要保存并退出 Vim，可以输入 <code>:wq</code> 并按下 <code>Enter</code> 键。<code>:w</code> 用于保存，<code>:q</code> 用于退出，两者结合成 <code>:wq</code> 则表示保存并退出。</li>
+<li>如果只想退出而不保存，可以输入 <code>:q!</code> 并按下 <code>Enter</code> 键。</li>
+</ol>
+<h4 id="脚本内容："><a href="#脚本内容：" class="headerlink" title="脚本内容："></a>脚本内容：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Running&quot;</span></span><br><span class="line">  cargo run</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Exited&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="授权脚本："><a href="#授权脚本：" class="headerlink" title="授权脚本："></a>授权脚本：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x offline_script.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="后台运行："><a href="#后台运行：" class="headerlink" title="后台运行："></a>后台运行：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> ./offline_script.sh  &gt;log.txt&amp;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看日志："><a href="#查看日志：" class="headerlink" title="查看日志："></a>查看日志：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> log.txt</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag"># 挖矿</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/18/" rel="prev" title="Java × 以太坊 4在Java中调用智能合约">
+      <i class="fa fa-chevron-left"></i> Java × 以太坊 4在Java中调用智能合约
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85RUST%EF%BC%9A"><span class="nav-text">安装RUST：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85SOL%EF%BC%9A"><span class="nav-text">安装SOL：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2SOL%EF%BC%9A"><span class="nav-text">查询SOL：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E9%92%B1%E5%8C%85%EF%BC%9A"><span class="nav-text">创建新钱包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AESOL%E6%B5%8B%E8%AF%95%E7%BD%91%EF%BC%9A"><span class="nav-text">设置SOL测试网：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%9A"><span class="nav-text">获取测试币：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%BD%99%E9%A2%9D%EF%BC%88%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%89%EF%BC%9A"><span class="nav-text">查询余额（测试币）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E9%92%B1%E5%8C%85%EF%BC%9A"><span class="nav-text">重命名钱包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">配置其他环境：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%86%85%E5%AE%B9%EF%BC%9A-ctrl-X-%E4%BF%9D%E5%AD%98Y"><span class="nav-text">添加内容：(ctrl X 保存Y)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="nav-text">编辑配置文件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="nav-text">修改后的配置：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85GCC%EF%BC%9A"><span class="nav-text">安装GCC：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%EF%BC%9A"><span class="nav-text">构建：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">运行：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">编写脚本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="nav-text">脚本内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%88%E6%9D%83%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">授权脚本：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">后台运行：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="nav-text">查看日志：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">189</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
