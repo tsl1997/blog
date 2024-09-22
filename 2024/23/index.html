@@ -33,8 +33,9 @@
 <meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171458864.png">
 <meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171623776.png">
 <meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171933272.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/22/image-20240921205655661.png">
 <meta property="article:published_time" content="2024-08-25T09:30:00.000Z">
-<meta property="article:modified_time" content="2024-09-02T03:30:02.513Z">
+<meta property="article:modified_time" content="2024-09-22T14:53:26.590Z">
 <meta property="article:author" content="XS">
 <meta property="article:tag" content="挖矿">
 <meta name="twitter:card" content="summary">
@@ -213,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-02 11:30:02" itemprop="dateModified" datetime="2024-09-02T11:30:02+08:00">2024-09-02</time>
+                <time title="修改时间：2024-09-22 22:53:26" itemprop="dateModified" datetime="2024-09-22T22:53:26+08:00">2024-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,6 +244,11 @@
 
 <p>按顺序启动123</p>
 <p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825170351636.png" alt="image-20240825170351636"></p>
+<h3 id="补充环境："><a href="#补充环境：" class="headerlink" title="补充环境："></a>补充环境：</h3><p>如果没有安装Node和npm及其pm2的话。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="设置手续费："><a href="#设置手续费：" class="headerlink" title="设置手续费："></a>设置手续费：</h3><p>上面的脚本只启动第一项。</p>
 <p><a target="_blank" rel="noopener" href="https://mempool.space/testnet">点此查看实时手续费</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">手动设置：</span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$HOME</span>/heminetwork&quot;</span></span><br><span class="line"><span class="built_in">export</span> POPM_BTC_PRIVKEY=私钥</span><br><span class="line"><span class="built_in">export</span> POPM_STATIC_FEE=手续费 1000</span><br><span class="line"><span class="built_in">export</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line">开启：</span><br><span class="line">pm2 start ./popmd --name popmd</span><br><span class="line">pm2 save</span><br><span class="line">日志：</span><br><span class="line">pm2 logs popmd</span><br></pre></td></tr></table></figure>
@@ -258,6 +264,10 @@
 <p>创建或者导入。</p>
 <p>记得保存好私钥。</p>
 <p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825171933272.png" alt="image-20240825171933272"></p>
+<h3 id="查询工作："><a href="#查询工作：" class="headerlink" title="查询工作："></a>查询工作：</h3><p>当前没有发放tHEMI作为奖励，只有一个工作量证明的数据面板。</p>
+<p><a target="_blank" rel="noopener" href="https://testnet.popstats.hemi.network/">https://testnet.popstats.hemi.network/</a></p>
+<p>输入钱包地址即可查看。</p>
+<p><img src="https://blogs.4everland.store/2024/9/22/image-20240921205655661.png" alt="image-20240921205655661"></p>
 <h3 id="进阶教程："><a href="#进阶教程：" class="headerlink" title="进阶教程："></a>进阶教程：</h3><p>pm2是一个管理工具，使用npm安装，需要提前安装Node.js环境，设置PATH。</p>
 <h4 id="运行多个线程："><a href="#运行多个线程：" class="headerlink" title="运行多个线程："></a>运行多个线程：</h4><p>手动自定义名称可运行多个程序。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export POPM_BTC_PRIVKEY=私钥</span><br><span class="line">export POPM_STATIC_FEE=手续费1000</span><br><span class="line">export POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line">pm2 start ./popmd --name popmd2新名称</span><br></pre></td></tr></table></figure>
@@ -286,7 +296,10 @@
     <a href="/2024/22/" rel="prev" title="推文生成卡片插件">
       <i class="fa fa-chevron-left"></i> 推文生成卡片插件
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/bitcoinj/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -345,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-text">项目介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">一键脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%8B%E7%BB%AD%E8%B4%B9%EF%BC%9A"><span class="nav-text">设置手续费：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%9A"><span class="nav-text">测试币：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-text">网页版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">进阶教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="nav-text">运行多个线程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">一键运行：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-text">项目介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">一键脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">补充环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%8B%E7%BB%AD%E8%B4%B9%EF%BC%9A"><span class="nav-text">设置手续费：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%9A"><span class="nav-text">测试币：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-text">网页版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B7%A5%E4%BD%9C%EF%BC%9A"><span class="nav-text">查询工作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">进阶教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="nav-text">运行多个线程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">一键运行：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,7 +372,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">194</span>
+          <span class="site-state-item-count">196</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -372,7 +385,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">138</span>
+        <span class="site-state-item-count">139</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
