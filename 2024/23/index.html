@@ -34,8 +34,18 @@
 <meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171623776.png">
 <meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171933272.png">
 <meta property="og:image" content="https://blogs.4everland.store/2024/9/22/image-20240921205655661.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924183005282.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924223238305.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924223440395.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924223556479.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924224008971.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924224212926.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924224448441.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924230754451.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924230949007.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924231212841.png">
 <meta property="article:published_time" content="2024-08-25T09:30:00.000Z">
-<meta property="article:modified_time" content="2024-09-22T14:53:26.590Z">
+<meta property="article:modified_time" content="2024-09-24T15:24:45.034Z">
 <meta property="article:author" content="XS">
 <meta property="article:tag" content="挖矿">
 <meta name="twitter:card" content="summary">
@@ -214,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-22 22:53:26" itemprop="dateModified" datetime="2024-09-22T22:53:26+08:00">2024-09-22</time>
+                <time title="修改时间：2024-09-24 23:24:45" itemprop="dateModified" datetime="2024-09-24T23:24:45+08:00">2024-09-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,6 +285,71 @@
 <h4 id="一键运行："><a href="#一键运行：" class="headerlink" title="一键运行："></a>一键运行：</h4><p>写1个Bash文件，运行多个线程，赋予权限，后台运行。</p>
 <p>好处，一次性修改内容，方便管理。</p>
 <p>钱包生成参考：<a target="_blank" rel="noopener" href="https://github.com/Trusttobitcoin/Bitcoin-Testnet-HD-Wallet-Address-Generator">https://github.com/Trusttobitcoin/Bitcoin-Testnet-HD-Wallet-Address-Generator</a></p>
+<h4 id="批量查询："><a href="#批量查询：" class="headerlink" title="批量查询："></a>批量查询：</h4><p>从TG群里面获取的脚本：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Solitude12345/HemiPoPStatsCheck">https://github.com/Solitude12345/HemiPoPStatsCheck</a></p>
+<p>效果如图所示：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924183005282.png" alt="image-20240924183005282"></p>
+<h3 id="本地运行："><a href="#本地运行：" class="headerlink" title="本地运行："></a>本地运行：</h3><p>你可以参考官方教程：<a target="_blank" rel="noopener" href="https://docs.hemi.xyz/how-to-tutorials/tutorials/setup-part-1">CLI PoP Miner</a></p>
+<h4 id="下载windows压缩包："><a href="#下载windows压缩包：" class="headerlink" title="下载windows压缩包："></a>下载windows压缩包：</h4><p>我是win10的系统，大家一般下载这个。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hemilabs/heminetwork/releases">github下载地址</a></p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924223238305.png" alt="image-20240924223238305"></p>
+<p>下载好解压。</p>
+<h4 id="使用VSCode打开："><a href="#使用VSCode打开：" class="headerlink" title="使用VSCode打开："></a>使用VSCode打开：</h4><p>这一步是关键！使用一些编辑器打开，诸如VSCode等，切忌不要使用cmd命令行。</p>
+<p>cmd操作会显示：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924223440395.png" alt="image-20240924223440395"></p>
+<p>VScode操作会显示：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924223556479.png" alt="image-20240924223556479"></p>
+<p>注意，如果没有VSCode，请去微软的官网网站下载。</p>
+<p>该软件是免费的，收费的全部是盗版。</p>
+<h4 id="生成钱包："><a href="#生成钱包：" class="headerlink" title="生成钱包："></a>生成钱包：</h4><p>使用官方的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keygen.exe -secp256k1 -json -net=<span class="string">&quot;testnet&quot;</span> &gt; %HOMEDRIVE%%HOMEPATH%\popm-address.json</span><br></pre></td></tr></table></figure>
+
+<p>但是我的显示输出：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924224008971.png" alt="image-20240924224008971"></p>
+<p>这错误就很奇怪，因为我明明就存在keygen.exe文件。</p>
+<h4 id="显示钱包："><a href="#显示钱包：" class="headerlink" title="显示钱包："></a>显示钱包：</h4><p>官方命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/popm-address.json</span><br></pre></td></tr></table></figure>
+
+<p>我的输出显示是创建钱包成功了的：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924224212926.png" alt="image-20240924224212926"></p>
+<p>其中，最上面的是EVM地址，导入小狐狸钱包显示的就是他。</p>
+<p>public_key是比特币测试网钱包的公钥。</p>
+<p>public_hash是比特币测试网钱包地址，需要充值tBTC到这个地址。</p>
+<p>我手动发送了1个，现在钱包有测试币了。</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924224448441.png" alt="image-20240924224448441"></p>
+<h4 id="运行矿工："><a href="#运行矿工：" class="headerlink" title="运行矿工："></a>运行矿工：</h4><p>对于windows的设置如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> POPM_BTC_PRIVKEY=&lt;private_key&gt;</span><br><span class="line"><span class="built_in">set</span> POPM_STATIC_FEE=&lt;fee_per_vB_integer&gt;</span><br><span class="line"><span class="built_in">set</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public </span><br><span class="line">popmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>但是如果你真的这样设置，你会发现根本无法获取到你设置的变量内容。</p>
+<p>报错如下：</p>
+<blockquote>
+<p>0|popmd    | POPM_BTC_PRIVKEY: must be set</p>
+</blockquote>
+<p>如何解决这个问题？</p>
+<p>首先，我在windows上面继续安装了pm2.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+<p>但是即使这样也无法解决，所以我询问了GPT，他告诉我写1个json脚本。</p>
+<p>他命名为: ecosystem.config.js</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module.exports = <span class="punctuation">&#123;</span></span><br><span class="line">    apps<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        name<span class="punctuation">:</span> <span class="string">&quot;popmd1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        script<span class="punctuation">:</span> <span class="string">&quot;./popmd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        env<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          POPM_BTC_PRIVKEY<span class="punctuation">:</span> <span class="string">&quot;你的私钥&quot;</span><span class="punctuation">,</span></span><br><span class="line">          POPM_STATIC_FEE<span class="punctuation">:</span> <span class="string">&quot;2&quot;</span><span class="punctuation">,</span></span><br><span class="line">          POPM_BFG_URL<span class="punctuation">:</span> <span class="string">&quot;wss://testnet.rpc.hemi.network/v1/ws/public&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后你在终端里面输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start ecosystem.config.js</span><br></pre></td></tr></table></figure>
+
+<p>这样就成功了。</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924230754451.png" alt="image-20240924230754451"></p>
+<p>有时他会报错，请无视掉他。</p>
+<p>只要不是1个小时一直报错就没啥大问题。</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924230949007.png" alt="image-20240924230949007"></p>
+<p>当出现Bitcoin testnet3 with TX hash 的时候就表示已经开始提交哈希了，剩下的等待节点广播，数据上链就可以了。</p>
+<p>比特币测试网区块浏览器：<a target="_blank" rel="noopener" href="https://mempool.space/testnet">https://mempool.space/testnet</a></p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924231212841.png" alt="image-20240924231212841"></p>
+<p>这种情况需要等待上链。</p>
+<p>现在的节点广播很慢，成功率低下。</p>
+<p>请查询自己的矿工地址钱包进行监控，或者在上面看查询工作的数据面板。</p>
+<h4 id="多帐号运行："><a href="#多帐号运行：" class="headerlink" title="多帐号运行："></a>多帐号运行：</h4><hr>
+<p>该内容不对外开放！！！</p>
+<hr>
 
     </div>
 
@@ -358,7 +433,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-text">项目介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">一键脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">补充环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%8B%E7%BB%AD%E8%B4%B9%EF%BC%9A"><span class="nav-text">设置手续费：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%9A"><span class="nav-text">测试币：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-text">网页版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B7%A5%E4%BD%9C%EF%BC%9A"><span class="nav-text">查询工作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">进阶教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="nav-text">运行多个线程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">一键运行：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-text">项目介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">一键脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">补充环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%8B%E7%BB%AD%E8%B4%B9%EF%BC%9A"><span class="nav-text">设置手续费：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%9A"><span class="nav-text">测试币：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-text">网页版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B7%A5%E4%BD%9C%EF%BC%9A"><span class="nav-text">查询工作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">进阶教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="nav-text">运行多个线程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">一键运行：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="nav-text">批量查询：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">本地运行：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDwindows%E5%8E%8B%E7%BC%A9%E5%8C%85%EF%BC%9A"><span class="nav-text">下载windows压缩包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8VSCode%E6%89%93%E5%BC%80%EF%BC%9A"><span class="nav-text">使用VSCode打开：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%92%B1%E5%8C%85%EF%BC%9A"><span class="nav-text">生成钱包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%92%B1%E5%8C%85%EF%BC%9A"><span class="nav-text">显示钱包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%9F%BF%E5%B7%A5%EF%BC%9A"><span class="nav-text">运行矿工：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%B8%90%E5%8F%B7%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">多帐号运行：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -372,7 +447,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
