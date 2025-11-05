@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="为了管理网址和便签，手动书写，即时记录。该文档常改动，建议定期清理内容。 一：关于我 用表格记录，一是好看，二是方便整理。     网址&#x2F;点击跳转 说明&#x2F;备注    博客(Github托管) hexo本地编译+Github托管+Cloudflare解析   Java笔记(语雀) 语雀收费后，停止更新   B站 随缘更新       二：常用技术网站2.1：初学者   教程类&amp;#">
+<meta property="og:type" content="website">
+<meta property="og:title" content="网站大全">
+<meta property="og:url" content="http://example.com/other/www/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="为了管理网址和便签，手动书写，即时记录。该文档常改动，建议定期清理内容。 一：关于我 用表格记录，一是好看，二是方便整理。     网址&#x2F;点击跳转 说明&#x2F;备注    博客(Github托管) hexo本地编译+Github托管+Cloudflare解析   Java笔记(语雀) 语雀收费后，停止更新   B站 随缘更新       二：常用技术网站2.1：初学者   教程类&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-24T15:30:26.810Z">
+<meta property="article:author" content="XS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/other/www/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网站大全 | 先圣博客
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+
+      
+
+        
+        <ul id="sub-menu" class="sub-menu menu">
+          
+            
+          
+          
+              
+  <li class="menu-item menu-item-me">
+
+    <a href="/other/me/" rel="section"><i class="fa fa-address-book fa-fw"></i>关于我</a>
+
+  </li>
+
+
+          
+          
+              
+  <li class="menu-item menu-item-url">
+
+    <a href="/other/url/" rel="section"><i class="fa fa-paperclip fa-fw"></i>友链</a>
+
+  </li>
+
+
+          
+          
+              
+  <li class="menu-item menu-item-navigation">
+
+    <a href="/other/www/" rel="section"><i class="fa fa-globe fa-fw"></i>导航</a>
+
+  </li>
+
+
+          
+        </ul>
+        
+
+        
+        
+      
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">网站大全
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/other/">OTHER</a></li>
+          <li>WWW</li>
+        
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>为了管理网址和便签，手动书写，即时记录。<br>该文档常改动，建议定期清理内容。</p>
+<h3 id="一：关于我"><a href="#一：关于我" class="headerlink" title="一：关于我"></a>一：关于我</h3><blockquote>
+<p>用表格记录，一是好看，二是方便整理。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>网址&#x2F;点击跳转</strong></th>
+<th><strong>说明&#x2F;备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://blog.120.show/">博客(Github托管)</a></td>
+<td>hexo本地编译+Github托管+Cloudflare解析</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.yuque.com/btcabc/java">Java笔记(语雀)</a></td>
+<td>语雀收费后，停止更新</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://space.bilibili.com/109884675">B站</a></td>
+<td>随缘更新</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="二：常用技术网站"><a href="#二：常用技术网站" class="headerlink" title="二：常用技术网站"></a>二：常用技术网站</h3><h4 id="2-1：初学者"><a href="#2-1：初学者" class="headerlink" title="2.1：初学者"></a>2.1：初学者</h4><table>
+<thead>
+<tr>
+<th><strong>教程类&#x2F;学习</strong></th>
+<th><strong>求助类&#x2F;改bug</strong></th>
+<th><strong>写代码&#x2F;工具</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.runoob.com/">菜鸟教程(后端)</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.csdn.net/">CSDN(新手摇篮)</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/">IDEA(Java推荐)</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/">W3school(前端)</a></td>
+<td><a target="_blank" rel="noopener" href="https://kaifa.baidu.com/">开发者搜索(专注开发)</a></td>
+<td><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS Code(前端推荐)</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.bilibili.com/">B站(无广告)</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.google.com/">Google(搜索环境好)</a></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-2：Java领域"><a href="#2-2：Java领域" class="headerlink" title="2.2：Java领域"></a>2.2：Java领域</h4><table>
+<thead>
+<tr>
+<th><strong>网站</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/">Java官网(Oracle)</a></td>
+<td>Java官方网站，JDK下载渠道</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.aliyun.com/topic/java20">Java开发者手册(嵩山版)</a></td>
+<td>阿里巴巴内部Java开发规范</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-jdk8-doc-downloads.html">JavaSE8文档(官网英文)</a></td>
+<td>Oracle官网的JavaSE8的文档</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://download.oracle.com/technetwork/java/javase/6/docs/zh/api/overview-summary.html">JavaSE6文档(官网中文)</a></td>
+<td>在线浏览，点击框架即可下载</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jls/se8/html/index.html">Java8语言规范(官网英文)</a></td>
+<td>简约但胜过万千教程</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se8/html/index.html">Java8虚拟机规范(官网英文)</a></td>
+<td>Java不是最强大的语言，但JVM是最强大的虚拟机</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/index.html">MyBatis</a></td>
+<td>MyBatis3中文在线文档</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://baomidou.com/">MyBatisPlus</a></td>
+<td>自动生成单表CRUD</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://spring.io/">Spring</a></td>
+<td>轻量级组装框架</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-webflow">SpringMVC</a></td>
+<td>SpringWEB的组件</td>
+</tr>
+</tbody></table>
+<h4 id="2-3：数据库"><a href="#2-3：数据库" class="headerlink" title="2.3：数据库"></a>2.3：数据库</h4><table>
+<thead>
+<tr>
+<th><strong>关系型</strong></th>
+<th><strong>非关系型</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.mysql.com/">MySQL(最经典)</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.mysql.com/">Redis</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.postgresql.org/">PostgreSQL</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-4：服务器"><a href="#2-4：服务器" class="headerlink" title="2.4：服务器"></a>2.4：服务器</h4><table>
+<thead>
+<tr>
+<th><strong>网站</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://tomcat.apache.org/">Tomcat</a></td>
+<td>Java学习必备服务器，端口8080</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://nginx.org/">Nginx</a></td>
+<td>静态资源，反向代理，负载均衡，端口80</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-5：前端"><a href="#2-5：前端" class="headerlink" title="2.5：前端"></a>2.5：前端</h4><table>
+<thead>
+<tr>
+<th><strong>网站</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">Node.js</a></td>
+<td>服务器中运行前端代码</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cn.vuejs.org/index.html">Vue.js</a></td>
+<td>前端最容易上手的框架</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.webpackjs.com/">Webpack.js</a></td>
+<td>静态模块打包工具</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://mockjs.com/">Mock.js</a></td>
+<td>模拟生成随机数据</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://editor.swagger.io/">Swagger编辑器</a></td>
+<td>编写swagger文档</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-6：微服务"><a href="#2-6：微服务" class="headerlink" title="2.6：微服务"></a>2.6：微服务</h4><table>
+<thead>
+<tr>
+<th><strong>网站</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Microservices%E8%AE%BA%E6%96%87">Microservices论文</a></td>
+<td>翻译版：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuning8023/p/4493156.html">微服务论文</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://dubbo.apache.org/zh/">Dubbo</a></td>
+<td>阿里巴巴开源Apache微服务框架</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://zookeeper.apache.org/">Zookeeper</a></td>
+<td>动物园管理员：注册中心</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-netflix">SpringCloudNetflix</a></td>
+<td>Netflix公司开源完整微服务框架，五大组件</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-alibaba">SpringCloudAlibaba</a></td>
+<td>阿里巴巴开源完整微服务框架</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-7：远程仓库"><a href="#2-7：远程仓库" class="headerlink" title="2.7：远程仓库"></a>2.7：远程仓库</h4><table>
+<thead>
+<tr>
+<th><strong>网站</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/">Github</a></td>
+<td>全球最大开源社区，使用Git版本控制系统</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://hub.docker.com/">DockerHub</a></td>
+<td>Docker官方远程仓库</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mvnrepository.com/">MavenRepository</a></td>
+<td>Maven远程仓库查询网址</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mvn/guide">Maven阿里镜像</a></td>
+<td>阿里云云效 Maven 指南</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://npmmirror.com/">Npmmirror</a></td>
+<td>NPM阿里镜像站</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/">阿里中国镜像总站</a></td>
+<td>所有语言，各种镜像，一应俱全</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-8：云厂商"><a href="#2-8：云厂商" class="headerlink" title="2.8：云厂商"></a>2.8：云厂商</h4><table>
+<thead>
+<tr>
+<th><strong>网站</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.aliyun.com/">阿里云</a></td>
+<td>国内第一云厂商</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cloud.tencent.com/">腾讯云</a></td>
+<td>腾讯云产品，价格比阿里便宜</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://activity.huaweicloud.com/">华为云</a></td>
+<td>华为集团旗下云产品</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.aliyun.com/product/oss">阿里云OSS对象存储</a></td>
+<td>按量付费，注意被打，建议开启防盗链</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.aliyun.com/product/fc">阿里云FC函数计算</a></td>
+<td>serverless，函数计算，无免费流量</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.aliyun.com/product/ots">阿里云Tablestore表格存储</a></td>
+<td>按量付费，可以当NoSQL数据库使用</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cos">腾讯云COS对象存储</a></td>
+<td>按量付费，注意被打，建议开启防盗链</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/scf">腾讯云SCF函数计算</a></td>
+<td>serverless，新人有免费额度，老人劝退</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cloud.tencent.com/act/campus">腾讯云+校园</a></td>
+<td>学生购买有优惠</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.cloudflare.com/">Cloudflare</a></td>
+<td>国外最知名的免费CDN服务商</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="2-9：其他技术"><a href="#2-9：其他技术" class="headerlink" title="2.9：其他技术"></a>2.9：其他技术</h4><table>
+<thead>
+<tr>
+<th><strong>阅读</strong></th>
+<th><strong>学习</strong></th>
+<th><strong>分享</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://www.zjlib.cn/">浙江省图书馆</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.icourse163.org/">中国大学MOOC</a></td>
+<td><a target="_blank" rel="noopener" href="https://up.woozooo.com/">蓝奏云</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://zjisa.zjlib.cn/home/zy_home.jsp">浙江省公共图书馆资源门户-&gt;知网</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.yxgapp.com/">译学馆</a></td>
+<td><a target="_blank" rel="noopener" href="https://cowtransfer.com/">奶牛快传</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://read.nlc.cn/user/index">国家数字图书馆</a></td>
+<td><a target="_blank" rel="noopener" href="https://quickref.me/">快速参考备忘录</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.wenshushu.cn/">文叔叔</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.drcnet.com.cn/www/int/">国务院发展研究中心信息网</a></td>
+<td><a target="_blank" rel="noopener" href="https://developer.aliyun.com/graph/java">阿里巴巴Java技术图谱</a></td>
+<td><a target="_blank" rel="noopener" href="https://airportal.cn/">AirPortal</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.jiumodiary.com/">鸠摩搜书</a></td>
+<td><a target="_blank" rel="noopener" href="https://crashcourse.club/category/">CrashCourse中文字幕组</a></td>
+<td><a target="_blank" rel="noopener" href="https://imgs.top/">映画图床</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://wenku.baidu.com/">百度文库</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.code-nav.cn/">编程导航-鱼皮</a></td>
+<td><a target="_blank" rel="noopener" href="https://text.louyu.cc/">文本分享平台</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.caixin.com/">财新网</a></td>
+<td><a target="_blank" rel="noopener" href="https://pdai.tech/">Java全栈知识体系-pdai</a></td>
+<td><a target="_blank" rel="noopener" href="https://cli.im/">草料二维码</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://new.shuge.org/">书格-古籍</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.kuangstudy.com/">狂神博客</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.dbbqb.com/">表情包搜索</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.shidianguji.com/">识典古籍</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.hollischuang.com/">Hollis博客</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://www.bookstack.cn/">书栈网</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/other/">OTHER</a></li>
+          <li>WWW</li>
+        
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%88%91"><span class="nav-text">一：关于我</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%EF%BC%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF%E7%BD%91%E7%AB%99"><span class="nav-text">二：常用技术网站</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%EF%BC%9A%E5%88%9D%E5%AD%A6%E8%80%85"><span class="nav-text">2.1：初学者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%EF%BC%9AJava%E9%A2%86%E5%9F%9F"><span class="nav-text">2.2：Java领域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">2.3：数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">2.4：服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5%EF%BC%9A%E5%89%8D%E7%AB%AF"><span class="nav-text">2.5：前端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6%EF%BC%9A%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-text">2.6：微服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7%EF%BC%9A%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-text">2.7：远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8%EF%BC%9A%E4%BA%91%E5%8E%82%E5%95%86"><span class="nav-text">2.8：云厂商</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-9%EF%BC%9A%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF"><span class="nav-text">2.9：其他技术</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">94</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>

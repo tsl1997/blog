@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="类似于链抽象，有EVM和BTC兼容的测试网。测试网挖积分tHEMI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hemi Network挖矿教程">
+<meta property="og:url" content="http://example.com/2024/23/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="类似于链抽象，有EVM和BTC兼容的测试网。测试网挖积分tHEMI">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825170107663.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825170351636.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825170745163.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171458864.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171623776.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825171933272.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/22/image-20240921205655661.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924183005282.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924223238305.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924223440395.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924223556479.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924224008971.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924224212926.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924224448441.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924230754451.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924230949007.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/9/24/image-20240924231212841.png">
+<meta property="article:published_time" content="2024-08-25T09:30:00.000Z">
+<meta property="article:modified_time" content="2024-10-04T05:00:21.427Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="挖矿">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogs.4everland.store/2024/8/25/img/image-20240825170107663.png">
+
+<link rel="canonical" href="http://example.com/2024/23/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hemi Network挖矿教程 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/23/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hemi Network挖矿教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-08-25 17:30:00" itemprop="dateCreated datePublished" datetime="2024-08-25T17:30:00+08:00">2024-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-04 13:00:21" itemprop="dateModified" datetime="2024-10-04T13:00:21+08:00">2024-10-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BTC/" itemprop="url" rel="index"><span itemprop="name">BTC</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">类似于链抽象，有EVM和BTC兼容的测试网。测试网挖积分tHEMI</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="项目介绍："><a href="#项目介绍：" class="headerlink" title="项目介绍："></a>项目介绍：</h3><p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825170107663.png" alt="image-20240825170107663"></p>
+<h3 id="一键脚本："><a href="#一键脚本：" class="headerlink" title="一键脚本："></a>一键脚本：</h3><p><a target="_blank" rel="noopener" href="https://github.com/candy1264/hemi-pop-miner/tree/main">点此查看</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q https://raw.githubusercontent.com/candy1264/hemi-pop-miner/main/hemipopminer.sh -O hemipopminer.sh &amp;&amp; chmod +x hemipopminer.sh &amp;&amp; ./hemipopminer.sh</span><br></pre></td></tr></table></figure>
+
+<p>按顺序启动123</p>
+<p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825170351636.png" alt="image-20240825170351636"></p>
+<h3 id="补充环境："><a href="#补充环境：" class="headerlink" title="补充环境："></a>补充环境：</h3><p>如果没有安装Node和npm及其pm2的话。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="设置手续费："><a href="#设置手续费：" class="headerlink" title="设置手续费："></a>设置手续费：</h3><p>上面的脚本只启动第一项。</p>
+<p><a target="_blank" rel="noopener" href="https://mempool.space/testnet">点此查看实时手续费</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">手动设置：</span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$HOME</span>/heminetwork&quot;</span></span><br><span class="line"><span class="built_in">export</span> POPM_BTC_PRIVKEY=私钥</span><br><span class="line"><span class="built_in">export</span> POPM_STATIC_FEE=手续费 1000</span><br><span class="line"><span class="built_in">export</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line">开启：</span><br><span class="line">pm2 start ./popmd --name popmd</span><br><span class="line">pm2 save</span><br><span class="line">日志：</span><br><span class="line">pm2 logs popmd</span><br></pre></td></tr></table></figure>
+
+<p>成功提交哈希，如下图所示。</p>
+<p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825170745163.png" alt="image-20240825170745163"></p>
+<h3 id="测试币："><a href="#测试币：" class="headerlink" title="测试币："></a>测试币：</h3><p>你需要测试币来挖矿，少量可以去领取，大量建议购买。</p>
+<p>水龙头：<a target="_blank" rel="noopener" href="https://coinfaucet.eu/en/btc-testnet/">https://coinfaucet.eu/en/btc-testnet/</a></p>
+<p>购买地址：<a target="_blank" rel="noopener" href="https://altquick.com/swap/">https://altquick.com/swap/</a></p>
+<p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825171458864.png" alt="image-20240825171458864"></p>
+<h3 id="网页版本："><a href="#网页版本：" class="headerlink" title="网页版本："></a>网页版本：</h3><p><a target="_blank" rel="noopener" href="https://pop-miner.hemi.xyz/manage">https://pop-miner.hemi.xyz/manage</a></p>
+<p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825171623776.png" alt="image-20240825171623776"></p>
+<p>创建或者导入。</p>
+<p>记得保存好私钥。</p>
+<p><img src="https://blogs.4everland.store/2024/8/25/img/image-20240825171933272.png" alt="image-20240825171933272"></p>
+<h3 id="查询工作："><a href="#查询工作：" class="headerlink" title="查询工作："></a>查询工作：</h3><p>当前没有发放tHEMI作为奖励，只有一个工作量证明的数据面板。</p>
+<p><a target="_blank" rel="noopener" href="https://testnet.popstats.hemi.network/">https://testnet.popstats.hemi.network/</a></p>
+<p>输入钱包地址即可查看。</p>
+<p><img src="https://blogs.4everland.store/2024/9/22/image-20240921205655661.png" alt="image-20240921205655661"></p>
+<h3 id="进阶教程："><a href="#进阶教程：" class="headerlink" title="进阶教程："></a>进阶教程：</h3><p>pm2是一个管理工具，使用npm安装，需要提前安装Node.js环境，设置PATH。</p>
+<h4 id="运行多个线程："><a href="#运行多个线程：" class="headerlink" title="运行多个线程："></a>运行多个线程：</h4><p>手动自定义名称可运行多个程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export POPM_BTC_PRIVKEY=私钥</span><br><span class="line">export POPM_STATIC_FEE=手续费1000</span><br><span class="line">export POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line">pm2 start ./popmd --name popmd2新名称</span><br></pre></td></tr></table></figure>
+
+<h4 id="一键运行："><a href="#一键运行：" class="headerlink" title="一键运行："></a>一键运行：</h4><p>写1个Bash文件，运行多个线程，赋予权限，后台运行。</p>
+<p>好处，一次性修改内容，方便管理。</p>
+<p>钱包生成参考：<a target="_blank" rel="noopener" href="https://github.com/Trusttobitcoin/Bitcoin-Testnet-HD-Wallet-Address-Generator">https://github.com/Trusttobitcoin/Bitcoin-Testnet-HD-Wallet-Address-Generator</a></p>
+<h4 id="批量查询："><a href="#批量查询：" class="headerlink" title="批量查询："></a>批量查询：</h4><p>从TG群里面获取的脚本：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Solitude12345/HemiPoPStatsCheck">https://github.com/Solitude12345/HemiPoPStatsCheck</a></p>
+<p>效果如图所示：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924183005282.png" alt="image-20240924183005282"></p>
+<h3 id="本地运行："><a href="#本地运行：" class="headerlink" title="本地运行："></a>本地运行：</h3><p>你可以参考官方教程：<a target="_blank" rel="noopener" href="https://docs.hemi.xyz/how-to-tutorials/tutorials/setup-part-1">CLI PoP Miner</a></p>
+<h4 id="下载windows压缩包："><a href="#下载windows压缩包：" class="headerlink" title="下载windows压缩包："></a>下载windows压缩包：</h4><p>我是win10的系统，大家一般下载这个。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hemilabs/heminetwork/releases">github下载地址</a></p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924223238305.png" alt="image-20240924223238305"></p>
+<p>下载好解压。</p>
+<h4 id="使用VSCode打开："><a href="#使用VSCode打开：" class="headerlink" title="使用VSCode打开："></a>使用VSCode打开：</h4><p>这一步是关键！使用一些编辑器打开，诸如VSCode等，切忌不要使用cmd命令行。</p>
+<p>cmd操作会显示：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924223440395.png" alt="image-20240924223440395"></p>
+<p>VScode操作会显示：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924223556479.png" alt="image-20240924223556479"></p>
+<p>注意，如果没有VSCode，请去微软的官网网站下载。</p>
+<p>该软件是免费的，收费的全部是盗版。</p>
+<h4 id="生成钱包："><a href="#生成钱包：" class="headerlink" title="生成钱包："></a>生成钱包：</h4><p>使用官方的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keygen.exe -secp256k1 -json -net=<span class="string">&quot;testnet&quot;</span> &gt; %HOMEDRIVE%%HOMEPATH%\popm-address.json</span><br></pre></td></tr></table></figure>
+
+<p>但是我的显示输出：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924224008971.png" alt="image-20240924224008971"></p>
+<p>这错误就很奇怪，因为我明明就存在keygen.exe文件。</p>
+<h4 id="显示钱包："><a href="#显示钱包：" class="headerlink" title="显示钱包："></a>显示钱包：</h4><p>官方命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/popm-address.json</span><br></pre></td></tr></table></figure>
+
+<p>我的输出显示是创建钱包成功了的：</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924224212926.png" alt="image-20240924224212926"></p>
+<p>其中，最上面的是EVM地址，导入小狐狸钱包显示的就是他。</p>
+<p>public_key是比特币测试网钱包的公钥。</p>
+<p>public_hash是比特币测试网钱包地址，需要充值tBTC到这个地址。</p>
+<p>我手动发送了1个，现在钱包有测试币了。</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924224448441.png" alt="image-20240924224448441"></p>
+<h4 id="运行矿工："><a href="#运行矿工：" class="headerlink" title="运行矿工："></a>运行矿工：</h4><p>对于windows的设置如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> POPM_BTC_PRIVKEY=&lt;private_key&gt;</span><br><span class="line"><span class="built_in">set</span> POPM_STATIC_FEE=&lt;fee_per_vB_integer&gt;</span><br><span class="line"><span class="built_in">set</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public </span><br><span class="line">popmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>但是如果你真的这样设置，你会发现根本无法获取到你设置的变量内容。</p>
+<p>报错如下：</p>
+<blockquote>
+<p>0|popmd    | POPM_BTC_PRIVKEY: must be set</p>
+</blockquote>
+<p>如何解决这个问题？</p>
+<p>首先，我在windows上面继续安装了pm2.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+<p>但是即使这样也无法解决，所以我询问了GPT，他告诉我写1个json脚本。</p>
+<p>他命名为: ecosystem.config.js</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module.exports = <span class="punctuation">&#123;</span></span><br><span class="line">    apps<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        name<span class="punctuation">:</span> <span class="string">&quot;popmd1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        script<span class="punctuation">:</span> <span class="string">&quot;./popmd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        env<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          POPM_BTC_PRIVKEY<span class="punctuation">:</span> <span class="string">&quot;你的私钥&quot;</span><span class="punctuation">,</span></span><br><span class="line">          POPM_STATIC_FEE<span class="punctuation">:</span> <span class="string">&quot;2&quot;</span><span class="punctuation">,</span></span><br><span class="line">          POPM_BFG_URL<span class="punctuation">:</span> <span class="string">&quot;wss://testnet.rpc.hemi.network/v1/ws/public&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后你在终端里面输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start ecosystem.config.js</span><br></pre></td></tr></table></figure>
+
+<p>这样就成功了。</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924230754451.png" alt="image-20240924230754451"></p>
+<p>有时他会报错，请无视掉他。</p>
+<p>只要不是1个小时一直报错就没啥大问题。</p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924230949007.png" alt="image-20240924230949007"></p>
+<p>当出现Bitcoin testnet3 with TX hash 的时候就表示已经开始提交哈希了，剩下的等待节点广播，数据上链就可以了。</p>
+<p>比特币测试网区块浏览器：<a target="_blank" rel="noopener" href="https://mempool.space/testnet">https://mempool.space/testnet</a></p>
+<p><img src="https://blogs.4everland.store/2024/9/24/image-20240924231212841.png" alt="image-20240924231212841"></p>
+<p>这种情况需要等待上链。</p>
+<p>现在的节点广播很慢，成功率低下。</p>
+<p>请查询自己的矿工地址钱包进行监控，或者在上面看查询工作的数据面板。</p>
+<h4 id="多帐号运行："><a href="#多帐号运行：" class="headerlink" title="多帐号运行："></a>多帐号运行：</h4><p>参考pm2多开教程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">pm2的基础使用命令：</span><br><span class="line">启动单个应用：</span><br><span class="line">pm2 start app.js</span><br><span class="line"></span><br><span class="line">列出所有应用：</span><br><span class="line">pm2 list</span><br><span class="line"></span><br><span class="line">查看单个应用：</span><br><span class="line">pm2 show [app-name or <span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">停止应用：</span><br><span class="line">pm2 stop [app-name or <span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">重启应用：</span><br><span class="line">pm2 restart [app-name or <span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">删除应用：</span><br><span class="line">pm2 delete [app-name or <span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">查看单个应用日志：</span><br><span class="line">pm2 logs [app-name or <span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">查看错误日志：</span><br><span class="line">pm2 logs --err</span><br><span class="line"></span><br><span class="line">保存进程列表：</span><br><span class="line">pm2 save</span><br><span class="line"></span><br><span class="line">重启系统后恢复：</span><br><span class="line">pm2 resurrect</span><br><span class="line"></span><br><span class="line">监控应用：</span><br><span class="line">pm2 monit</span><br></pre></td></tr></table></figure>
+
+<p>最简单的，重复设置不同的私钥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> POPM_BTC_PRIVKEY=私钥1</span><br><span class="line"><span class="built_in">export</span> POPM_STATIC_FEE=1000</span><br><span class="line"><span class="built_in">export</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line">pm2 start ./popmd --name popmd2</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> POPM_BTC_PRIVKEY=私钥2</span><br><span class="line"><span class="built_in">export</span> POPM_STATIC_FEE=1000</span><br><span class="line"><span class="built_in">export</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line">pm2 start ./popmd --name popmd3</span><br></pre></td></tr></table></figure>
+
+<p>高级内容，读取本地key.txt文本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动设置后面所需的环境变量和启动命令</span></span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$HOME</span>/heminetwork&quot;</span> || &#123; <span class="built_in">echo</span> <span class="string">&quot;Error: Directory <span class="variable">$HOME</span>/heminetwork does not exist.&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出当前工作目录</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Current directory: <span class="subst">$(pwd)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 key.txt 文件中读取私钥</span></span><br><span class="line"><span class="built_in">mapfile</span> -t private_keys &lt; key.txt  <span class="comment"># 将文件的每一行读取到数组中</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查读取的私钥是否为空</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;#private_keys[@]&#125;</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Error: No private keys found in key.txt. Please check the file.&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出私钥的数量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Number of private keys found: <span class="variable">$&#123;#private_keys[@]&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置静态费用和 URL</span></span><br><span class="line"><span class="built_in">export</span> POPM_STATIC_FEE=101</span><br><span class="line"><span class="built_in">export</span> POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出环境变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;POPM_STATIC_FEE: <span class="variable">$POPM_STATIC_FEE</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;POPM_BFG_URL: <span class="variable">$POPM_BFG_URL</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环启动进程</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;!private_keys[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">export</span> POPM_BTC_PRIVKEY=<span class="variable">$&#123;private_keys[$i]&#125;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Starting process for private key <span class="variable">$&#123;i+1&#125;</span>: <span class="variable">$&#123;POPM_BTC_PRIVKEY&#125;</span>&quot;</span></span><br><span class="line">    pm2 start ./popmd --name news$((i+<span class="number">1</span>)) || &#123; <span class="built_in">echo</span> <span class="string">&quot;Failed to start pm2 process for key <span class="variable">$&#123;i+1&#125;</span>.&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存 pm2 状态</span></span><br><span class="line">pm2 save || &#123; <span class="built_in">echo</span> <span class="string">&quot;Failed to save pm2 state.&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>赋予权限（假设脚本名为jb.sh)：sudo chmod 755 jb.sh</p>
+<p>运行脚本：.&#x2F;jb.sh</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag"># 挖矿</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/22/" rel="prev" title="推文生成卡片插件">
+      <i class="fa fa-chevron-left"></i> 推文生成卡片插件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/bitcoinj/" rel="next" title="BitcoinJ中文文档入门（机翻）">
+      BitcoinJ中文文档入门（机翻） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-text">项目介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%EF%BC%9A"><span class="nav-text">一键脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%8E%AF%E5%A2%83%EF%BC%9A"><span class="nav-text">补充环境：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%89%8B%E7%BB%AD%E8%B4%B9%EF%BC%9A"><span class="nav-text">设置手续费：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%B8%81%EF%BC%9A"><span class="nav-text">测试币：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E7%89%88%E6%9C%AC%EF%BC%9A"><span class="nav-text">网页版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%B7%A5%E4%BD%9C%EF%BC%9A"><span class="nav-text">查询工作：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">进阶教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="nav-text">运行多个线程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">一键运行：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="nav-text">批量查询：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">本地运行：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDwindows%E5%8E%8B%E7%BC%A9%E5%8C%85%EF%BC%9A"><span class="nav-text">下载windows压缩包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8VSCode%E6%89%93%E5%BC%80%EF%BC%9A"><span class="nav-text">使用VSCode打开：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%92%B1%E5%8C%85%EF%BC%9A"><span class="nav-text">生成钱包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%92%B1%E5%8C%85%EF%BC%9A"><span class="nav-text">显示钱包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%9F%BF%E5%B7%A5%EF%BC%9A"><span class="nav-text">运行矿工：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%B8%90%E5%8F%B7%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="nav-text">多帐号运行：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">94</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>

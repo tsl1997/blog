@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="之前看过一些文章说云函数实现免费代理池，但是都云里雾里的。直到我看见一个视频才明白，就是简单的请求代理，无非就是一个请求转发和响应。用什么语言都可以实现，所以就用Java实现了一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云函数实现代理池[阿里云]">
+<meta property="og:url" content="http://example.com/2024/4/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="之前看过一些文章说云函数实现免费代理池，但是都云里雾里的。直到我看见一个视频才明白，就是简单的请求代理，无非就是一个请求转发和响应。用什么语言都可以实现，所以就用Java实现了一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240102215458279.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103153821272.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103155053758.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103155159296.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103155246488.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103155753009.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103161104003.png">
+<meta property="og:image" content="https://blogs.4everland.store/2024/1/3/image-20240103161236762.png">
+<meta property="og:image" content="http://example.com/img/image-20240104155452836.png">
+<meta property="article:published_time" content="2024-01-03T08:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-18T05:00:21.791Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="阿里云">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogs.4everland.store/2024/1/3/image-20240102215458279.png">
+
+<link rel="canonical" href="http://example.com/2024/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>云函数实现代理池[阿里云] | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          云函数实现代理池[阿里云]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-01-03 16:00:00" itemprop="dateCreated datePublished" datetime="2024-01-03T16:00:00+08:00">2024-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-18 13:00:21" itemprop="dateModified" datetime="2024-01-18T13:00:21+08:00">2024-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E5%87%BD%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">云函数</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">之前看过一些文章说云函数实现免费代理池，但是都云里雾里的。直到我看见一个视频才明白，就是简单的请求代理，无非就是一个请求转发和响应。用什么语言都可以实现，所以就用Java实现了一下。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我是看别人的视频觉得有趣，所以就尝试写一下。</p>
+<p>本文也只提供灵感。</p>
+<p><strong>本地访问—&gt;云函数—&gt;目标网站</strong></p>
+<p>相当于云函数只是做了一个请求代理的功能，实现起来非常简单。</p>
+<p>因为云函数的损耗低，且有一定的免费额度，重要的是云厂商ip多，这就有了很好的条件。</p>
+<h3 id="网上视频："><a href="#网上视频：" class="headerlink" title="网上视频："></a>网上视频：</h3><p>我看的是他的视频，他用的是GO语言，好处是在服务端节省资源。</p>
+<p>直接打开思路，然后我就动手了。<del>（中途连请求和响应都忘记用啥注解了，还是问的GPT才想起来）</del></p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+    <iframe src="//player.bilibili.com/player.html?aid=852363238&bvid=BV1ML4y1M7Cu&cid=549745169&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position:absolute; height: 100%; width: 100%;"> </iframe>
+</div>
+
+
+<h3 id="阿里云："><a href="#阿里云：" class="headerlink" title="阿里云："></a>阿里云：</h3><p>直接访问云函数控制台（没有就开通一个）：</p>
+<p><a target="_blank" rel="noopener" href="https://fcnext.console.aliyun.com/overview">https://fcnext.console.aliyun.com/overview</a></p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240102215458279.png" alt="image-20240102215458279"></p>
+<p>新用户还有免费的额度（老用户的差不多快用完了）。</p>
+<p>创建服务、创建函数。（理解为文件夹和文件的关系就好了）</p>
+<p>如何创建并使用云函数可以查看我的这篇文章（本文不再赘述）：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.120.show/linux/%E4%BA%91%E5%87%BD%E6%95%B0/">云函数</a></p>
+<h3 id="代码演示："><a href="#代码演示：" class="headerlink" title="代码演示："></a>代码演示：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProxyController</span> &#123;</span><br><span class="line">	<span class="meta">@GetMapping(&quot;/get&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">get</span><span class="params">(String url)</span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// Send a GET request</span></span><br><span class="line">			<span class="type">URL</span> <span class="variable">urls</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">URL</span>(url);</span><br><span class="line">			<span class="type">HttpURLConnection</span> <span class="variable">conn</span> <span class="operator">=</span> (HttpURLConnection) urls.openConnection();</span><br><span class="line">			conn.setRequestMethod(<span class="string">&quot;GET&quot;</span>);</span><br><span class="line">			<span class="comment">// Read the response</span></span><br><span class="line">			<span class="keyword">if</span> (conn.getResponseCode() == HttpURLConnection.HTTP_OK) &#123;</span><br><span class="line">				<span class="type">BufferedReader</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(conn.getInputStream()));</span><br><span class="line">				String inputLine;</span><br><span class="line">				<span class="type">StringBuffer</span> <span class="variable">content</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">				<span class="keyword">while</span> ((inputLine = in.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">					content.append(inputLine);</span><br><span class="line">				&#125;</span><br><span class="line">				in.close();</span><br><span class="line">				conn.disconnect();</span><br><span class="line">				<span class="keyword">return</span>  content.toString();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&#123;code:404;string:&#x27;未知错误&#x27;&#125;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="meta">@PostMapping(&quot;/post&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">post</span><span class="params">(<span class="meta">@RequestBody()</span> String body)</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;body==&gt; &quot;</span>+body);</span><br><span class="line">		<span class="type">JSONObject</span> <span class="variable">jsonObject</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JSONObject</span>(body);</span><br><span class="line">		<span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> jsonObject.getString(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">		<span class="type">String</span> <span class="variable">requestBody</span> <span class="operator">=</span> jsonObject.getString(<span class="string">&quot;requestBody&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// Send a GET request</span></span><br><span class="line">			<span class="type">URL</span> <span class="variable">urls</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">URL</span>(url);</span><br><span class="line">			<span class="type">HttpURLConnection</span> <span class="variable">conn</span> <span class="operator">=</span> (HttpURLConnection) urls.openConnection();</span><br><span class="line">			conn.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line"></span><br><span class="line">			conn.setDoOutput(<span class="literal">true</span>);</span><br><span class="line">			conn.setRequestProperty(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json&quot;</span>);</span><br><span class="line">			<span class="keyword">if</span>(requestBody!=<span class="literal">null</span> &amp;&amp; !<span class="string">&quot;&quot;</span>.equals(requestBody))</span><br><span class="line">				conn.getOutputStream().write(requestBody.getBytes(<span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line"></span><br><span class="line">			<span class="comment">// Read the response</span></span><br><span class="line">			<span class="keyword">if</span> (conn.getResponseCode() == HttpURLConnection.HTTP_OK) &#123;</span><br><span class="line">				<span class="type">BufferedReader</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(conn.getInputStream()));</span><br><span class="line">				String inputLine;</span><br><span class="line">				<span class="type">StringBuffer</span> <span class="variable">content</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuffer</span>();</span><br><span class="line">				<span class="keyword">while</span> ((inputLine = in.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">					content.append(inputLine);</span><br><span class="line">				&#125;</span><br><span class="line">				in.close();</span><br><span class="line">				conn.disconnect();</span><br><span class="line">				<span class="keyword">return</span>  content.toString();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&#123;code:404;string:&#x27;未知错误&#x27;&#125;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@GetMapping(&quot;/test&quot;)</span></span><br><span class="line">	<span class="keyword">public</span> String <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;test&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先自己在本地跑一下，用Postman测试一下POST请求，测试无误后就可以部署了。</p>
+<p>部署可以使用任何提供云函数的产品，我习惯使用阿里云（主要是里面的余额还没有花完）。</p>
+<p>阿里云也提供了新计费模式，好像给老用户每个月送100G的流量额度。</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103153821272.png" alt="image-20240103153821272"></p>
+<h3 id="测试功能："><a href="#测试功能：" class="headerlink" title="测试功能："></a>测试功能：</h3><p>我成功的在杭州地域下面创建服务和函数，现在我们来测试一下我写的默认接口。</p>
+<p>本次我将测试三次，一个test（返回当前时间）一个GET（获取ip请求的网站）一个POST（百度首页）。</p>
+<h4 id="Test："><a href="#Test：" class="headerlink" title="Test："></a>Test：</h4><p>请求参数：tset</p>
+<p>请求结果：</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103155053758.png" alt="image-20240103155053758"></p>
+<h4 id="GET："><a href="#GET：" class="headerlink" title="GET："></a>GET：</h4><p>目标网站：<a target="_blank" rel="noopener" href="http://www.ip111.cn/">http://www.ip111.cn/</a></p>
+<p>请求参数：get?url&#x3D;<a target="_blank" rel="noopener" href="http://www.ip111.cn/">http://www.ip111.cn/</a></p>
+<p>请求结果：</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103155159296.png" alt="image-20240103155159296"></p>
+<h4 id="POST："><a href="#POST：" class="headerlink" title="POST："></a>POST：</h4><p>目标网站：<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com/</a></p>
+<p>请求参数：</p>
+<p>{<br>    “url”: “<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com/</a>“,<br>    “requestBody”: “{‘name’:’alis’}”<br>}</p>
+<p>请求地址：post</p>
+<p>请求结果：</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103155246488.png" alt="image-20240103155246488"></p>
+<h4 id="测试IP："><a href="#测试IP：" class="headerlink" title="测试IP："></a>测试IP：</h4><p>等两分钟，再次调用GET测试，看看ip地址有无变化。</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103155753009.png" alt="image-20240103155753009"></p>
+<p>之前的地址是101.37.82.227</p>
+<p>现在的地址是47.96.252.229</p>
+<p>ip地址的确发生了变化，看来不需要部署多个服务也可以切换ip了。</p>
+<p>如果需要多个地区的ip就把应用部署到多个地域即可。</p>
+<p>部署到香港地域，访问结果。</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103161104003.png" alt="image-20240103161104003"></p>
+<p>过一会，等函数关闭后再次唤醒函数（注意SpringBoot启动的开销资源）就又可以得到一个新的ip。</p>
+<p><img src="https://blogs.4everland.store/2024/1/3/image-20240103161236762.png" alt="image-20240103161236762"></p>
+<p>在香港地域可以通过先把压缩版上传到OSS，再通过OSS部署这样方便些。</p>
+<p>避免了重复部署的问题，而且对于香港地域的OSS有5G的免费额度。</p>
+<p>但是其他的地域貌似还是要上传代码，算了，等需要用的时候再去部署。</p>
+<h3 id="后记："><a href="#后记：" class="headerlink" title="后记："></a>后记：</h3><p>所以，编程的小伙伴可以自己去实现一下。</p>
+<p>比起买代理要划算和安全一些，但是实名日站总感觉有点怪怪的。</p>
+<p>这个的费用其实非常低的，什么的几次测试的资源消耗，如下图所示。</p>
+<p><img src="/img/image-20240104155452836.png" alt="image-20240104155452836"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="tag"># 阿里云</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/3/" rel="prev" title="新人比特币符文教程[测试网]">
+      <i class="fa fa-chevron-left"></i> 新人比特币符文教程[测试网]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/6/" rel="next" title="Depin VPN项目研究">
+      Depin VPN项目研究 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E4%B8%8A%E8%A7%86%E9%A2%91%EF%BC%9A"><span class="nav-text">网上视频：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91%EF%BC%9A"><span class="nav-text">阿里云：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA%EF%BC%9A"><span class="nav-text">代码演示：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-text">测试功能：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Test%EF%BC%9A"><span class="nav-text">Test：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GET%EF%BC%9A"><span class="nav-text">GET：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST%EF%BC%9A"><span class="nav-text">POST：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95IP%EF%BC%9A"><span class="nav-text">测试IP：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0%EF%BC%9A"><span class="nav-text">后记：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">94</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>

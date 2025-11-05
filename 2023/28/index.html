@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="OKX与Polygon共同推出ZkEVM L2网络X1开启测试网。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="X1测试网交互教程">
+<meta property="og:url" content="http://example.com/2023/28/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="OKX与Polygon共同推出ZkEVM L2网络X1开启测试网。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115211252384.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115211309735.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115211231816.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/1.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/2.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/3.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/4.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/5.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/6.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/7.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/8.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/9.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/10.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115213923701.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115214819857.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/11.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115214334532.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115215210456.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115215359362.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115215506369.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115215623041.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115215722087.png">
+<meta property="og:image" content="https://blogs.4everland.store/2023/11/15/image-20231115220618995.png">
+<meta property="article:published_time" content="2023-11-15T14:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-18T05:00:21.791Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="X1">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogs.4everland.store/2023/11/15/image-20231115211252384.png">
+
+<link rel="canonical" href="http://example.com/2023/28/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>X1测试网交互教程 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          X1测试网交互教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-15 22:00:00" itemprop="dateCreated datePublished" datetime="2023-11-15T22:00:00+08:00">2023-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-18 13:00:21" itemprop="dateModified" datetime="2024-01-18T13:00:21+08:00">2024-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">测试网</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">OKX与Polygon共同推出ZkEVM L2网络X1开启测试网。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="前提："><a href="#前提：" class="headerlink" title="前提："></a>前提：</h3><p>X1是OKX的测试网。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115211252384.png" alt="image-20231115211252384"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115211309735.png" alt="image-20231115211309735"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115211231816.png" alt="image-20231115211231816"></p>
+<h3 id="教程："><a href="#教程：" class="headerlink" title="教程："></a>教程：</h3><p>以下教程部分来自推特用户：<a target="_blank" rel="noopener" href="https://twitter.com/duola_eth/status/1724676376576635055">duola_eth</a></p>
+<h4 id="奖励机制："><a href="#奖励机制：" class="headerlink" title="奖励机制："></a>奖励机制：</h4><p>X1 是由 OKB 代币支持并使用 Polygon CDK 构建的 ZK L2 网络，可提供 100% EVM 兼容性、卓越的性能、低廉的费用和强大的安全性 - 通过无缝集成实现。 目前看是有激励机制，值得一做。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/1.png" alt="1"></p>
+<h4 id="领取测试代币Sepolia-ETH"><a href="#领取测试代币Sepolia-ETH" class="headerlink" title="领取测试代币Sepolia ETH"></a><strong>领取测试代币Sepolia ETH</strong></h4><p>输入钱包地址就可以领取了，每天可以领取0.5个Sepolia ETH </p>
+<p><a target="_blank" rel="noopener" href="https://t.co/GFvsP2VYys">https://sepoliafaucet.com</a> </p>
+<p><img src="https://blogs.4everland.store/2023/11/15/2.png" alt="2"></p>
+<h4 id="添加X1测试网"><a href="#添加X1测试网" class="headerlink" title="添加X1测试网"></a><strong>添加X1测试网</strong></h4><p>直接搜索X1，Include Testnets这个按钮打开，直接添加到OKX Web3钱包就可以</p>
+<p><a target="_blank" rel="noopener" href="https://chainlist.org/zh?search=X1&testnets=true">https://chainlist.org/zh?search=X1&testnets=true</a></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/3.png" alt="3"></p>
+<h4 id="领取X1测试代币OKB"><a href="#领取X1测试代币OKB" class="headerlink" title="领取X1测试代币OKB"></a><strong>领取X1测试代币OKB</strong></h4><p>点击在Sepolia铸造OKB，最多铸造10个 </p>
+<p><a target="_blank" rel="noopener" href="https://okx.com/cn/x1/faucet">https://okx.com/cn/x1/faucet</a></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/4.png" alt="4"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/5.png" alt="5"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/6.png" alt="6"></p>
+<h4 id="跨链"><a href="#跨链" class="headerlink" title="跨链"></a><strong>跨链</strong></h4><p>输入金额，先点击授权，钱包确认  然后点击跨链就可以了 目前只有这么多了，先做着</p>
+<p><a target="_blank" rel="noopener" href="https://www.okx.com/cn/x1/bridge-test#fromChainId=11155111&currency=0x3F4B6664338F23d2397c953f2AB4Ce8031663f80">https://www.okx.com/cn/x1/bridge-test#fromChainId=11155111&currency=0x3F4B6664338F23d2397c953f2AB4Ce8031663f80</a></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/7.png" alt="7"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/8.png" alt="8"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/9.png" alt="9"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/10.png" alt="10"></p>
+<h3 id="XS教程："><a href="#XS教程：" class="headerlink" title="XS教程："></a>XS教程：</h3><p>这是补充内容，请先看上面的内容。</p>
+<h4 id="Sepolia水龙头"><a href="#Sepolia水龙头" class="headerlink" title="Sepolia水龙头"></a>Sepolia水龙头</h4><p><a target="_blank" rel="noopener" href="http://sepolia-faucet.pk910.de/">http://sepolia-faucet.pk910.de/</a></p>
+<p>这是一个POW水龙头，当你急需的时候非常有用。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115213923701.png" alt="image-20231115213923701"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115214819857.png" alt="image-20231115214819857"></p>
+<h4 id="领取OKB"><a href="#领取OKB" class="headerlink" title="领取OKB"></a>领取OKB</h4><p>你可以直接领取X1上面的OKB，数量0.2。</p>
+<p>但是我还是交易使用Sepolia铸造，每次Mint可以获得10个OKB。</p>
+<p>当然，可以重复Mint，没有数量限制，OKB测试币总量上限几乎是无限的。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/11.png" alt="11"></p>
+<h4 id="部署合约"><a href="#部署合约" class="headerlink" title="部署合约"></a>部署合约</h4><p>他的官方有文档，我们只需要验证合约的部分。</p>
+<p><a target="_blank" rel="noopener" href="https://www.okx.com/cn/x1/docs/developer/smart-contract/verify-contracts">验证合约</a></p>
+<p>当你使用Remix编写好合约（复制过来的也可以）。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115214334532.png" alt="image-20231115214334532"></p>
+<p>你需要先用小狐狸切换到X1测试网，然后链接小狐狸。</p>
+<p>然后使用deploy部署他。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115215210456.png" alt="image-20231115215210456"></p>
+<p>我们确认，他会创建合约。</p>
+<p>默认创建的合约是不开源的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.oklink.com/cn/x1-test/address/0xddc728a976dd8419d6f04811b5b5cc2db5f9f4b6">https://www.oklink.com/cn/x1-test/address/0xddc728a976dd8419d6f04811b5b5cc2db5f9f4b6</a></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115215359362.png" alt="image-20231115215359362"></p>
+<p>点击验证合约。</p>
+<p>填写对应的信息，选择编译器和版本。</p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115215506369.png" alt="image-20231115215506369"></p>
+<p>我们去复制源码过来验证即可。</p>
+<p>至于源码，大家可以用默认的helloweb3：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line">contract HelloWeb3&#123;</span><br><span class="line">    string public _string = &quot;Hello Web3!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115215623041.png" alt="image-20231115215623041"></p>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115215722087.png" alt="image-20231115215722087"></p>
+<p>主要就选择几个，其他的可以默认不动。</p>
+<blockquote>
+<p>不知道为什么突然验证不了，又重新创建了一个，可以验证。</p>
+</blockquote>
+<p><img src="https://blogs.4everland.store/2023/11/15/image-20231115220618995.png" alt="image-20231115220618995"></p>
+<p>部署合约只是为了增加权重。</p>
+<p>当然，也可能什么都没有，没有就没有吧，算是提前体验环境了。</p>
+<h3 id="后记："><a href="#后记：" class="headerlink" title="后记："></a>后记：</h3><p>本文的教程上部分由网络收集，下部分原创。</p>
+<p>学习最快的方式就是看官方文档，没有比官方文档更加详细的教程。</p>
+<p><a target="_blank" rel="noopener" href="https://www.okx.com/cn/x1/docs/getting-started/welcome/welcome-to-x1">X1 Docs</a></p>
+<p>文章图片托管在GreendField Testnet 上面，因为是测试网，并不保证永久可访问。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/X1/" rel="tag"># X1</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/27/" rel="prev" title="ZETA测试网交互(踩坑)记录">
+      <i class="fa fa-chevron-left"></i> ZETA测试网交互(踩坑)记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/29/" rel="next" title="MATIC打铭文POLS">
+      MATIC打铭文POLS <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%EF%BC%9A"><span class="nav-text">前提：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%96%E5%8A%B1%E6%9C%BA%E5%88%B6%EF%BC%9A"><span class="nav-text">奖励机制：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%86%E5%8F%96%E6%B5%8B%E8%AF%95%E4%BB%A3%E5%B8%81Sepolia-ETH"><span class="nav-text">领取测试代币Sepolia ETH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0X1%E6%B5%8B%E8%AF%95%E7%BD%91"><span class="nav-text">添加X1测试网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%86%E5%8F%96X1%E6%B5%8B%E8%AF%95%E4%BB%A3%E5%B8%81OKB"><span class="nav-text">领取X1测试代币OKB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E9%93%BE"><span class="nav-text">跨链</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XS%E6%95%99%E7%A8%8B%EF%BC%9A"><span class="nav-text">XS教程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sepolia%E6%B0%B4%E9%BE%99%E5%A4%B4"><span class="nav-text">Sepolia水龙头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%86%E5%8F%96OKB"><span class="nav-text">领取OKB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%90%88%E7%BA%A6"><span class="nav-text">部署合约</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0%EF%BC%9A"><span class="nav-text">后记：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">94</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">143</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
