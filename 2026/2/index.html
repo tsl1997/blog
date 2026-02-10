@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Video Data API 平台试用,优雅的处理Youtube视频文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Data API 教程：从解析到下载（Windows &#x2F; Python）">
+<meta property="og:url" content="http://example.com/2026/2/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="Video Data API 平台试用,优雅的处理Youtube视频文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-10T17:10:00.000Z">
+<meta property="article:modified_time" content="2026-02-10T18:03:10.557Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Youtube">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2026/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Video Data API 教程：从解析到下载（Windows / Python） | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-projects">
+
+    <a href="https://120.show/" rel="noopener" target="_blank"><i class="fa fa-flask fa-fw"></i>项目</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Video Data API 教程：从解析到下载（Windows / Python）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-02-11 01:10:00 / 修改时间：02:03:10" itemprop="dateCreated datePublished" datetime="2026-02-11T01:10:00+08:00">2026-02-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/API/" itemprop="url" rel="index"><span itemprop="name">API</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Video Data API 平台试用,优雅的处理Youtube视频文件</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Video-Data-API-教程：从解析到下载（Windows-x2F-Python）"><a href="#Video-Data-API-教程：从解析到下载（Windows-x2F-Python）" class="headerlink" title="Video Data API 教程：从解析到下载（Windows &#x2F; Python）"></a>Video Data API 教程：从解析到下载（Windows &#x2F; Python）</h1><p>这篇文章用<strong>教程风格</strong>带你完整跑通 Video Data API：<br>从解析视频格式、创建下载任务，到拿到最终下载链接并保存文件。</p>
+<p>平台地址：</p>
+<ul>
+<li><code>https://video-api.privateproxy.me/dashboard</code></li>
+</ul>
+<hr>
+<h2 id="一、注册与流量说明"><a href="#一、注册与流量说明" class="headerlink" title="一、注册与流量说明"></a>一、注册与流量说明</h2><p>根据实测：</p>
+<ul>
+<li>注册只需邮箱（临时邮箱也可）</li>
+<li>默认可用流量：<strong>1024MB</strong></li>
+<li>完成社区任务可申请额外 <strong>1TB</strong>（需管理员手动验证）</li>
+</ul>
+<hr>
+<h2 id="二、调用流程总览（4-步）"><a href="#二、调用流程总览（4-步）" class="headerlink" title="二、调用流程总览（4 步）"></a>二、调用流程总览（4 步）</h2><p>整个流程固定为 4 步：</p>
+<ol>
+<li><code>GET /api/formats</code>：获取可用格式</li>
+<li><code>POST /api/download</code>：创建下载任务，拿 <code>task_id</code></li>
+<li><code>GET /api/status/&#123;task_id&#125;</code>：轮询任务进度</li>
+<li><code>GET /api/download/&#123;task_id&#125;</code>：获取最终 <code>download_url</code></li>
+</ol>
+<hr>
+<h2 id="三、准备工作：Authorization"><a href="#三、准备工作：Authorization" class="headerlink" title="三、准备工作：Authorization"></a>三、准备工作：Authorization</h2><p>接口使用 Basic 鉴权：</p>
+<p>Authorization: Basic xxxxxxxxx</p>
+<blockquote>
+<p><code>xxxxxxxxx</code> 是你的 Base64 凭据（<code>username:password</code> 编码结果）。</p>
+</blockquote>
+<hr>
+<h2 id="四、步骤-1：查询可用格式"><a href="#四、步骤-1：查询可用格式" class="headerlink" title="四、步骤 1：查询可用格式"></a>四、步骤 1：查询可用格式</h2><h3 id="PowerShell-命令"><a href="#PowerShell-命令" class="headerlink" title="PowerShell 命令"></a>PowerShell 命令</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl.exe <span class="literal">--location</span> <span class="string">&quot;https://gate.apiscrape.net:16262/api/formats?video_url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DmACO9BhP3ok&quot;</span> <span class="literal">--header</span> <span class="string">&quot;Authorization: Basic 你的Base64&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>返回里会有大量 <code>format_id</code>，常见例如：</p>
+<ul>
+<li><code>140</code>：m4a 音频（中码率）</li>
+<li><code>250</code>：webm 音频（低码率）</li>
+<li><code>18</code>：mp4 360p（含音频+视频）</li>
+<li><code>137</code>：1080p 视频流（通常仅视频）</li>
+</ul>
+<hr>
+<h2 id="五、步骤-2：创建下载任务"><a href="#五、步骤-2：创建下载任务" class="headerlink" title="五、步骤 2：创建下载任务"></a>五、步骤 2：创建下载任务</h2><p>选择一个 <code>format_id</code>（例如 <code>140</code>）并提交任务：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl.exe <span class="literal">--location</span> <span class="string">&quot;https://gate.apiscrape.net:16262/api/download&quot;</span> <span class="literal">--header</span> <span class="string">&quot;Content-Type: application/json&quot;</span> <span class="literal">--header</span> <span class="string">&quot;Authorization: Basic 你的Base64&quot;</span> <span class="literal">--data</span> <span class="string">&quot;&#123;\&quot;</span>url\<span class="string">&quot;:\&quot;</span>https://www.youtube.com/watch?v=mACO9BhP3ok\<span class="string">&quot;,\&quot;</span>format_id\<span class="string">&quot;:\&quot;</span><span class="number">140</span>\<span class="string">&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>示例响应：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;queued&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1deb8710-9883-4641-a0ab-ee64d246cff2&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、步骤-3：查询任务状态"><a href="#六、步骤-3：查询任务状态" class="headerlink" title="六、步骤 3：查询任务状态"></a>六、步骤 3：查询任务状态</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl.exe <span class="literal">--location</span> <span class="string">&quot;https://gate.apiscrape.net:16262/api/status/1deb8710-9883-4641-a0ab-ee64d246cff2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>示例响应：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;download_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/api/download/1deb8710-9883-4641-a0ab-ee64d246cff2&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;progress&quot;</span><span class="punctuation">:</span> <span class="number">100</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;site&quot;</span><span class="punctuation">:</span> <span class="string">&quot;youtube&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="string">&quot;completed&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>当 <code>status = completed</code> 后，进入下一步。</p>
+<hr>
+<h2 id="七、步骤-4：获取最终下载链接"><a href="#七、步骤-4：获取最终下载链接" class="headerlink" title="七、步骤 4：获取最终下载链接"></a>七、步骤 4：获取最终下载链接</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl.exe <span class="literal">--location</span> <span class="string">&quot;https://gate.apiscrape.net:16262/api/download/1deb8710-9883-4641-a0ab-ee64d246cff2&quot;</span> <span class="literal">--header</span> <span class="string">&quot;Authorization: Basic 你的Base64&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>示例响应：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;download_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://s3.xxx...带签名的临时链接...&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后保存到本地：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl.exe <span class="literal">-L</span> <span class="string">&quot;上一步返回的download_url&quot;</span> <span class="literal">-o</span> output.m4a</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、为什么后台会显示多次下载与多段流量？"><a href="#八、为什么后台会显示多次下载与多段流量？" class="headerlink" title="八、为什么后台会显示多次下载与多段流量？"></a>八、为什么后台会显示多次下载与多段流量？</h2><p>如果你创建了多个任务（例如一次 <code>format_id=250</code>，一次 <code>format_id=140</code>），后台会分别计入：</p>
+<ul>
+<li>每个任务一次下载记录</li>
+<li>每个任务对应的文件流量</li>
+</ul>
+<p>所以就算最后只保留了一个文件，也可能看到多条记录和累计流量。</p>
+<hr>
+<h2 id="九、是否可以直接用-formats-里的-YouTube-直链下载？"><a href="#九、是否可以直接用-formats-里的-YouTube-直链下载？" class="headerlink" title="九、是否可以直接用 formats 里的 YouTube 直链下载？"></a>九、是否可以直接用 <code>formats</code> 里的 YouTube 直链下载？</h2><p><code>formats</code> 返回的数据里通常包含 YouTube&#x2F;Googlevideo 直链。<br>这些链接常常是<strong>临时签名链接</strong>，可能过期、受 IP&#x2F;地区限制，不适合作为稳定流程。</p>
+<p><strong>推荐做法：</strong></p>
+<ul>
+<li>始终走任务接口，最终使用 <code>/api/download/&#123;task_id&#125;</code> 返回的 <code>download_url</code>。</li>
+</ul>
+<hr>
+<h2 id="十、Windows-常见报错与处理"><a href="#十、Windows-常见报错与处理" class="headerlink" title="十、Windows 常见报错与处理"></a>十、Windows 常见报错与处理</h2><h3 id="1）-39-header-39-不是内部或外部命令"><a href="#1）-39-header-39-不是内部或外部命令" class="headerlink" title="1）&#39;--header&#39; 不是内部或外部命令"></a>1）<code>&#39;--header&#39; 不是内部或外部命令</code></h3><p>原因：把参数单独敲成了一条命令。<br>解决：整条 curl 写成一行。</p>
+<hr>
+<h3 id="2）curl-3-URL-rejected-Bad-hostname"><a href="#2）curl-3-URL-rejected-Bad-hostname" class="headerlink" title="2）curl: (3) URL rejected: Bad hostname"></a>2）<code>curl: (3) URL rejected: Bad hostname</code></h3><p>原因：PowerShell 换行续写不规范（反引号后有空格）或命令拆坏了。<br>解决：尽量使用单行命令。</p>
+<hr>
+<h3 id="3）405-Method-Not-Allowed"><a href="#3）405-Method-Not-Allowed" class="headerlink" title="3）405 Method Not Allowed"></a>3）<code>405 Method Not Allowed</code></h3><p>原因：调用 <code>/api/download</code> 时没带 <code>--data</code>，请求变成 GET。<br>解决：确保 <code>POST + JSON body</code>。</p>
+<hr>
+<h3 id="4）schannel-failed-to-receive-handshake"><a href="#4）schannel-failed-to-receive-handshake" class="headerlink" title="4）schannel: failed to receive handshake"></a>4）<code>schannel: failed to receive handshake</code></h3><p>原因：Windows curl 偶发 TLS 握手问题。<br>解决：通常重试即可恢复。</p>
+<hr>
+<h2 id="十一、Python-一键脚本（推荐）"><a href="#十一、Python-一键脚本（推荐）" class="headerlink" title="十一、Python 一键脚本（推荐）"></a>十一、Python 一键脚本（推荐）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">BASE = <span class="string">&quot;https://gate.apiscrape.net:16262&quot;</span></span><br><span class="line">AUTH = <span class="string">&quot;Basic 你的Base64&quot;</span></span><br><span class="line"></span><br><span class="line">video_url = <span class="string">&quot;https://www.youtube.com/watch?v=mACO9BhP3ok&quot;</span></span><br><span class="line">format_id = <span class="string">&quot;140&quot;</span>  <span class="comment"># 可改为 250 / 18 等</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;Authorization&quot;</span>: AUTH,</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1) 创建任务</span></span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/api/download&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    json=&#123;<span class="string">&quot;url&quot;</span>: video_url, <span class="string">&quot;format_id&quot;</span>: format_id&#125;,</span><br><span class="line">    timeout=<span class="number">30</span>,</span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">task_id = resp.json()[<span class="string">&quot;task_id&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;task_id:&quot;</span>, task_id)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) 轮询状态</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    s = requests.get(<span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/api/status/<span class="subst">&#123;task_id&#125;</span>&quot;</span>, timeout=<span class="number">30</span>)</span><br><span class="line">    s.raise_for_status()</span><br><span class="line">    data = s.json()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;status:&quot;</span>, data.get(<span class="string">&quot;status&quot;</span>), <span class="string">&quot;progress:&quot;</span>, data.get(<span class="string">&quot;progress&quot;</span>))</span><br><span class="line">    <span class="keyword">if</span> data.get(<span class="string">&quot;status&quot;</span>) == <span class="string">&quot;completed&quot;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> data.get(<span class="string">&quot;status&quot;</span>) <span class="keyword">in</span> (<span class="string">&quot;failed&quot;</span>, <span class="string">&quot;error&quot;</span>):</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(data)</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3) 获取最终下载链接</span></span><br><span class="line">d = requests.get(</span><br><span class="line">    <span class="string">f&quot;<span class="subst">&#123;BASE&#125;</span>/api/download/<span class="subst">&#123;task_id&#125;</span>&quot;</span>,</span><br><span class="line">    headers=&#123;<span class="string">&quot;Authorization&quot;</span>: AUTH&#125;,</span><br><span class="line">    timeout=<span class="number">30</span>,</span><br><span class="line">)</span><br><span class="line">d.raise_for_status()</span><br><span class="line">download_url = d.json()[<span class="string">&quot;download_url&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;download_url:&quot;</span>, download_url)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4) 下载文件</span></span><br><span class="line">r = requests.get(download_url, timeout=<span class="number">120</span>)</span><br><span class="line">r.raise_for_status()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;output.m4a&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(r.content)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;saved: output.m4a&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="十二、实践建议"><a href="#十二、实践建议" class="headerlink" title="十二、实践建议"></a>十二、实践建议</h2><ul>
+<li>先查 <code>formats</code>，确认目标格式后再创建任务，减少流量浪费</li>
+<li>对同视频同格式做本地缓存，避免重复创建任务</li>
+<li>不要在公开博客里暴露完整鉴权信息（建议打码）</li>
+<li>如果凭据曾公开，建议后台重置</li>
+</ul>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这套 API 的使用方式很标准：<strong>解析 -&gt; 建任务 -&gt; 轮询 -&gt; 下载</strong>。<br>只要把流程封装成脚本，就能稳定批量处理视频&#x2F;音频下载任务。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Youtube/" rel="tag"># Youtube</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/1/" rel="prev" title="AI创作图文内容">
+      <i class="fa fa-chevron-left"></i> AI创作图文内容
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Video-Data-API-%E6%95%99%E7%A8%8B%EF%BC%9A%E4%BB%8E%E8%A7%A3%E6%9E%90%E5%88%B0%E4%B8%8B%E8%BD%BD%EF%BC%88Windows-x2F-Python%EF%BC%89"><span class="nav-text">Video Data API 教程：从解析到下载（Windows &#x2F; Python）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%8E%E6%B5%81%E9%87%8F%E8%AF%B4%E6%98%8E"><span class="nav-text">一、注册与流量说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E6%80%BB%E8%A7%88%EF%BC%884-%E6%AD%A5%EF%BC%89"><span class="nav-text">二、调用流程总览（4 步）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%EF%BC%9AAuthorization"><span class="nav-text">三、准备工作：Authorization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%AD%A5%E9%AA%A4-1%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%8F%AF%E7%94%A8%E6%A0%BC%E5%BC%8F"><span class="nav-text">四、步骤 1：查询可用格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PowerShell-%E5%91%BD%E4%BB%A4"><span class="nav-text">PowerShell 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%AD%A5%E9%AA%A4-2%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%8B%E8%BD%BD%E4%BB%BB%E5%8A%A1"><span class="nav-text">五、步骤 2：创建下载任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%AD%A5%E9%AA%A4-3%EF%BC%9A%E6%9F%A5%E8%AF%A2%E4%BB%BB%E5%8A%A1%E7%8A%B6%E6%80%81"><span class="nav-text">六、步骤 3：查询任务状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%AD%A5%E9%AA%A4-4%EF%BC%9A%E8%8E%B7%E5%8F%96%E6%9C%80%E7%BB%88%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="nav-text">七、步骤 4：获取最终下载链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%90%8E%E5%8F%B0%E4%BC%9A%E6%98%BE%E7%A4%BA%E5%A4%9A%E6%AC%A1%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%A4%9A%E6%AE%B5%E6%B5%81%E9%87%8F%EF%BC%9F"><span class="nav-text">八、为什么后台会显示多次下载与多段流量？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8-formats-%E9%87%8C%E7%9A%84-YouTube-%E7%9B%B4%E9%93%BE%E4%B8%8B%E8%BD%BD%EF%BC%9F"><span class="nav-text">九、是否可以直接用 formats 里的 YouTube 直链下载？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81Windows-%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E4%B8%8E%E5%A4%84%E7%90%86"><span class="nav-text">十、Windows 常见报错与处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89-39-header-39-%E4%B8%8D%E6%98%AF%E5%86%85%E9%83%A8%E6%88%96%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">1）&#39;--header&#39; 不是内部或外部命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89curl-3-URL-rejected-Bad-hostname"><span class="nav-text">2）curl: (3) URL rejected: Bad hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%89405-Method-Not-Allowed"><span class="nav-text">3）405 Method Not Allowed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%89schannel-failed-to-receive-handshake"><span class="nav-text">4）schannel: failed to receive handshake</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81Python-%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-text">十一、Python 一键脚本（推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="nav-text">十二、实践建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">214</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">146</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
