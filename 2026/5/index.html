@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="白嫖Grok推特搜索和生图功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows如何导入别人分享的Grok账号">
+<meta property="og:url" content="http://example.com/2026/5/index.html">
+<meta property="og:site_name" content="先圣博客">
+<meta property="og:description" content="白嫖Grok推特搜索和生图功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301001445405.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301002933196.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301003051831.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301003318595.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301003605387.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301003813636.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301004046199.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301004159610.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301004338990.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301014552203.png">
+<meta property="og:image" content="https://cdn.120.show/blog/2026/image-20260301014646531.png">
+<meta property="article:published_time" content="2026-02-28T18:10:00.000Z">
+<meta property="article:modified_time" content="2026-02-28T18:09:31.861Z">
+<meta property="article:author" content="XS">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Grok">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.120.show/blog/2026/image-20260301001445405.png">
+
+<link rel="canonical" href="http://example.com/2026/5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows如何导入别人分享的Grok账号 | 先圣博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">先圣博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-projects">
+
+    <a href="https://120.show/" rel="noopener" target="_blank"><i class="fa fa-flask fa-fw"></i>项目</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/categories/msg/" rel="section"><i class="fa fa-list-ul fa-fw"></i>说说</a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-other">
+
+    <a href="/other/" rel="section"><i class="fa fa-book fa-fw"></i>其他</a>
+
+  </li>
+
+
+      
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XS">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="先圣博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows如何导入别人分享的Grok账号
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-03-01 02:10:00 / 修改时间：02:09:31" itemprop="dateCreated datePublished" datetime="2026-03-01T02:10:00+08:00">2026-03-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">白嫖Grok推特搜索和生图功能</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>起因：一位佬友分享了2.5w个Grok账号的SSO信息，我开始研究如何使用这些账号。</p>
+<p>帖子：<a target="_blank" rel="noopener" href="https://linux.do/t/topic/1672204">https://linux.do/t/topic/1672204</a></p>
+</blockquote>
+<h3 id="下载代码："><a href="#下载代码：" class="headerlink" title="下载代码："></a>下载代码：</h3><p>Windows启动Grok2api代理</p>
+<p>项目仓库：<a target="_blank" rel="noopener" href="https://github.com/chenyme/grok2api">chenyme&#x2F;grok2api</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/chenyme/grok2api.git</span><br></pre></td></tr></table></figure>
+
+<p>使用git克隆一份代码到本地。</p>
+<h3 id="启动项目："><a href="#启动项目：" class="headerlink" title="启动项目："></a>启动项目：</h3><p>然后如果你不知道怎么样启动的话，使用opencode打开（或者其他AI编辑器），让AI告诉你如何启动这个项目。</p>
+<p>一般来说，开源代码都有文档：README.md</p>
+<p>你读不懂的话，让AI解释给你听。</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301001445405.png" alt="image-20260301001445405"></p>
+<p>然后全程让AI执行即可。</p>
+<p>这个过程中记得打开梯子的全局模式。</p>
+<blockquote>
+<p>扫描当前项目，告诉我如何启动，我需要安装依赖吗？</p>
+<p>好的，请帮我安装依赖，完成本地启动！</p>
+<p>添加到path环境变量</p>
+</blockquote>
+<p>用自然语言描述需求即可。</p>
+<p>我的py版本太低了，他自动升级了，还安装了uv，我让他配置环境变量path。</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301002933196.png" alt="image-20260301002933196"></p>
+<p>此处我手动开启了终端，并且运转指令开启服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uv run main.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="初始配置："><a href="#初始配置：" class="headerlink" title="初始配置："></a>初始配置：</h3><p>初始默认登录地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000/admin/login</span><br></pre></td></tr></table></figure>
+
+<p>默认密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grok2api</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.120.show/blog/2026/image-20260301003051831.png" alt="image-20260301003051831"></p>
+<p>登录之后这个样子界面，都是中文，使用起来非常简单。</p>
+<h3 id="导入账号："><a href="#导入账号：" class="headerlink" title="导入账号："></a>导入账号：</h3><p>点击右上角导入。</p>
+<p>默认选项即可，复制txt文本信息。</p>
+<p>导入成功如下图所示：</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301003318595.png" alt="image-20260301003318595"></p>
+<p>打开配置管理，生成API秘钥。</p>
+<p>复制我们的秘钥，方便调用。</p>
+<blockquote>
+<p>abUeNKEaVgtxKCAO</p>
+</blockquote>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301003605387.png" alt="image-20260301003605387"></p>
+<h3 id="Cherry-Studio中使用："><a href="#Cherry-Studio中使用：" class="headerlink" title="Cherry Studio中使用："></a>Cherry Studio中使用：</h3><p>添加供应商：</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301003813636.png" alt="image-20260301003813636"></p>
+<p>类型选择New API，名称随便起，但是自己要能分得清。</p>
+<p>添加模型选择管理，然后再选择可用模型添加。</p>
+<p>唯一需要注意的是，当选择图像生成模型的时候，要这样选择。</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301004046199.png" alt="image-20260301004046199"></p>
+<p>端点类型：图像生成（OpenAI）</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301004159610.png" alt="image-20260301004159610"></p>
+<p>最后测试1下是否正确，可以使用。</p>
+<p>就是反应较慢，白嫖的还可以接受。</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301004338990.png" alt="image-20260301004338990"></p>
+<p>这样就可以进行生图了。</p>
+<p>里面我是使用某位大佬的NFSW咒语，就不放生出来的图，免得过不了审核。</p>
+<h3 id="可能存在的问题："><a href="#可能存在的问题：" class="headerlink" title="可能存在的问题："></a>可能存在的问题：</h3><p>如果你遇到下面这个问题，不要慌。</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301014552203.png" alt="image-20260301014552203"></p>
+<p>他大概率是你的机场IP不支持，比如我这个使用的是新加坡。</p>
+<p>当我换成美国之后，就可以回答我了。</p>
+<p><img src="https://cdn.120.show/blog/2026/image-20260301014646531.png" alt="image-20260301014646531"></p>
+<p>好家伙，这不多了一些资源<del>(bushi)</del></p>
+<p>至于开启NFSW这种图形界面化操作就不演示了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Grok/" rel="tag"># Grok</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/4/" rel="prev" title="Windows如何导入别人分享的CODEX账号">
+      <i class="fa fa-chevron-left"></i> Windows如何导入别人分享的CODEX账号
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-text">下载代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%EF%BC%9A"><span class="nav-text">启动项目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="nav-text">初始配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E8%B4%A6%E5%8F%B7%EF%BC%9A"><span class="nav-text">导入账号：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cherry-Studio%E4%B8%AD%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="nav-text">Cherry Studio中使用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-text">可能存在的问题：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XS</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">217</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">148</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XS</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+</body>
+</html>
